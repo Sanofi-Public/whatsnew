@@ -1,0 +1,50 @@
+## ----setup--------------------------------------------------------------------
+library(whatsnew)
+library(dplyr)
+library(risk.assessr)
+
+## ----message=FALSE, warning=FALSE, eval=FALSE---------------------------------
+# tm_list_1 <- risk.assessr::generate_traceability_matrix("dplyr", "1.1.4",  execute_coverage = FALSE)
+# tm_list_2 <- risk.assessr::generate_traceability_matrix("dplyr", "1.0.9",  execute_coverage = FALSE)
+
+## ----message=FALSE, warning=FALSE, eval=FALSE---------------------------------
+# tm_list_1$tm
+
+## ----message=FALSE, warning=FALSE, eval=FALSE---------------------------------
+# diffs <- whatsnew::compare_column(
+#   tm_list_1$tm,
+#   tm_list_2$tm,
+#   key = "exported_function",
+#   param_col = "function_type",
+#   name1 = "tm_list_1_tm",
+#   name2 = "tm_list_2_tm"
+# )
+# 
+# diffs
+# 
+
+## ----message=FALSE, warning=FALSE, eval=FALSE---------------------------------
+# 
+# diffs <- whatsnew::compare_column(
+#   tm_list_1$tm,
+#   tm_list_2$tm,
+#   key = "exported_function",
+#   param_col = "function_body",
+#   name1 = "tm_list_1_tm",
+#   name2 = "tm_list_2_tm"
+# )
+# 
+# diffs
+
+## ----message=FALSE, warning=FALSE, eval=FALSE---------------------------------
+# diffs <- whatsnew::compare_column(
+#   tm_list_1$tm,
+#   tm_list_2$tm,
+#   key = "exported_function",
+#   param_col = "description",
+#   name1 = "tm_list_1_tm",
+#   name2 = "tm_list_2_tm"
+# )
+# 
+# diffs
+

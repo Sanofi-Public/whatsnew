@@ -1,0 +1,59 @@
+{
+  "package": ["rlang"],
+  "version_new": ["1.1.4"],
+  "version_old": ["1.1.3"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      },
+      "Imports": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      },
+      "Suggests": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "dyn_lgl_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_int_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_dbl_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_cpl_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_raw_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_chr_push_back": {
+        "x": {},
+        "value": {}
+      },
+      "dyn_list_push_back": {
+        "x": {},
+        "value": {}
+      }
+    },
+    "removed": {},
+    "modified": []
+  },
+  "test_m": []
+}

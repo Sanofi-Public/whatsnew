@@ -1,0 +1,3283 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>function tree</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">function tree</h1>
+
+
+
+<p>This vignette demonstrates how to explore <strong>function call
+relationships</strong> inside an R package (using
+<code>pkgnet</code>).</p>
+<ul>
+<li>The call graph is directed <strong>caller → callee</strong>.</li>
+<li><strong>Downstream</strong> means <em>who this function
+calls</em>;</li>
+<li><strong>Upstream</strong> means <em>who calls this
+function</em>.</li>
+</ul>
+<div id="function_tree" class="section level2">
+<h2>function_tree</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(risk.assessr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(whatsnew)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>ft <span class="ot">&lt;-</span> whatsnew<span class="sc">::</span><span class="fu">function_tree</span>(<span class="st">&quot;risk.assessr&quot;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>ft</span></code></pre></div>
+<pre><code>## $risk.assessr
+## $risk.assessr$version
+## [1] &quot;4.1.2&quot;
+## 
+## $risk.assessr$assess_pkg_r_package
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$assess_exports
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$bioconductor_reverse_deps
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_versions
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$contains_r_folder
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$create_items_matched
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_suggested_exp_funcs
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_suggested_exp_funcs$get_func_descriptions
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$process_items_matched
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep$cran_packages
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$clean_up_dependencies
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$clean_up_dependencies$extract_dependency_package_names
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$expand_dependency_type_spec
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_empty_results
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_empty_tm
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$camel_to_kebab
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$contains_r_folder
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$create_empty_tm
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$extract_short_path
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$fine_grained_tms
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$fine_grained_tms$create_empty_tm
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_func_descriptions
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$normalize_code_script_key
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$create_traceability_matrix$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_description_file_elements
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_description_file_elements$get_pkg_desc
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text$`__cycle_to`
+## [1] &quot;rd_examples_to_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$get_exported_function_names
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help$get_exports_from_source
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help$get_func_descriptions
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news$find_news_files
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$find_news_files
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$news_lines_have_pkg_version
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$news_lines_have_pkg_version$escape_regex
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_size_codebase
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_size_codebase$contains_r_folder
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_vignettes
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$doc_riskmetric$create_has_ex_docs_score
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$extract_license_from_description
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_bioconductor_package_url
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_cran_total_downloads
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_dependencies
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies$capture_cran_warning
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies$remove_base_packages
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_github_data
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_github_data$average_issue_close_time
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_versions
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_host_package$get_internal_package_url
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_pkg_author
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_pkg_desc
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_repo_owner
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis$compute_risk
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis$extract_risk_inputs
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis$get_risk_definition
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis$normalize_data
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_analysis$normalize_data$clean_license
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_risk_metadata
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_security_vulnerabilities
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_security_vulnerabilities$fetch_osv_data
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$get_session_dependencies
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$parse_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$run_rcmdcheck
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$assess_pkg$run_rcmdcheck$check_forbidden_notes
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_versions
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$check_cran_package
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$get_internal_package_url
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$get_package_tarfile$parse_bioconductor_releases
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$install_package_local
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$install_package_local$get_pkg_name
+## NULL
+## 
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$modify_description_file
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$set_up_pkg
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$set_up_pkg$contains_vignette_folder
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$set_up_pkg$setup_rcmdcheck_args
+## NULL
+## 
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$set_up_pkg$unpack_tarball
+## $risk.assessr$assess_pkg_r_package$risk_assess_pkg$set_up_pkg$unpack_tarball$get_pkg_name
+## NULL
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$count_commits_last_months
+## NULL
+## 
+## $risk.assessr$detect_version_conflicts
+## NULL
+## 
+## $risk.assessr$evaluate_risk_highlighting
+## NULL
+## 
+## $risk.assessr$fetch_all_dependencies
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$build_dependency_tree
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$build_dependency_tree$`__cycle_to`
+## [1] &quot;build_dependency_tree&quot;
+## 
+## 
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$download_and_parse_dependencies
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$download_and_parse_dependencies$extract_license_from_description
+## NULL
+## 
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$download_and_parse_dependencies$parse_dcf_dependencies_version
+## NULL
+## 
+## 
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$extract_package_version
+## NULL
+## 
+## $risk.assessr$fetch_all_dependencies$build_dependency_tree$is_base
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_html_report
+## $risk.assessr$generate_html_report$extract_thresholds_by_id
+## NULL
+## 
+## $risk.assessr$generate_html_report$extract_thresholds_by_key
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_coverage_section
+## $risk.assessr$generate_html_report$generate_coverage_section$extract_coverage_df
+## $risk.assessr$generate_html_report$generate_coverage_section$extract_coverage_df$create_file_coverage_df
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_coverage_section$extract_coverage_df$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_html_report$generate_deps_section
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_doc_metrics_section
+## $risk.assessr$generate_html_report$generate_doc_metrics_section$extract_maintainer_info
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_doc_metrics_section$handle_null
+## NULL
+## 
+## 
+## $risk.assessr$generate_html_report$generate_fg_trace_matrix_section
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_pop_metrics_section
+## $risk.assessr$generate_html_report$generate_pop_metrics_section$handle_null
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_pop_metrics_section$safe_value
+## $risk.assessr$generate_html_report$generate_pop_metrics_section$safe_value$convert_number_to_abbreviation
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_pop_metrics_section$safe_value$handle_null
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_html_report$generate_rcmd_check_section
+## $risk.assessr$generate_html_report$generate_rcmd_check_section$convert_number_to_percent
+## NULL
+## 
+## 
+## $risk.assessr$generate_html_report$generate_rev_deps_section
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_risk_details
+## $risk.assessr$generate_html_report$generate_risk_details$convert_number_to_percent
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_risk_details$handle_null
+## NULL
+## 
+## 
+## $risk.assessr$generate_html_report$generate_risk_summary
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_trace_matrix_section
+## NULL
+## 
+## $risk.assessr$generate_html_report$generate_vulnerabilities_section
+## NULL
+## 
+## $risk.assessr$generate_html_report$get_license_thresholds
+## NULL
+## 
+## $risk.assessr$generate_html_report$get_max_thresholds
+## NULL
+## 
+## $risk.assessr$generate_html_report$get_risk_definition
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$rd_name
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$build_r_script_lookup
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$camel_to_kebab
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$contains_r_folder
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$create_empty_tm
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$extract_short_path
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$fine_grained_tms
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$fine_grained_tms$create_empty_tm
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$get_func_descriptions
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$normalize_code_script_key
+## $risk.assessr$generate_traceability_matrix$create_traceability_matrix$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$get_versions
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$check_cran_package
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$get_bioconductor_package_url
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$get_internal_package_url
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$get_package_tarfile$parse_bioconductor_releases
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$install_package_local
+## $risk.assessr$generate_traceability_matrix$install_package_local$get_pkg_name
+## NULL
+## 
+## 
+## $risk.assessr$generate_traceability_matrix$modify_description_file
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$set_up_pkg
+## $risk.assessr$generate_traceability_matrix$set_up_pkg$contains_vignette_folder
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$set_up_pkg$setup_rcmdcheck_args
+## NULL
+## 
+## $risk.assessr$generate_traceability_matrix$set_up_pkg$unpack_tarball
+## $risk.assessr$generate_traceability_matrix$set_up_pkg$unpack_tarball$get_pkg_name
+## NULL
+## 
+## 
+## 
+## 
+## $risk.assessr$get_commits_since
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics
+## $risk.assessr$get_frugal_metrics$assess_exports
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_empty_results
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$rd_name
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$build_r_script_lookup
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$camel_to_kebab
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$contains_r_folder
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$create_empty_tm
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$extract_short_path
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$fine_grained_tms
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$fine_grained_tms$create_empty_tm
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$get_func_descriptions
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$normalize_code_script_key
+## $risk.assessr$get_frugal_metrics$create_traceability_matrix$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_description_file_elements
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_description_file_elements$get_pkg_desc
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$extract_examples_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$extract_examples_text$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text$`__cycle_to`
+## [1] &quot;rd_examples_to_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$get_exported_function_names
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_export_help
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_export_help$get_exports_from_source
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_export_help$get_func_descriptions
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$rd_name
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news$find_news_files
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news_current
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news_current$find_news_files
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news_current$news_lines_have_pkg_version
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_news_current$news_lines_have_pkg_version$escape_regex
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_size_codebase
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_size_codebase$contains_r_folder
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$assess_vignettes
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$doc_riskmetric$create_has_ex_docs_score
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$extract_license_from_description
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_dependencies
+## $risk.assessr$get_frugal_metrics$get_dependencies$parse_dcf_dependencies
+## $risk.assessr$get_frugal_metrics$get_dependencies$parse_dcf_dependencies$capture_cran_warning
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_dependencies$parse_dcf_dependencies$remove_base_packages
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$get_versions
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$check_cran_package
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$get_bioconductor_package_url
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$get_internal_package_url
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_package_tarfile$parse_bioconductor_releases
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_pkg_author
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_pkg_desc
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_risk_analysis
+## $risk.assessr$get_frugal_metrics$get_risk_analysis$compute_risk
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_risk_analysis$extract_risk_inputs
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_risk_analysis$get_risk_definition
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_risk_analysis$normalize_data
+## $risk.assessr$get_frugal_metrics$get_risk_analysis$normalize_data$clean_license
+## NULL
+## 
+## 
+## 
+## $risk.assessr$get_frugal_metrics$get_risk_metadata
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$get_session_dependencies
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$init_frugal_covr_list
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$init_frugal_results
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$install_package_local
+## $risk.assessr$get_frugal_metrics$install_package_local$get_pkg_name
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$modify_description_file
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$run_rcmdcheck
+## $risk.assessr$get_frugal_metrics$run_rcmdcheck$check_forbidden_notes
+## NULL
+## 
+## 
+## $risk.assessr$get_frugal_metrics$set_up_pkg
+## $risk.assessr$get_frugal_metrics$set_up_pkg$contains_vignette_folder
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$set_up_pkg$setup_rcmdcheck_args
+## NULL
+## 
+## $risk.assessr$get_frugal_metrics$set_up_pkg$unpack_tarball
+## $risk.assessr$get_frugal_metrics$set_up_pkg$unpack_tarball$get_pkg_name
+## NULL
+## 
+## 
+## 
+## 
+## $risk.assessr$get_package_download_bioconductor
+## NULL
+## 
+## $risk.assessr$get_package_download_cran
+## NULL
+## 
+## $risk.assessr$get_pubmed_by_year
+## NULL
+## 
+## $risk.assessr$get_pubmed_count
+## NULL
+## 
+## $risk.assessr$get_result_path
+## NULL
+## 
+## $risk.assessr$list_badges
+## $risk.assessr$list_badges$fetch_badge_value
+## $risk.assessr$list_badges$fetch_badge_value$normalize_codecov
+## NULL
+## 
+## $risk.assessr$list_badges$fetch_badge_value$parse_doc_safe
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$assess_exports
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$bioconductor_reverse_deps
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_versions
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$contains_r_folder
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$create_items_matched
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_suggested_exp_funcs
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$get_suggested_exp_funcs$get_func_descriptions
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$check_suggested_exp_funcs$process_items_matched
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep$cran_packages
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$clean_up_dependencies
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$clean_up_dependencies$extract_dependency_package_names
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$cran_revdep$dependsOnPkgs$expand_dependency_type_spec
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_empty_results
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_empty_tm
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$build_r_script_lookup$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$camel_to_kebab
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$contains_r_folder
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$create_empty_tm
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$extract_short_path
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$fine_grained_tms
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$fine_grained_tms$create_empty_tm
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$check_ggproto
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$extract_ggproto_methods
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$function_is_ggproto
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_all_s4_methods
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_r6_methods_details
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$get_s3_method
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$classify_function_body$preprocess_func_full_name
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$contains_r_folder
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$extract_exported_function_info
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_exports$extract_package_name
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$get_func_descriptions
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$normalize_code_script_key
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$create_traceability_matrix$normalize_code_script_key$extract_short_path
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_description_file_elements
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_description_file_elements$get_pkg_desc
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$extract_examples_text$rd_examples_to_text$rd_examples_to_text$`__cycle_to`
+## [1] &quot;rd_examples_to_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$get_exported_function_names
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_examples$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help$get_exports_from_source
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_export_help$get_func_descriptions
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$get_rd_sections
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_aliases$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$find_rd_for_fun$build_rd_index$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$get_exported_function_names$get_exports_from_source
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$get_rd_section
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_exported_functions_docs$rd_name$rd_flatten_text$rd_flatten_text$`__cycle_to`
+## [1] &quot;rd_flatten_text&quot;
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news$find_news_files
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$find_news_files
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$news_lines_have_pkg_version
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_news_current$news_lines_have_pkg_version$escape_regex
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_size_codebase
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_size_codebase$contains_r_folder
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$assess_vignettes
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$doc_riskmetric$create_has_ex_docs_score
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$extract_license_from_description
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_bioconductor_package_url
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_cran_total_downloads
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_dependencies
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies$capture_cran_warning
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_dependencies$parse_dcf_dependencies$remove_base_packages
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_github_data
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_github_data$average_issue_close_time
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_versions
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_host_package$get_internal_package_url
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_pkg_author
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_pkg_desc
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_repo_owner
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis$compute_risk
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis$extract_risk_inputs
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis$get_risk_definition
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis$normalize_data
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_analysis$normalize_data$clean_license
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_risk_metadata
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_security_vulnerabilities
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_security_vulnerabilities$fetch_osv_data
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$get_session_dependencies
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$parse_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$run_rcmdcheck
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$assess_pkg$run_rcmdcheck$check_forbidden_notes
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$as_iso_date
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$check_cran_package
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_cran_package_url
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_versions
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$get_versions$as_iso_date
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$parse_html_version
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_and_fetch_cran_package$parse_package_info
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$check_cran_package
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$fetch_bioconductor_releases
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$get_bioconductor_package_url$fetch_bioconductor_package_info$extract_version
+## NULL
+## 
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$get_internal_package_url
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$get_package_tarfile$parse_bioconductor_releases
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$install_package_local
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$install_package_local$get_pkg_name
+## NULL
+## 
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$modify_description_file
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$set_up_pkg
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$set_up_pkg$contains_vignette_folder
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$set_up_pkg$setup_rcmdcheck_args
+## NULL
+## 
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$set_up_pkg$unpack_tarball
+## $risk.assessr$risk_assess_pkg_lock_files$risk_assess_pkg$set_up_pkg$unpack_tarball$get_pkg_name
+## NULL
+## 
+## 
+## 
+## 
+## 
+## $risk.assessr$write_summary_report
+## $risk.assessr$write_summary_report$generate_risk_analysis
+## $risk.assessr$write_summary_report$generate_risk_analysis$convert_number_to_percent
+## NULL
+## 
+## $risk.assessr$write_summary_report$generate_risk_analysis$handle_null
+## NULL
+## 
+## $risk.assessr$write_summary_report$generate_risk_analysis$safe_value
+## $risk.assessr$write_summary_report$generate_risk_analysis$safe_value$convert_number_to_abbreviation
+## NULL
+## 
+## $risk.assessr$write_summary_report$generate_risk_analysis$safe_value$handle_null
+## NULL
+## 
+## 
+## 
+## $risk.assessr$write_summary_report$get_pkg_desc
+## NULL</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>ft1 <span class="ot">&lt;-</span>  whatsnew<span class="sc">::</span><span class="fu">function_tree</span>(<span class="st">&quot;risk.assessr&quot;</span>, <span class="at">root =</span> <span class="st">&quot;assess_pkg_r_package&quot;</span>, <span class="at">depth =</span> <span class="dv">3</span>, <span class="at">direction =</span> <span class="st">&quot;downstream&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">str</span>(ft1, <span class="at">max.level =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## List of 1
+##  $ risk.assessr:List of 2
+##   ..$ version             : chr &quot;4.1.2&quot;
+##   ..$ assess_pkg_r_package:List of 1
+##   .. ..$ risk_assess_pkg:List of 5</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ft2 <span class="ot">&lt;-</span>  whatsnew<span class="sc">::</span><span class="fu">function_tree</span>(<span class="st">&quot;risk.assessr&quot;</span>, <span class="at">root =</span> <span class="st">&quot;assess_pkg_r_package&quot;</span>, <span class="at">depth =</span> <span class="dv">3</span>, <span class="at">direction =</span> <span class="st">&quot;upstream&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">str</span>(ft2, <span class="at">max.level =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## List of 1
+##  $ risk.assessr:List of 2
+##   ..$ version             : chr &quot;4.1.2&quot;
+##   ..$ assess_pkg_r_package: NULL</code></pre>
+</div>
+<div id="function_tree-print" class="section level2">
+<h2>function_tree print</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a> whatsnew<span class="sc">::</span><span class="fu">print_function_tree</span>(ft)</span></code></pre></div>
+<pre><code>## \-- risk.assessr (v4.1.2)
+##     |-- assess_pkg_r_package
+##     |   \-- risk_assess_pkg
+##     |       |-- assess_pkg
+##     |       |   |-- assess_exports
+##     |       |   |-- bioconductor_reverse_deps
+##     |       |   |-- check_and_fetch_cran_package
+##     |       |   |   |-- as_iso_date
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   |-- get_versions
+##     |       |   |   |   \-- as_iso_date
+##     |       |   |   |-- parse_html_version
+##     |       |   |   \-- parse_package_info
+##     |       |   |-- check_suggested_exp_funcs
+##     |       |   |   |-- contains_r_folder
+##     |       |   |   |-- create_items_matched
+##     |       |   |   |-- get_exports
+##     |       |   |   |   |-- classify_function_body
+##     |       |   |   |   |   |-- check_ggproto
+##     |       |   |   |   |   |-- extract_ggproto_methods
+##     |       |   |   |   |   |-- function_is_ggproto
+##     |       |   |   |   |   |-- get_all_s4_methods
+##     |       |   |   |   |   |-- get_r6_methods_details
+##     |       |   |   |   |   |-- get_s3_method
+##     |       |   |   |   |   \-- preprocess_func_full_name
+##     |       |   |   |   |-- contains_r_folder
+##     |       |   |   |   |-- extract_exported_function_info
+##     |       |   |   |   \-- extract_package_name
+##     |       |   |   |-- get_suggested_exp_funcs
+##     |       |   |   |   \-- get_func_descriptions
+##     |       |   |   \-- process_items_matched
+##     |       |   |-- cran_revdep
+##     |       |   |   |-- cran_packages
+##     |       |   |   \-- dependsOnPkgs
+##     |       |   |       |-- clean_up_dependencies
+##     |       |   |       |   \-- extract_dependency_package_names
+##     |       |   |       \-- expand_dependency_type_spec
+##     |       |   |-- create_empty_results
+##     |       |   |-- create_empty_tm
+##     |       |   |-- create_traceability_matrix
+##     |       |   |   |-- assess_exported_functions_docs
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- build_r_script_lookup
+##     |       |   |   |   \-- normalize_code_script_key
+##     |       |   |   |       \-- extract_short_path
+##     |       |   |   |-- camel_to_kebab
+##     |       |   |   |-- contains_r_folder
+##     |       |   |   |-- create_empty_tm
+##     |       |   |   |-- extract_short_path
+##     |       |   |   |-- fine_grained_tms
+##     |       |   |   |   \-- create_empty_tm
+##     |       |   |   |-- get_exports
+##     |       |   |   |   |-- classify_function_body
+##     |       |   |   |   |   |-- check_ggproto
+##     |       |   |   |   |   |-- extract_ggproto_methods
+##     |       |   |   |   |   |-- function_is_ggproto
+##     |       |   |   |   |   |-- get_all_s4_methods
+##     |       |   |   |   |   |-- get_r6_methods_details
+##     |       |   |   |   |   |-- get_s3_method
+##     |       |   |   |   |   \-- preprocess_func_full_name
+##     |       |   |   |   |-- contains_r_folder
+##     |       |   |   |   |-- extract_exported_function_info
+##     |       |   |   |   \-- extract_package_name
+##     |       |   |   |-- get_func_descriptions
+##     |       |   |   \-- normalize_code_script_key
+##     |       |   |       \-- extract_short_path
+##     |       |   |-- doc_riskmetric
+##     |       |   |   |-- assess_description_file_elements
+##     |       |   |   |   \-- get_pkg_desc
+##     |       |   |   |-- assess_examples
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- extract_examples_text
+##     |       |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   \-- rd_examples_to_text
+##     |       |   |   |   |       \-- rd_examples_to_text (cycle to rd_examples_to_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- assess_export_help
+##     |       |   |   |   |-- get_exports_from_source
+##     |       |   |   |   \-- get_func_descriptions
+##     |       |   |   |-- assess_exported_functions_docs
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- assess_news
+##     |       |   |   |   \-- find_news_files
+##     |       |   |   |-- assess_news_current
+##     |       |   |   |   |-- find_news_files
+##     |       |   |   |   \-- news_lines_have_pkg_version
+##     |       |   |   |       \-- escape_regex
+##     |       |   |   |-- assess_size_codebase
+##     |       |   |   |   \-- contains_r_folder
+##     |       |   |   |-- assess_vignettes
+##     |       |   |   \-- create_has_ex_docs_score
+##     |       |   |-- extract_license_from_description
+##     |       |   |-- fetch_bioconductor_releases
+##     |       |   |-- get_bioconductor_package_url
+##     |       |   |   \-- fetch_bioconductor_package_info
+##     |       |   |       \-- extract_version
+##     |       |   |-- get_cran_total_downloads
+##     |       |   |-- get_dependencies
+##     |       |   |   \-- parse_dcf_dependencies
+##     |       |   |       |-- capture_cran_warning
+##     |       |   |       \-- remove_base_packages
+##     |       |   |-- get_github_data
+##     |       |   |   \-- average_issue_close_time
+##     |       |   |-- get_host_package
+##     |       |   |   |-- check_and_fetch_cran_package
+##     |       |   |   |   |-- as_iso_date
+##     |       |   |   |   |-- check_cran_package
+##     |       |   |   |   |-- get_cran_package_url
+##     |       |   |   |   |-- get_versions
+##     |       |   |   |   |   \-- as_iso_date
+##     |       |   |   |   |-- parse_html_version
+##     |       |   |   |   \-- parse_package_info
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   \-- get_internal_package_url
+##     |       |   |-- get_pkg_author
+##     |       |   |-- get_pkg_desc
+##     |       |   |-- get_repo_owner
+##     |       |   |-- get_risk_analysis
+##     |       |   |   |-- compute_risk
+##     |       |   |   |-- extract_risk_inputs
+##     |       |   |   |-- get_risk_definition
+##     |       |   |   \-- normalize_data
+##     |       |   |       \-- clean_license
+##     |       |   |-- get_risk_metadata
+##     |       |   |-- get_security_vulnerabilities
+##     |       |   |   \-- fetch_osv_data
+##     |       |   |-- get_session_dependencies
+##     |       |   |-- parse_bioconductor_releases
+##     |       |   \-- run_rcmdcheck
+##     |       |       \-- check_forbidden_notes
+##     |       |-- get_package_tarfile
+##     |       |   |-- check_and_fetch_cran_package
+##     |       |   |   |-- as_iso_date
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   |-- get_versions
+##     |       |   |   |   \-- as_iso_date
+##     |       |   |   |-- parse_html_version
+##     |       |   |   \-- parse_package_info
+##     |       |   |-- check_cran_package
+##     |       |   |-- fetch_bioconductor_releases
+##     |       |   |-- get_bioconductor_package_url
+##     |       |   |   \-- fetch_bioconductor_package_info
+##     |       |   |       \-- extract_version
+##     |       |   |-- get_internal_package_url
+##     |       |   \-- parse_bioconductor_releases
+##     |       |-- install_package_local
+##     |       |   \-- get_pkg_name
+##     |       |-- modify_description_file
+##     |       \-- set_up_pkg
+##     |           |-- contains_vignette_folder
+##     |           |-- setup_rcmdcheck_args
+##     |           \-- unpack_tarball
+##     |               \-- get_pkg_name
+##     |-- count_commits_last_months
+##     |-- detect_version_conflicts
+##     |-- evaluate_risk_highlighting
+##     |-- fetch_all_dependencies
+##     |   \-- build_dependency_tree
+##     |       |-- build_dependency_tree (cycle to build_dependency_tree)
+##     |       |-- download_and_parse_dependencies
+##     |       |   |-- extract_license_from_description
+##     |       |   \-- parse_dcf_dependencies_version
+##     |       |-- extract_package_version
+##     |       \-- is_base
+##     |-- generate_html_report
+##     |   |-- extract_thresholds_by_id
+##     |   |-- extract_thresholds_by_key
+##     |   |-- generate_coverage_section
+##     |   |   \-- extract_coverage_df
+##     |   |       |-- create_file_coverage_df
+##     |   |       \-- extract_short_path
+##     |   |-- generate_deps_section
+##     |   |-- generate_doc_metrics_section
+##     |   |   |-- extract_maintainer_info
+##     |   |   \-- handle_null
+##     |   |-- generate_fg_trace_matrix_section
+##     |   |-- generate_pop_metrics_section
+##     |   |   |-- handle_null
+##     |   |   \-- safe_value
+##     |   |       |-- convert_number_to_abbreviation
+##     |   |       \-- handle_null
+##     |   |-- generate_rcmd_check_section
+##     |   |   \-- convert_number_to_percent
+##     |   |-- generate_rev_deps_section
+##     |   |-- generate_risk_details
+##     |   |   |-- convert_number_to_percent
+##     |   |   \-- handle_null
+##     |   |-- generate_risk_summary
+##     |   |-- generate_trace_matrix_section
+##     |   |-- generate_vulnerabilities_section
+##     |   |-- get_license_thresholds
+##     |   |-- get_max_thresholds
+##     |   \-- get_risk_definition
+##     |-- generate_traceability_matrix
+##     |   |-- create_traceability_matrix
+##     |   |   |-- assess_exported_functions_docs
+##     |   |   |   |-- build_rd_index
+##     |   |   |   |   |-- rd_aliases
+##     |   |   |   |   |   |-- get_rd_sections
+##     |   |   |   |   |   \-- rd_flatten_text
+##     |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |   \-- rd_name
+##     |   |   |   |       |-- get_rd_section
+##     |   |   |   |       \-- rd_flatten_text
+##     |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- find_rd_for_fun
+##     |   |   |   |   \-- build_rd_index
+##     |   |   |   |       |-- rd_aliases
+##     |   |   |   |       |   |-- get_rd_sections
+##     |   |   |   |       |   \-- rd_flatten_text
+##     |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |       \-- rd_name
+##     |   |   |   |           |-- get_rd_section
+##     |   |   |   |           \-- rd_flatten_text
+##     |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- get_exported_function_names
+##     |   |   |   |   \-- get_exports_from_source
+##     |   |   |   \-- rd_name
+##     |   |   |       |-- get_rd_section
+##     |   |   |       \-- rd_flatten_text
+##     |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |-- build_r_script_lookup
+##     |   |   |   \-- normalize_code_script_key
+##     |   |   |       \-- extract_short_path
+##     |   |   |-- camel_to_kebab
+##     |   |   |-- contains_r_folder
+##     |   |   |-- create_empty_tm
+##     |   |   |-- extract_short_path
+##     |   |   |-- fine_grained_tms
+##     |   |   |   \-- create_empty_tm
+##     |   |   |-- get_exports
+##     |   |   |   |-- classify_function_body
+##     |   |   |   |   |-- check_ggproto
+##     |   |   |   |   |-- extract_ggproto_methods
+##     |   |   |   |   |-- function_is_ggproto
+##     |   |   |   |   |-- get_all_s4_methods
+##     |   |   |   |   |-- get_r6_methods_details
+##     |   |   |   |   |-- get_s3_method
+##     |   |   |   |   \-- preprocess_func_full_name
+##     |   |   |   |-- contains_r_folder
+##     |   |   |   |-- extract_exported_function_info
+##     |   |   |   \-- extract_package_name
+##     |   |   |-- get_func_descriptions
+##     |   |   \-- normalize_code_script_key
+##     |   |       \-- extract_short_path
+##     |   |-- get_package_tarfile
+##     |   |   |-- check_and_fetch_cran_package
+##     |   |   |   |-- as_iso_date
+##     |   |   |   |-- check_cran_package
+##     |   |   |   |-- get_cran_package_url
+##     |   |   |   |-- get_versions
+##     |   |   |   |   \-- as_iso_date
+##     |   |   |   |-- parse_html_version
+##     |   |   |   \-- parse_package_info
+##     |   |   |-- check_cran_package
+##     |   |   |-- fetch_bioconductor_releases
+##     |   |   |-- get_bioconductor_package_url
+##     |   |   |   \-- fetch_bioconductor_package_info
+##     |   |   |       \-- extract_version
+##     |   |   |-- get_internal_package_url
+##     |   |   \-- parse_bioconductor_releases
+##     |   |-- install_package_local
+##     |   |   \-- get_pkg_name
+##     |   |-- modify_description_file
+##     |   \-- set_up_pkg
+##     |       |-- contains_vignette_folder
+##     |       |-- setup_rcmdcheck_args
+##     |       \-- unpack_tarball
+##     |           \-- get_pkg_name
+##     |-- get_commits_since
+##     |-- get_frugal_metrics
+##     |   |-- assess_exports
+##     |   |-- create_empty_results
+##     |   |-- create_traceability_matrix
+##     |   |   |-- assess_exported_functions_docs
+##     |   |   |   |-- build_rd_index
+##     |   |   |   |   |-- rd_aliases
+##     |   |   |   |   |   |-- get_rd_sections
+##     |   |   |   |   |   \-- rd_flatten_text
+##     |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |   \-- rd_name
+##     |   |   |   |       |-- get_rd_section
+##     |   |   |   |       \-- rd_flatten_text
+##     |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- find_rd_for_fun
+##     |   |   |   |   \-- build_rd_index
+##     |   |   |   |       |-- rd_aliases
+##     |   |   |   |       |   |-- get_rd_sections
+##     |   |   |   |       |   \-- rd_flatten_text
+##     |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |       \-- rd_name
+##     |   |   |   |           |-- get_rd_section
+##     |   |   |   |           \-- rd_flatten_text
+##     |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- get_exported_function_names
+##     |   |   |   |   \-- get_exports_from_source
+##     |   |   |   \-- rd_name
+##     |   |   |       |-- get_rd_section
+##     |   |   |       \-- rd_flatten_text
+##     |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |-- build_r_script_lookup
+##     |   |   |   \-- normalize_code_script_key
+##     |   |   |       \-- extract_short_path
+##     |   |   |-- camel_to_kebab
+##     |   |   |-- contains_r_folder
+##     |   |   |-- create_empty_tm
+##     |   |   |-- extract_short_path
+##     |   |   |-- fine_grained_tms
+##     |   |   |   \-- create_empty_tm
+##     |   |   |-- get_exports
+##     |   |   |   |-- classify_function_body
+##     |   |   |   |   |-- check_ggproto
+##     |   |   |   |   |-- extract_ggproto_methods
+##     |   |   |   |   |-- function_is_ggproto
+##     |   |   |   |   |-- get_all_s4_methods
+##     |   |   |   |   |-- get_r6_methods_details
+##     |   |   |   |   |-- get_s3_method
+##     |   |   |   |   \-- preprocess_func_full_name
+##     |   |   |   |-- contains_r_folder
+##     |   |   |   |-- extract_exported_function_info
+##     |   |   |   \-- extract_package_name
+##     |   |   |-- get_func_descriptions
+##     |   |   \-- normalize_code_script_key
+##     |   |       \-- extract_short_path
+##     |   |-- doc_riskmetric
+##     |   |   |-- assess_description_file_elements
+##     |   |   |   \-- get_pkg_desc
+##     |   |   |-- assess_examples
+##     |   |   |   |-- build_rd_index
+##     |   |   |   |   |-- rd_aliases
+##     |   |   |   |   |   |-- get_rd_sections
+##     |   |   |   |   |   \-- rd_flatten_text
+##     |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |   \-- rd_name
+##     |   |   |   |       |-- get_rd_section
+##     |   |   |   |       \-- rd_flatten_text
+##     |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- extract_examples_text
+##     |   |   |   |   |-- get_rd_sections
+##     |   |   |   |   \-- rd_examples_to_text
+##     |   |   |   |       \-- rd_examples_to_text (cycle to rd_examples_to_text)
+##     |   |   |   |-- find_rd_for_fun
+##     |   |   |   |   \-- build_rd_index
+##     |   |   |   |       |-- rd_aliases
+##     |   |   |   |       |   |-- get_rd_sections
+##     |   |   |   |       |   \-- rd_flatten_text
+##     |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |       \-- rd_name
+##     |   |   |   |           |-- get_rd_section
+##     |   |   |   |           \-- rd_flatten_text
+##     |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- get_exported_function_names
+##     |   |   |   |   \-- get_exports_from_source
+##     |   |   |   \-- rd_name
+##     |   |   |       |-- get_rd_section
+##     |   |   |       \-- rd_flatten_text
+##     |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |-- assess_export_help
+##     |   |   |   |-- get_exports_from_source
+##     |   |   |   \-- get_func_descriptions
+##     |   |   |-- assess_exported_functions_docs
+##     |   |   |   |-- build_rd_index
+##     |   |   |   |   |-- rd_aliases
+##     |   |   |   |   |   |-- get_rd_sections
+##     |   |   |   |   |   \-- rd_flatten_text
+##     |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |   \-- rd_name
+##     |   |   |   |       |-- get_rd_section
+##     |   |   |   |       \-- rd_flatten_text
+##     |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- find_rd_for_fun
+##     |   |   |   |   \-- build_rd_index
+##     |   |   |   |       |-- rd_aliases
+##     |   |   |   |       |   |-- get_rd_sections
+##     |   |   |   |       |   \-- rd_flatten_text
+##     |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |       \-- rd_name
+##     |   |   |   |           |-- get_rd_section
+##     |   |   |   |           \-- rd_flatten_text
+##     |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |   |-- get_exported_function_names
+##     |   |   |   |   \-- get_exports_from_source
+##     |   |   |   \-- rd_name
+##     |   |   |       |-- get_rd_section
+##     |   |   |       \-- rd_flatten_text
+##     |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |   |   |-- assess_news
+##     |   |   |   \-- find_news_files
+##     |   |   |-- assess_news_current
+##     |   |   |   |-- find_news_files
+##     |   |   |   \-- news_lines_have_pkg_version
+##     |   |   |       \-- escape_regex
+##     |   |   |-- assess_size_codebase
+##     |   |   |   \-- contains_r_folder
+##     |   |   |-- assess_vignettes
+##     |   |   \-- create_has_ex_docs_score
+##     |   |-- extract_license_from_description
+##     |   |-- get_dependencies
+##     |   |   \-- parse_dcf_dependencies
+##     |   |       |-- capture_cran_warning
+##     |   |       \-- remove_base_packages
+##     |   |-- get_package_tarfile
+##     |   |   |-- check_and_fetch_cran_package
+##     |   |   |   |-- as_iso_date
+##     |   |   |   |-- check_cran_package
+##     |   |   |   |-- get_cran_package_url
+##     |   |   |   |-- get_versions
+##     |   |   |   |   \-- as_iso_date
+##     |   |   |   |-- parse_html_version
+##     |   |   |   \-- parse_package_info
+##     |   |   |-- check_cran_package
+##     |   |   |-- fetch_bioconductor_releases
+##     |   |   |-- get_bioconductor_package_url
+##     |   |   |   \-- fetch_bioconductor_package_info
+##     |   |   |       \-- extract_version
+##     |   |   |-- get_internal_package_url
+##     |   |   \-- parse_bioconductor_releases
+##     |   |-- get_pkg_author
+##     |   |-- get_pkg_desc
+##     |   |-- get_risk_analysis
+##     |   |   |-- compute_risk
+##     |   |   |-- extract_risk_inputs
+##     |   |   |-- get_risk_definition
+##     |   |   \-- normalize_data
+##     |   |       \-- clean_license
+##     |   |-- get_risk_metadata
+##     |   |-- get_session_dependencies
+##     |   |-- init_frugal_covr_list
+##     |   |-- init_frugal_results
+##     |   |-- install_package_local
+##     |   |   \-- get_pkg_name
+##     |   |-- modify_description_file
+##     |   |-- run_rcmdcheck
+##     |   |   \-- check_forbidden_notes
+##     |   \-- set_up_pkg
+##     |       |-- contains_vignette_folder
+##     |       |-- setup_rcmdcheck_args
+##     |       \-- unpack_tarball
+##     |           \-- get_pkg_name
+##     |-- get_package_download_bioconductor
+##     |-- get_package_download_cran
+##     |-- get_pubmed_by_year
+##     |-- get_pubmed_count
+##     |-- get_result_path
+##     |-- list_badges
+##     |   \-- fetch_badge_value
+##     |       |-- normalize_codecov
+##     |       \-- parse_doc_safe
+##     |-- risk_assess_pkg_lock_files
+##     |   \-- risk_assess_pkg
+##     |       |-- assess_pkg
+##     |       |   |-- assess_exports
+##     |       |   |-- bioconductor_reverse_deps
+##     |       |   |-- check_and_fetch_cran_package
+##     |       |   |   |-- as_iso_date
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   |-- get_versions
+##     |       |   |   |   \-- as_iso_date
+##     |       |   |   |-- parse_html_version
+##     |       |   |   \-- parse_package_info
+##     |       |   |-- check_suggested_exp_funcs
+##     |       |   |   |-- contains_r_folder
+##     |       |   |   |-- create_items_matched
+##     |       |   |   |-- get_exports
+##     |       |   |   |   |-- classify_function_body
+##     |       |   |   |   |   |-- check_ggproto
+##     |       |   |   |   |   |-- extract_ggproto_methods
+##     |       |   |   |   |   |-- function_is_ggproto
+##     |       |   |   |   |   |-- get_all_s4_methods
+##     |       |   |   |   |   |-- get_r6_methods_details
+##     |       |   |   |   |   |-- get_s3_method
+##     |       |   |   |   |   \-- preprocess_func_full_name
+##     |       |   |   |   |-- contains_r_folder
+##     |       |   |   |   |-- extract_exported_function_info
+##     |       |   |   |   \-- extract_package_name
+##     |       |   |   |-- get_suggested_exp_funcs
+##     |       |   |   |   \-- get_func_descriptions
+##     |       |   |   \-- process_items_matched
+##     |       |   |-- cran_revdep
+##     |       |   |   |-- cran_packages
+##     |       |   |   \-- dependsOnPkgs
+##     |       |   |       |-- clean_up_dependencies
+##     |       |   |       |   \-- extract_dependency_package_names
+##     |       |   |       \-- expand_dependency_type_spec
+##     |       |   |-- create_empty_results
+##     |       |   |-- create_empty_tm
+##     |       |   |-- create_traceability_matrix
+##     |       |   |   |-- assess_exported_functions_docs
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- build_r_script_lookup
+##     |       |   |   |   \-- normalize_code_script_key
+##     |       |   |   |       \-- extract_short_path
+##     |       |   |   |-- camel_to_kebab
+##     |       |   |   |-- contains_r_folder
+##     |       |   |   |-- create_empty_tm
+##     |       |   |   |-- extract_short_path
+##     |       |   |   |-- fine_grained_tms
+##     |       |   |   |   \-- create_empty_tm
+##     |       |   |   |-- get_exports
+##     |       |   |   |   |-- classify_function_body
+##     |       |   |   |   |   |-- check_ggproto
+##     |       |   |   |   |   |-- extract_ggproto_methods
+##     |       |   |   |   |   |-- function_is_ggproto
+##     |       |   |   |   |   |-- get_all_s4_methods
+##     |       |   |   |   |   |-- get_r6_methods_details
+##     |       |   |   |   |   |-- get_s3_method
+##     |       |   |   |   |   \-- preprocess_func_full_name
+##     |       |   |   |   |-- contains_r_folder
+##     |       |   |   |   |-- extract_exported_function_info
+##     |       |   |   |   \-- extract_package_name
+##     |       |   |   |-- get_func_descriptions
+##     |       |   |   \-- normalize_code_script_key
+##     |       |   |       \-- extract_short_path
+##     |       |   |-- doc_riskmetric
+##     |       |   |   |-- assess_description_file_elements
+##     |       |   |   |   \-- get_pkg_desc
+##     |       |   |   |-- assess_examples
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- extract_examples_text
+##     |       |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   \-- rd_examples_to_text
+##     |       |   |   |   |       \-- rd_examples_to_text (cycle to rd_examples_to_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- assess_export_help
+##     |       |   |   |   |-- get_exports_from_source
+##     |       |   |   |   \-- get_func_descriptions
+##     |       |   |   |-- assess_exported_functions_docs
+##     |       |   |   |   |-- build_rd_index
+##     |       |   |   |   |   |-- rd_aliases
+##     |       |   |   |   |   |   |-- get_rd_sections
+##     |       |   |   |   |   |   \-- rd_flatten_text
+##     |       |   |   |   |   |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |   \-- rd_name
+##     |       |   |   |   |       |-- get_rd_section
+##     |       |   |   |   |       \-- rd_flatten_text
+##     |       |   |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- find_rd_for_fun
+##     |       |   |   |   |   \-- build_rd_index
+##     |       |   |   |   |       |-- rd_aliases
+##     |       |   |   |   |       |   |-- get_rd_sections
+##     |       |   |   |   |       |   \-- rd_flatten_text
+##     |       |   |   |   |       |       \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |       \-- rd_name
+##     |       |   |   |   |           |-- get_rd_section
+##     |       |   |   |   |           \-- rd_flatten_text
+##     |       |   |   |   |               \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |   |-- get_exported_function_names
+##     |       |   |   |   |   \-- get_exports_from_source
+##     |       |   |   |   \-- rd_name
+##     |       |   |   |       |-- get_rd_section
+##     |       |   |   |       \-- rd_flatten_text
+##     |       |   |   |           \-- rd_flatten_text (cycle to rd_flatten_text)
+##     |       |   |   |-- assess_news
+##     |       |   |   |   \-- find_news_files
+##     |       |   |   |-- assess_news_current
+##     |       |   |   |   |-- find_news_files
+##     |       |   |   |   \-- news_lines_have_pkg_version
+##     |       |   |   |       \-- escape_regex
+##     |       |   |   |-- assess_size_codebase
+##     |       |   |   |   \-- contains_r_folder
+##     |       |   |   |-- assess_vignettes
+##     |       |   |   \-- create_has_ex_docs_score
+##     |       |   |-- extract_license_from_description
+##     |       |   |-- fetch_bioconductor_releases
+##     |       |   |-- get_bioconductor_package_url
+##     |       |   |   \-- fetch_bioconductor_package_info
+##     |       |   |       \-- extract_version
+##     |       |   |-- get_cran_total_downloads
+##     |       |   |-- get_dependencies
+##     |       |   |   \-- parse_dcf_dependencies
+##     |       |   |       |-- capture_cran_warning
+##     |       |   |       \-- remove_base_packages
+##     |       |   |-- get_github_data
+##     |       |   |   \-- average_issue_close_time
+##     |       |   |-- get_host_package
+##     |       |   |   |-- check_and_fetch_cran_package
+##     |       |   |   |   |-- as_iso_date
+##     |       |   |   |   |-- check_cran_package
+##     |       |   |   |   |-- get_cran_package_url
+##     |       |   |   |   |-- get_versions
+##     |       |   |   |   |   \-- as_iso_date
+##     |       |   |   |   |-- parse_html_version
+##     |       |   |   |   \-- parse_package_info
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   \-- get_internal_package_url
+##     |       |   |-- get_pkg_author
+##     |       |   |-- get_pkg_desc
+##     |       |   |-- get_repo_owner
+##     |       |   |-- get_risk_analysis
+##     |       |   |   |-- compute_risk
+##     |       |   |   |-- extract_risk_inputs
+##     |       |   |   |-- get_risk_definition
+##     |       |   |   \-- normalize_data
+##     |       |   |       \-- clean_license
+##     |       |   |-- get_risk_metadata
+##     |       |   |-- get_security_vulnerabilities
+##     |       |   |   \-- fetch_osv_data
+##     |       |   |-- get_session_dependencies
+##     |       |   |-- parse_bioconductor_releases
+##     |       |   \-- run_rcmdcheck
+##     |       |       \-- check_forbidden_notes
+##     |       |-- get_package_tarfile
+##     |       |   |-- check_and_fetch_cran_package
+##     |       |   |   |-- as_iso_date
+##     |       |   |   |-- check_cran_package
+##     |       |   |   |-- get_cran_package_url
+##     |       |   |   |-- get_versions
+##     |       |   |   |   \-- as_iso_date
+##     |       |   |   |-- parse_html_version
+##     |       |   |   \-- parse_package_info
+##     |       |   |-- check_cran_package
+##     |       |   |-- fetch_bioconductor_releases
+##     |       |   |-- get_bioconductor_package_url
+##     |       |   |   \-- fetch_bioconductor_package_info
+##     |       |   |       \-- extract_version
+##     |       |   |-- get_internal_package_url
+##     |       |   \-- parse_bioconductor_releases
+##     |       |-- install_package_local
+##     |       |   \-- get_pkg_name
+##     |       |-- modify_description_file
+##     |       \-- set_up_pkg
+##     |           |-- contains_vignette_folder
+##     |           |-- setup_rcmdcheck_args
+##     |           \-- unpack_tarball
+##     |               \-- get_pkg_name
+##     \-- write_summary_report
+##         |-- generate_risk_analysis
+##         |   |-- convert_number_to_percent
+##         |   |-- handle_null
+##         |   \-- safe_value
+##         |       |-- convert_number_to_abbreviation
+##         |       \-- handle_null
+##         \-- get_pkg_desc</code></pre>
+</div>
+<div id="function_tree-with-exported-function" class="section level2">
+<h2>function_tree with exported function</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>here_version <span class="ot">&lt;-</span> <span class="st">&quot;1.0.1&quot;</span>  <span class="co"># Version of `here` used to generate test archive</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(<span class="fu">system.file</span>(<span class="st">&quot;test-data&quot;</span>, <span class="st">&quot;here_101.tar.gz&quot;</span>, <span class="at">package =</span> <span class="st">&quot;whatsnew&quot;</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>temp_dir <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">dir.create</span>(temp_dir)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="fu">untar</span>(temp_file, <span class="at">exdir =</span> temp_dir)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>pkg_source_path <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(temp_dir, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">recursive =</span> <span class="cn">FALSE</span>)[<span class="dv">1</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>exports_df <span class="ot">&lt;-</span> risk.assessr<span class="sc">::</span><span class="fu">get_exports</span>(pkg_source_path)</span></code></pre></div>
+<pre><code>## Extracting exported function names for here</code></pre>
+<pre><code>## Extracting exported function bodies for here</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>exports_df<span class="sc">$</span>exported_function</span></code></pre></div>
+<pre><code>## [1] &quot;dr_here&quot;  &quot;here&quot;     &quot;i_am&quot;     &quot;set_here&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># pkgnet analyses the installed package; its namespace must be attached.</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<pre><code>## here() starts at /tmp/Rtmp4VqV8o/Rbuild1f7117820e9f/whatsnew</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">function_tree</span>(<span class="st">&quot;here&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">print_function_tree</span>(res)</span></code></pre></div>
+<pre><code>## \-- here (v1.0.2)
+##     |-- .onAttach
+##     |   \-- format_dr_here
+##     |       |-- format_reason
+##     |       |   \-- format_root_criteria_items
+##     |       \-- here
+##     |-- .onLoad
+##     |   |-- do_refresh_here
+##     |   |   \-- set_fix_fun
+##     |   |       \-- i_am
+##     |   |           |-- dr_here
+##     |   |           |   \-- format_dr_here
+##     |   |           |       |-- format_reason
+##     |   |           |       |   \-- format_root_criteria_items
+##     |   |           |       \-- here
+##     |   |           |-- mockable_getwd
+##     |   |           |-- set_fix_fun (cycle to set_fix_fun)
+##     |   |           \-- set_root_crit
+##     |   \-- set_root_crit
+##     |-- format_root_section
+##     |   \-- format_root_criteria_items
+##     \-- set_here</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">function_tree</span>(<span class="st">&quot;here&quot;</span>, <span class="at">prune =</span> exports_df<span class="sc">$</span>exported_function)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">print_function_tree</span>(res)</span></code></pre></div>
+<pre><code>## \-- here (v1.0.2)
+##     |-- dr_here
+##     |   \-- format_dr_here
+##     |       |-- format_reason
+##     |       |   \-- format_root_criteria_items
+##     |       \-- here
+##     |-- here
+##     |-- i_am
+##     |   |-- dr_here
+##     |   |   \-- format_dr_here
+##     |   |       |-- format_reason
+##     |   |       |   \-- format_root_criteria_items
+##     |   |       \-- here
+##     |   |-- mockable_getwd
+##     |   |-- set_fix_fun
+##     |   |   \-- i_am (cycle to i_am)
+##     |   \-- set_root_crit
+##     \-- set_here</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

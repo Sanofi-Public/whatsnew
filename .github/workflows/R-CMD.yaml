@@ -1,0 +1,127 @@
+name: R-CMD-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  LANG: en_US.UTF-8
+  CRAN: https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/__linux__/noble/latest
+
+jobs:
+  style:
+    runs-on: atmos-aws-arc-runner-set
+    timeout-minutes: 5
+    steps:
+      - name: Setup the Sanofi Root CA
+        uses: Sanofi-InnerSource/github-actions-library/setup-root-ca@main
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install air
+        run: |
+          AIR_VERSION="0.7.0"
+          CHECKSUM=4fb0921f1166975b11713fcc4a0ae70c0b2040998e6135f399a9593fd5019e54
+          curl -LO "https://github.com/posit-dev/air/releases/download/${AIR_VERSION}/air-installer.sh"
+          echo "$CHECKSUM  air-installer.sh" | sha256sum -c - && sh air-installer.sh
+      - name: Check style
+        run: air format --check R/
+  R-CMD-check:
+    needs: style
+    runs-on: atmos-aws-arc-runner-set
+    timeout-minutes: 60
+    container:
+      image: docker-innersource-remote.artifactory.sanofi.com/r-packages:4.5
+    steps:
+      - name: Setup the Sanofi Root CA
+        uses: Sanofi-InnerSource/github-actions-library/setup-root-ca@main
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: install system package
+        run: apt update && apt install -y libuv1t64
+      - name: Install packages
+        run: |
+          options(repos = Sys.getenv("CRAN"))
+          install.packages("devtools")
+          devtools::install(dependencies = TRUE)
+        shell: Rscript {0}
+      - name: Check
+        run: make check
+      - name: Build site
+        run: make build-site
+      - name: Code coverage
+        shell: Rscript {0}
+        run: |
+          options(repos = Sys.getenv("CRAN"))
+          install.packages("covr")
+          library(covr)
+          data <- package_coverage()
+          df <- as.data.frame(coverage_to_list(data)$filecoverage)
+          names(df) <- c("Percentage")
+          df$Filename <- row.names(df)
+          final <- rbind(df, data.frame(Filename = "Total", Percentage = coverage_to_list(data)$totalcoverage))
+          table <- knitr::kable(final[, c("Filename", "Percentage")], format = "html", row.names = FALSE)
+          cat(table, file = Sys.getenv("GITHUB_STEP_SUMMARY"), append = TRUE)
+      - name: Upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: docs
+          path: docs
+          retention-days: 1
+  Multi-Platform:
+    needs: R-CMD-check
+    runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 60
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - uses: actions/checkout@v6
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck, local::.
+          needs: check
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+  publish-doc:
+    needs: "R-CMD-check"
+    timeout-minutes: 5
+    if: ${{ github.ref_name == 'main' || (github.event_name == 'release' && github.event.action == 'published') }}
+    runs-on: atmos-aws-arc-runner-set
+    steps:
+      - name: Setup the Sanofi Root CA
+        uses: Sanofi-InnerSource/github-actions-library/setup-root-ca@main
+      - name: Download docs
+        uses: actions/download-artifact@v8
+        with:
+          name: docs
+          path: docs
+      - name: Deploy to technical hub
+        uses: Sanofi-GitHub/bp-doc/upload-site@main
+        with:
+          path: "docs"
+          url: "admeris"
+          token: ${{ secrets.GT_TOKEN_DOC  }}

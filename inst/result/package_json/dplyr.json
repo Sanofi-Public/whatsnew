@@ -1,0 +1,2837 @@
+{
+  "package": ["dplyr"],
+  "version_new": ["1.1.4"],
+  "version_old": ["1.0.9"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {
+        "added": [],
+        "removed": [],
+        "modified": ["R: >= 3.4.0 -> >= 3.5.0"]
+      },
+      "Imports": {
+        "added": ["cli"],
+        "removed": [],
+        "modified": ["lifecycle: >= 1.0.1 -> >= 1.0.3", "pillar: >= 1.5.1 -> >= 1.9.0", "rlang: >= 1.0.2 -> >= 1.1.0", "tibble: >= 2.1.3 -> >= 3.2.0", "tidyselect: >= 1.1.1 -> >= 1.2.0", "vctrs: >= 0.4.1 -> >= 0.6.4"]
+      },
+      "Suggests": {
+        "added": ["stringi"],
+        "removed": [],
+        "modified": ["dbplyr: >= 1.4.3 -> >= 2.2.1", "testthat: >= 3.1.1 -> >= 3.1.5", "tidyr: none -> >= 1.3.0"]
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "uninline": {
+        "fn": {},
+        "env": {}
+      },
+      "quo_set_env_to_data_mask_top": {
+        "quo": {}
+      },
+      "dplyr_quosure_name": {
+        "quo_data": {}
+      },
+      "is_inlinable_lambda": {
+        "x": {}
+      },
+      "across_missing_cols_deprecate_warn": [],
+      "c_across_missing_cols_deprecate_warn": {
+        "user_env": ["caller_env(2)"]
+      },
+      "df_unpack": {
+        "x": {},
+        "spec": {},
+        "caller_env": {},
+        "error_call": ["caller_env()"]
+      },
+      "apply_unpack_spec": {
+        "col": {},
+        "outer": {},
+        "spec": {},
+        "caller_env": {}
+      },
+      "quo_eval_fns": {
+        "quo": {},
+        "mask": {},
+        "error_call": ["caller_env()"]
+      },
+      "is_inlinable_function": {
+        "x": {}
+      },
+      "all_equal": {
+        "target": {},
+        "current": {},
+        "ignore_col_order": [true],
+        "ignore_row_order": [true],
+        "convert": [false],
+        "...": {}
+      },
+      "equal_data_frame": {
+        "x": {},
+        "y": {},
+        "ignore_col_order": [true],
+        "ignore_row_order": [true],
+        "convert": [false]
+      },
+      "locale_to_chr_proxy_collate": {
+        "locale": {},
+        "...": {},
+        "has_stringi": ["has_minimum_stringi()"],
+        "error_call": ["caller_env()"]
+      },
+      "sort_key_generator": {
+        "locale": {}
+      },
+      "dplyr_order_legacy": {
+        "data": {},
+        "direction": ["asc"]
+      },
+      "dplyr_proxy_order_legacy": {
+        "x": {},
+        "direction": {}
+      },
+      "bind_cols": {
+        "...": {},
+        ".name_repair": ["c(\"unique\", \"universal\", \"check_unique\", \"minimal\")"]
+      },
+      "bind_rows": {
+        "...": {},
+        ".id": {}
+      },
+      "dataframe_ish": {
+        ".x": {}
+      },
+      "compute_by": {
+        "by": {},
+        "data": {},
+        "...": {},
+        "by_arg": ["by"],
+        "data_arg": ["data"],
+        "error_call": ["caller_env()"]
+      },
+      "compute_by_groups": {
+        "data": {},
+        "names": {},
+        "error_call": ["caller_env()"]
+      },
+      "check_by": {
+        "by": {},
+        "data": {},
+        "...": {},
+        "by_arg": ["by"],
+        "data_arg": ["data"],
+        "error_call": ["caller_env()"]
+      },
+      "eval_select_by": {
+        "by": {},
+        "data": {},
+        "error_call": ["caller_env()"]
+      },
+      "new_by": {
+        "type": {},
+        "names": {},
+        "data": {}
+      },
+      "check_by_typo": {
+        "...": {},
+        "by": {},
+        "error_call": ["caller_env()"]
+      },
+      "check_dot_by_typo": {
+        "...": {},
+        ".by": {},
+        "error_call": ["caller_env()"]
+      },
+      "check_by_typo_impl": {
+        "wrong": {},
+        "right": {},
+        "by": {},
+        "error_call": ["caller_env()"]
+      },
+      "case_match": {
+        ".x": {},
+        "...": {},
+        ".default": {},
+        ".ptype": {}
+      },
+      "case_formula_evaluate": {
+        "args": {},
+        "default_env": {},
+        "dots_env": {},
+        "error_call": {}
+      },
+      "validate_and_split_formula": {
+        "x": {},
+        "i": {},
+        "default_env": {},
+        "dots_env": {},
+        "error_call": {}
+      },
+      "deparse_trunc": {
+        "x": {},
+        "width": ["getOption(\"width\")"]
+      },
+      "compute": {
+        "x": {},
+        "...": {}
+      },
+      "collect": {
+        "x": {},
+        "...": {}
+      },
+      "collapse": {
+        "x": {},
+        "...": {}
+      },
+      "collect.data.frame": {
+        "x": {},
+        "...": {}
+      },
+      "compute.data.frame": {
+        "x": {},
+        "...": {}
+      },
+      "collapse.data.frame": {
+        "x": {},
+        "...": {}
+      },
+      "has_active_group_context": {
+        "mask": {}
+      },
+      "new_error_context": {
+        "dots": {},
+        "i": {},
+        "mask": {}
+      },
+      "poke_error_context": {
+        "dots": {},
+        "i": {},
+        "mask": {}
+      },
+      "mask_type": {
+        "mask": ["peek_mask()"]
+      },
+      "ctxt_error_label": {
+        "ctxt": ["peek_error_context()"]
+      },
+      "error_label": {
+        "name": {},
+        "quo": {}
+      },
+      "ctxt_error_label_named": {
+        "ctxt": ["peek_error_context()"]
+      },
+      "error_label_named": {
+        "name": {},
+        "quo": {}
+      },
+      "dplyr_internal_signal": {
+        "class": {}
+      },
+      "dplyr_error_handler": {
+        "dots": {},
+        "mask": {},
+        "bullets": {},
+        "error_call": {},
+        "action": ["compute"],
+        "error_class": {},
+        "i_sym": ["i"],
+        "frame": ["caller_env()"]
+      },
+      "last_dplyr_warnings": {
+        "n": [5]
+      },
+      "dplyr_warning_handler": {
+        "state": {},
+        "mask": {},
+        "error_call": {}
+      },
+      "push_dplyr_warnings": {
+        "warnings": {}
+      },
+      "reset_dplyr_warnings": [],
+      "signal_warnings": {
+        "state": {},
+        "error_call": {}
+      },
+      "new_dplyr_warning": {
+        "data": {}
+      },
+      "print.last_dplyr_warnings": {
+        "x": {},
+        "...": {}
+      },
+      "error_call": {
+        "call": {}
+      },
+      "cnd_message_lines": {
+        "cnd": {},
+        "...": {}
+      },
+      "consecutive_id": {
+        "...": {}
+      },
+      "cur_group_data": {
+        "mask_type": {}
+      },
+      "stop_mask_type": {
+        "type": {}
+      },
+      "cnd_data": {
+        "cnd": {},
+        "ctxt": {},
+        "mask": {},
+        "call": {}
+      },
+      "copy_to": {
+        "dest": {},
+        "df": {},
+        "name": ["deparse(substitute(df))"],
+        "overwrite": [false],
+        "...": {}
+      },
+      "auto_copy": {
+        "x": {},
+        "y": {},
+        "copy": [false],
+        "...": {}
+      },
+      "auto_copy.data.frame": {
+        "x": {},
+        "y": {},
+        "copy": [false],
+        "...": {}
+      },
+      "add_count_impl": {
+        "x": {},
+        "...": {},
+        "wt": {},
+        "sort": [false],
+        "name": {},
+        ".drop": ["deprecated()"],
+        "error_call": ["caller_env()"]
+      },
+      "check_n_name": {
+        "name": {},
+        "vars": {},
+        "arg": ["caller_arg(name)"],
+        "call": ["caller_env()"]
+      },
+      "random_table_name": {
+        "n": [10]
+      },
+      "id": {
+        ".variables": {},
+        "drop": [false]
+      },
+      "failwith": {
+        "default": {},
+        "f": {},
+        "quiet": [false]
+      },
+      "bench_tbls": {
+        "tbls": {},
+        "op": {},
+        "...": {},
+        "times": [10]
+      },
+      "compare_tbls": {
+        "tbls": {},
+        "op": {},
+        "ref": {},
+        "compare": {},
+        "...": {}
+      },
+      "compare_tbls2": {
+        "tbls_x": {},
+        "tbls_y": {},
+        "op": {},
+        "ref": {},
+        "compare": {},
+        "...": {}
+      },
+      "eval_tbls": {
+        "tbls": {},
+        "op": {}
+      },
+      "eval_tbls2": {
+        "tbls_x": {},
+        "tbls_y": {},
+        "op": {}
+      },
+      "do": {
+        ".data": {},
+        "...": {}
+      },
+      "do.NULL": {
+        ".data": {},
+        "...": {}
+      },
+      "do.grouped_df": {
+        ".data": {},
+        "...": {}
+      },
+      "do.data.frame": {
+        ".data": {},
+        "...": {}
+      },
+      "env_bind_do_pronouns": {
+        "env": {},
+        "data": {}
+      },
+      "label_output_dataframe": {
+        "labels": {},
+        "out": {},
+        "groups": {},
+        ".drop": {},
+        "error_call": ["caller_env()"]
+      },
+      "label_output_list": {
+        "labels": {},
+        "out": {},
+        "groups": {}
+      },
+      "named_args": {
+        "args": {},
+        "error_call": ["caller_env()"]
+      },
+      "do.rowwise_df": {
+        ".data": {},
+        "...": {}
+      },
+      "summarise_each_impl": {
+        "tbl": {},
+        "funs": {},
+        "vars": {},
+        "name": {},
+        "env": ["caller_env()"],
+        "user_env": ["caller_env(2)"]
+      },
+      "mutate_each_impl": {
+        "tbl": {},
+        "funs": {},
+        "vars": {},
+        "name": {},
+        "env": ["caller_env()"],
+        "user_env": ["caller_env(2)"]
+      },
+      "src_local": {
+        "tbl": {},
+        "pkg": {},
+        "env": {}
+      },
+      "src_df": {
+        "pkg": {},
+        "env": {}
+      },
+      "src_tbls.src_local": {
+        "x": {},
+        "...": {}
+      },
+      "tbl.src_local": {
+        "src": {},
+        "from": {},
+        "...": {}
+      },
+      "copy_to.src_local": {
+        "dest": {},
+        "df": {},
+        "name": ["deparse(substitute(df))"],
+        "overwrite": [false],
+        "...": {}
+      },
+      "format.src_local": {
+        "x": {},
+        "...": {}
+      },
+      "wrap": {
+        "...": {},
+        "indent": [0]
+      },
+      "desc": {
+        "x": {}
+      },
+      "explain": {
+        "x": {},
+        "...": {}
+      },
+      "show_query": {
+        "x": {},
+        "...": {}
+      },
+      "warn_filter_one_column_matrix": {
+        "env": {},
+        "user_env": {}
+      },
+      "warn_filter_across": {
+        "env": {},
+        "user_env": {}
+      },
+      "warn_filter_data_frame": {
+        "env": {},
+        "user_env": {}
+      },
+      "group_by": {
+        ".data": {},
+        "...": {},
+        ".add": [false],
+        ".drop": ["group_by_drop_default(.data)"]
+      },
+      "group_by.data.frame": {
+        ".data": {},
+        "...": {},
+        ".add": [false],
+        ".drop": ["group_by_drop_default(.data)"]
+      },
+      "ungroup": {
+        "x": {},
+        "...": {}
+      },
+      "ungroup.grouped_df": {
+        "x": {},
+        "...": {}
+      },
+      "ungroup.rowwise_df": {
+        "x": {},
+        "...": {}
+      },
+      "ungroup.data.frame": {
+        "x": {},
+        "...": {}
+      },
+      "group_by_prepare": {
+        ".data": {},
+        "...": {},
+        ".add": [false],
+        ".dots": ["deprecated()"],
+        "add": ["deprecated()"],
+        "error_call": ["caller_env()"]
+      },
+      "add_computed_columns": {
+        ".data": {},
+        "vars": {},
+        "error_call": ["caller_env()"]
+      },
+      "quo_is_variable_reference": {
+        "quo": {}
+      },
+      "group_by_drop_default": {
+        ".tbl": {}
+      },
+      "group_by_drop_default.default": {
+        ".tbl": {}
+      },
+      "group_by_drop_default.grouped_df": {
+        ".tbl": {}
+      },
+      "group_keys0": {
+        "x": {}
+      },
+      "grouped_df": {
+        "data": {},
+        "vars": {},
+        "drop": ["group_by_drop_default(data)"]
+      },
+      "compute_groups": {
+        "data": {},
+        "vars": {},
+        "drop": [false]
+      },
+      "count_regroups": {
+        "code": {}
+      },
+      "show_regroups": {
+        "code": {}
+      },
+      "new_grouped_df": {
+        "x": {},
+        "groups": {},
+        "...": {},
+        "class": ["character()"]
+      },
+      "validate_grouped_df": {
+        "x": {},
+        "check_bounds": [false]
+      },
+      "is.grouped_df": {
+        "x": {}
+      },
+      "group_sum": {
+        "x": {}
+      },
+      "tbl_sum.grouped_df": {
+        "x": {},
+        "...": {}
+      },
+      "as.data.frame.grouped_df": {
+        "x": {},
+        "row.names": {},
+        "optional": [false],
+        "...": {}
+      },
+      "as_tibble.grouped_df": {
+        "x": {},
+        "...": {}
+      },
+      "[.grouped_df": {
+        "x": {},
+        "i": {},
+        "j": {},
+        "drop": [false]
+      },
+      "$<-.grouped_df": {
+        "x": {},
+        "name": {},
+        "...": {},
+        "value": {}
+      },
+      "[<-.grouped_df": {
+        "x": {},
+        "i": {},
+        "j": {},
+        "...": {},
+        "value": {}
+      },
+      "[[<-.grouped_df": {
+        "x": {},
+        "...": {},
+        "value": {}
+      },
+      "names<-.grouped_df": {
+        "x": {},
+        "value": {}
+      },
+      "rbind.grouped_df": {
+        "...": {}
+      },
+      "cbind.grouped_df": {
+        "...": {}
+      },
+      "group_data_trim": {
+        "group_data": {},
+        "preserve": [false]
+      },
+      "expand_groups": {
+        "old_groups": {},
+        "positions": {},
+        "nr": {}
+      },
+      "dplyr_locate_sorted_groups": {
+        "x": {}
+      },
+      "group_intersect": {
+        "x": {},
+        "new": {}
+      },
+      "obj_type_friendly": {
+        "x": {},
+        "value": [true]
+      },
+      "vec_type_friendly": {
+        "x": {},
+        "length": [false]
+      },
+      ".rlang_as_friendly_type": {
+        "type": {}
+      },
+      ".rlang_stop_unexpected_typeof": {
+        "x": {},
+        "call": ["caller_env()"]
+      },
+      "obj_type_oo": {
+        "x": {}
+      },
+      "stop_input_type": {
+        "x": {},
+        "what": {},
+        "...": {},
+        "allow_na": [false],
+        "allow_null": [false],
+        "show_value": [true],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "oxford_comma": {
+        "chr": {},
+        "sep": [", "],
+        "final": ["or"]
+      },
+      "check_bool": {
+        "x": {},
+        "...": {},
+        "allow_na": [false],
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_string": {
+        "x": {},
+        "...": {},
+        "allow_empty": [true],
+        "allow_na": [false],
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      ".rlang_check_is_string": {
+        "x": {},
+        "allow_empty": {},
+        "allow_na": {},
+        "allow_null": {}
+      },
+      "check_number_decimal": {
+        "x": {},
+        "...": {},
+        "min": {},
+        "max": {},
+        "allow_infinite": [true],
+        "allow_na": [false],
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_number_whole": {
+        "x": {},
+        "...": {},
+        "min": {},
+        "max": {},
+        "allow_na": [false],
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      ".stop_not_number": {
+        "x": {},
+        "...": {},
+        "exit_code": {},
+        "allow_decimal": {},
+        "min": {},
+        "max": {},
+        "allow_na": {},
+        "allow_null": {},
+        "arg": {},
+        "call": {}
+      },
+      "check_symbol": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_arg": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_call": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_environment": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_function": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_closure": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_formula": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_character": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "check_logical": {
+        "x": {},
+        "...": {},
+        "allow_null": [false],
+        "arg": ["caller_arg(x)"],
+        "call": ["caller_env()"]
+      },
+      "join_by": {
+        "...": {}
+      },
+      "print.dplyr_join_by": {
+        "x": {},
+        "...": {}
+      },
+      "new_join_by": {
+        "exprs": ["list()"],
+        "condition": ["character()"],
+        "filter": ["character()"],
+        "x": ["character()"],
+        "y": ["character()"]
+      },
+      "flat_map_chr": {
+        "x": {},
+        "fn": {}
+      },
+      "as_join_by": {
+        "x": {},
+        "error_call": ["caller_env()"]
+      },
+      "as_join_by.default": {
+        "x": {},
+        "error_call": ["caller_env()"]
+      },
+      "as_join_by.dplyr_join_by": {
+        "x": {},
+        "error_call": ["caller_env()"]
+      },
+      "as_join_by.character": {
+        "x": {},
+        "error_call": ["caller_env()"]
+      },
+      "as_join_by.list": {
+        "x": {},
+        "error_call": ["caller_env()"]
+      },
+      "finalise_equi_join_by": {
+        "x_names": {},
+        "y_names": {}
+      },
+      "join_by_common": {
+        "x_names": {},
+        "y_names": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "parse_join_by_expr": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "stop_invalid_dollar_sign": {
+        "expr": {},
+        "i": {},
+        "call": {}
+      },
+      "stop_invalid_top_expression": {
+        "expr": {},
+        "i": {},
+        "call": {}
+      },
+      "stop_invalid_namespaced_expression": {
+        "expr": {},
+        "i": {},
+        "call": {}
+      },
+      "parse_join_by_name": {
+        "expr": {},
+        "i": {},
+        "default_side": {},
+        "error_call": {}
+      },
+      "parse_join_by_dollar": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_dollar": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_dollar": {
+        "x": {},
+        "name": {}
+      },
+      "parse_join_by_binary": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_binary": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_binary": {
+        "condition": {},
+        "error_call": {},
+        "x": {},
+        "y": {}
+      },
+      "binding_join_by_equality": {
+        "x": {},
+        "y": {}
+      },
+      "binding_join_by_greater_than": {
+        "x": {},
+        "y": {}
+      },
+      "binding_join_by_greater_than_or_equal": {
+        "x": {},
+        "y": {}
+      },
+      "binding_join_by_less_than": {
+        "x": {},
+        "y": {}
+      },
+      "binding_join_by_less_than_or_equal": {
+        "x": {},
+        "y": {}
+      },
+      "parse_join_by_closest": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_closest": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_closest": {
+        "expr": {}
+      },
+      "stop_join_by_closest_equal_expression": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "stop_join_by_closest_invalid_expression": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "parse_join_by_between": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_between": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_between": {
+        "x": {},
+        "y_lower": {},
+        "y_upper": {},
+        "...": {},
+        "bounds": ["[]"]
+      },
+      "parse_join_by_within": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_within": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_within": {
+        "x_lower": {},
+        "x_upper": {},
+        "y_lower": {},
+        "y_upper": {}
+      },
+      "parse_join_by_overlaps": {
+        "expr": {},
+        "i": {},
+        "error_call": {}
+      },
+      "eval_join_by_overlaps": {
+        "expr": {},
+        "error_call": {}
+      },
+      "binding_join_by_overlaps": {
+        "x_lower": {},
+        "x_upper": {},
+        "y_lower": {},
+        "y_upper": {},
+        "...": {},
+        "bounds": ["[]"]
+      },
+      "check_bounds": {
+        "bounds": {},
+        "call": {}
+      },
+      "check_join_by_dots_empty": {
+        "...": {},
+        "fn": {},
+        "call": {}
+      },
+      "check_missing_arg": {
+        "arg": {},
+        "arg_name": {},
+        "fn_name": {},
+        "error_call": {},
+        "...": {},
+        "binary_op": [false]
+      },
+      "is_symbol_or_string": {
+        "x": {}
+      },
+      "err_expr": {
+        "expr": {}
+      },
+      "join_cast_common": {
+        "x": {},
+        "y": {},
+        "vars": {},
+        "error_call": ["caller_env()"]
+      },
+      "rethrow_error_join_incompatible_type": {
+        "cnd": {},
+        "vars": {},
+        "call": {}
+      },
+      "cross_join": {
+        "x": {},
+        "y": {},
+        "...": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"]
+      },
+      "cross_join.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"]
+      },
+      "dplyr_locate_matches": {
+        "needles": {},
+        "haystack": {},
+        "...": {},
+        "condition": ["=="],
+        "filter": ["none"],
+        "incomplete": ["compare"],
+        "no_match": ["NA"],
+        "remaining": ["drop"],
+        "multiple": ["all"],
+        "relationship": ["none"],
+        "needles_arg": [""],
+        "haystack_arg": [""],
+        "error_call": ["caller_env()"]
+      },
+      "rethrow_error_join_matches_overflow": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_matches_nothing": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_matches_incomplete": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_matches_remaining": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_relationship_one_to_one": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_relationship_one_to_many": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_relationship_many_to_one": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_warning_join_relationship_many_to_many": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_error_join_matches_multiple": {
+        "cnd": {},
+        "call": {}
+      },
+      "rethrow_warning_join_matches_multiple": {
+        "cnd": {},
+        "call": {}
+      },
+      "stop_join_matches_multiple": {
+        "i": {},
+        "x_name": {},
+        "y_name": {},
+        "class": {},
+        "call": {}
+      },
+      "stop_join": {
+        "message": {},
+        "class": {},
+        "...": {},
+        "call": ["caller_env()"]
+      },
+      "warn_join": {
+        "message": {},
+        "class": {},
+        "...": {}
+      },
+      "stop_dplyr": {
+        "message": {},
+        "class": {},
+        "...": {},
+        "call": ["caller_env()"]
+      },
+      "warn_dplyr": {
+        "message": {},
+        "class": {},
+        "...": {}
+      },
+      "check_unmatched": {
+        "unmatched": {},
+        "type": {},
+        "error_call": ["caller_env()"]
+      },
+      "standardise_join_incomplete": {
+        "type": {},
+        "na_matches": {},
+        "x_unmatched": {}
+      },
+      "standardise_join_no_match": {
+        "type": {},
+        "x_unmatched": {}
+      },
+      "standardise_join_remaining": {
+        "type": {},
+        "y_unmatched": {}
+      },
+      "compute_join_relationship": {
+        "type": {},
+        "condition": {},
+        "cross": {},
+        "user_env": ["caller_env(2)"]
+      },
+      "check_join_relationship": {
+        "relationship": {},
+        "error_call": ["caller_env()"]
+      },
+      "warn_join_multiple": {
+        "what": {},
+        "user_env": ["caller_env(2)"]
+      },
+      "warn_join_multiple_null": {
+        "user_env": ["caller_env(2)"]
+      },
+      "is_direct": {
+        "env": {}
+      },
+      "env_inherits_global": {
+        "env": {}
+      },
+      "from_testthat": {
+        "env": {}
+      },
+      "inner_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {}
+      },
+      "inner_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "multiple": ["all"],
+        "unmatched": ["drop"],
+        "relationship": {}
+      },
+      "left_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {}
+      },
+      "left_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "multiple": ["all"],
+        "unmatched": ["drop"],
+        "relationship": {}
+      },
+      "right_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {}
+      },
+      "right_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "multiple": ["all"],
+        "unmatched": ["drop"],
+        "relationship": {}
+      },
+      "full_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {}
+      },
+      "full_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "suffix": ["c(\".x\", \".y\")"],
+        "...": {},
+        "keep": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "multiple": ["all"],
+        "relationship": {}
+      },
+      "semi_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "...": {}
+      },
+      "semi_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "...": {},
+        "na_matches": ["c(\"na\", \"never\")"]
+      },
+      "anti_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "...": {}
+      },
+      "anti_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "...": {},
+        "na_matches": ["c(\"na\", \"never\")"]
+      },
+      "nest_join": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "keep": {},
+        "name": {},
+        "...": {}
+      },
+      "nest_join.data.frame": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "copy": [false],
+        "keep": {},
+        "name": {},
+        "...": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "unmatched": ["drop"]
+      },
+      "join_mutate": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "type": {},
+        "...": {},
+        "suffix": ["c(\".x\", \".y\")"],
+        "na_matches": ["na"],
+        "keep": {},
+        "multiple": ["all"],
+        "unmatched": ["drop"],
+        "relationship": {},
+        "error_call": ["caller_env()"],
+        "user_env": ["caller_env()"]
+      },
+      "join_filter": {
+        "x": {},
+        "y": {},
+        "by": {},
+        "type": {},
+        "...": {},
+        "na_matches": ["c(\"na\", \"never\")"],
+        "error_call": ["caller_env()"],
+        "user_env": ["caller_env()"]
+      },
+      "check_na_matches": {
+        "na_matches": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "check_keep": {
+        "keep": {},
+        "error_call": ["caller_env()"]
+      },
+      "is_cross_by": {
+        "x": {}
+      },
+      "warn_join_cross_by": {
+        "env": ["caller_env()"],
+        "user_env": ["caller_env(2)"]
+      },
+      "shift": {
+        "x": {},
+        "...": {},
+        "n": [1],
+        "default": {},
+        "order_by": {},
+        "error_call": ["caller_env()"]
+      },
+      "shift_slice": {
+        "x": {},
+        "n": {},
+        "size": {},
+        "lag": {}
+      },
+      "shift_c": {
+        "x": {},
+        "n": {},
+        "size": {},
+        "lag": {},
+        "default": {}
+      },
+      "dplyr_legacy_locale": [],
+      "has_minimum_stringi": [],
+      "mutate_relocate": {
+        "out": {},
+        "before": {},
+        "after": {},
+        "names_original": {}
+      },
+      "mutate_keep": {
+        "out": {},
+        "keep": {},
+        "used": {},
+        "names_new": {},
+        "names_groups": {}
+      },
+      "mutate_col": {
+        "dot": {},
+        "data": {},
+        "mask": {},
+        "new_columns": {}
+      },
+      "check_nth_default": {
+        "default": {},
+        "x": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "vec_slice2": {
+        "x": {},
+        "i": {}
+      },
+      "pick": {
+        "...": {}
+      },
+      "expand_pick": {
+        "quo": {},
+        "mask": {}
+      },
+      "expand_pick_quo": {
+        "quo": {},
+        "mask": {},
+        "error_call": ["caller_env()"]
+      },
+      "expand_pick_call": {
+        "expr": {},
+        "env": {},
+        "mask": {},
+        "error_call": ["caller_env()"]
+      },
+      "eval_pick": {
+        "expr": {},
+        "env": {},
+        "mask": {},
+        "error_call": ["caller_env()"]
+      },
+      "as_pick_selection": {
+        "expr": {},
+        "error_call": {}
+      },
+      "as_pick_expansion": {
+        "names": {}
+      },
+      "dplyr_pick_tibble": {
+        "...": {}
+      },
+      "stop_pick_empty": {
+        "call": ["caller_env()"]
+      },
+      "reframe": {
+        ".data": {},
+        "...": {},
+        ".by": {}
+      },
+      "reframe.data.frame": {
+        ".data": {},
+        "...": {},
+        ".by": {}
+      },
+      "eval_relocate": {
+        "expr": {},
+        "data": {},
+        "...": {},
+        "before": {},
+        "after": {},
+        "before_arg": ["before"],
+        "after_arg": ["after"],
+        "env": ["caller_env()"],
+        "error_call": ["caller_env()"]
+      },
+      "rows_check_x_contains_y": {
+        "x": {},
+        "y": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "rows_check_contains_by": {
+        "x": {},
+        "by": {},
+        "arg": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "rows_check_unique": {
+        "x": {},
+        "arg": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "rowwise": {
+        "data": {},
+        "...": {}
+      },
+      "rowwise.data.frame": {
+        "data": {},
+        "...": {}
+      },
+      "rowwise.grouped_df": {
+        "data": {},
+        "...": {}
+      },
+      "rowwise_df": {
+        "data": {},
+        "group_vars": {}
+      },
+      "is_rowwise_df": {
+        "x": {}
+      },
+      "new_rowwise_df": {
+        "data": {},
+        "group_data": {},
+        "...": {},
+        "class": ["character()"]
+      },
+      "validate_rowwise_df": {
+        "x": {}
+      },
+      "tbl_sum.rowwise_df": {
+        "x": {},
+        "...": {}
+      },
+      "as_tibble.rowwise_df": {
+        "x": {},
+        "...": {}
+      },
+      "[.rowwise_df": {
+        "x": {},
+        "i": {},
+        "j": {},
+        "drop": [false]
+      },
+      "[<-.rowwise_df": {
+        "x": {},
+        "i": {},
+        "j": {},
+        "...": {},
+        "value": {}
+      },
+      "names<-.rowwise_df": {
+        "x": {},
+        "value": {}
+      },
+      "union_all": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "union_all.default": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "symdiff": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "symdiff.default": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "intersect.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "union.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "union_all.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "setdiff.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "setequal.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "symdiff.data.frame": {
+        "x": {},
+        "y": {},
+        "...": {}
+      },
+      "is_compatible": {
+        "x": {},
+        "y": {},
+        "ignore_col_order": [true],
+        "convert": [true]
+      },
+      "check_compatible": {
+        "x": {},
+        "y": {},
+        "ignore_col_order": [true],
+        "convert": [true],
+        "error_call": ["caller_env()"]
+      },
+      "check_slice_unnamed_n_prop": {
+        "...": {},
+        "n": {},
+        "prop": {},
+        "error_call": ["caller_env()"]
+      },
+      "clamp": {
+        "min": {},
+        "x": {},
+        "max": {}
+      },
+      "slice_rank_idx": {
+        "order_by": {},
+        "size": {},
+        "with_ties": [true],
+        "direction": ["c(\"asc\", \"desc\")"],
+        "na_rm": [false],
+        "call": ["caller_env()"]
+      },
+      "dplyr_local_slice_by_arg": {
+        "by_arg": {},
+        "frame": ["caller_env()"]
+      },
+      "...length2": {
+        "frame": ["caller_env()"]
+      },
+      "...elt2": {
+        "i": {},
+        "frame": ["caller_env()"]
+      },
+      "src": {
+        "subclass": {},
+        "...": {}
+      },
+      "is.src": {
+        "x": {}
+      },
+      "print.src": {
+        "x": {},
+        "...": {}
+      },
+      "src_tbls": {
+        "x": {},
+        "...": {}
+      },
+      "same_src": {
+        "x": {},
+        "y": {}
+      },
+      "same_src.data.frame": {
+        "x": {},
+        "y": {}
+      },
+      "summarise_deprecate_variable_size": {
+        "env": ["caller_env()"],
+        "user_env": ["caller_env(2)"]
+      },
+      "tbl": {
+        "src": {},
+        "...": {}
+      },
+      "make_tbl": {
+        "subclass": {},
+        "...": {}
+      },
+      "is.tbl": {
+        "x": {}
+      },
+      "tbl_vars_dispatch": {
+        "x": {}
+      },
+      "new_sel_vars": {
+        "vars": {},
+        "group_vars": {}
+      },
+      "tbl_vars": {
+        "x": {}
+      },
+      "tbl_vars.data.frame": {
+        "x": {}
+      },
+      "tbl_nongroup_vars": {
+        "x": {}
+      },
+      "is_sel_vars": {
+        "x": {}
+      },
+      "print.dplyr_sel_vars": {
+        "x": {},
+        "...": {}
+      },
+      "unstructure": {
+        "x": {}
+      },
+      "dim_desc": {
+        "x": {}
+      },
+      "big_mark": {
+        "x": {},
+        "...": {}
+      },
+      "rule": {
+        "pad": ["-"],
+        "gap": [2]
+      },
+      "commas": {
+        "...": {}
+      },
+      "compact_null": {
+        "x": {}
+      },
+      "paste_line": {
+        "...": {}
+      },
+      "dplyr_new_data_frame": {
+        "x": ["data.frame()"],
+        "n": {},
+        "...": {},
+        "row.names": {},
+        "class": {}
+      },
+      "dplyr_new_list": {
+        "x": {}
+      },
+      "dplyr_new_tibble": {
+        "x": {},
+        "size": {}
+      },
+      "list_flatten": {
+        "x": {},
+        "...": {},
+        "fn": {},
+        "recursive": [false]
+      },
+      "maybe_restart": {
+        "restart": {}
+      },
+      "expr_substitute": {
+        "expr": {},
+        "old": {},
+        "new": {}
+      },
+      "node_walk_replace": {
+        "node": {},
+        "old": {},
+        "new": {}
+      },
+      "cli_collapse": {
+        "x": {},
+        "last": [" and "]
+      },
+      "with_no_rlang_infix_labeling": {
+        "expr": {}
+      },
+      "vec_case_match": {
+        "needles": {},
+        "haystacks": {},
+        "values": {},
+        "...": {},
+        "needles_arg": ["needles"],
+        "haystacks_arg": ["haystacks"],
+        "values_arg": ["values"],
+        "default": {},
+        "default_arg": ["default"],
+        "ptype": {},
+        "call": ["current_env()"]
+      },
+      "vec_case_when": {
+        "conditions": {},
+        "values": {},
+        "...": {},
+        "conditions_arg": ["conditions"],
+        "values_arg": ["values"],
+        "default": {},
+        "default_arg": ["default"],
+        "ptype": {},
+        "size": {},
+        "call": ["current_env()"]
+      },
+      "names_as_error_names": {
+        "names": {},
+        "arg": [""]
+      },
+      "vec_paste0": {
+        "...": {}
+      },
+      ".onLoad": {
+        "libname": {},
+        "pkgname": {}
+      },
+      ".onAttach": {
+        "libname": {},
+        "pkgname": {}
+      },
+      ".onDetach": {
+        "libpath": {}
+      },
+      "import_vctrs": {
+        "name": {},
+        "optional": [false]
+      },
+      "import_from": {
+        "name": {},
+        "package": {},
+        "optional": [false]
+      }
+    },
+    "removed": {
+      "validate_formula": {
+        "x": {},
+        "i": {},
+        "default_env": {},
+        "dots_env": {},
+        "error_call": ["caller_env()"]
+      },
+      "abort_case_when_formula": {
+        "arg": {},
+        "i": {},
+        "obj": {},
+        "error_call": ["caller_env()"]
+      },
+      "abort_case_when_logical": {
+        "lhs": {},
+        "i": {},
+        "query": {},
+        "error_call": ["caller_env()"]
+      },
+      "validate_case_when_length": {
+        "query": {},
+        "value": {},
+        "fs": {},
+        "error_call": ["caller_env()"]
+      },
+      "vec_coalesce": {
+        "x": {},
+        "values": {}
+      },
+      "df_coalesce": {
+        "x": {},
+        "values": {}
+      },
+      "arg_name": {
+        "quos": {},
+        "index": {}
+      },
+      "print.location": {
+        "x": {},
+        "...": {}
+      },
+      "match_up": {
+        "x": {},
+        "y": {}
+      },
+      "fmt_calls": {
+        "...": {}
+      },
+      "fmt_dims": {
+        "x": {}
+      },
+      "parse_args": {
+        "x": {}
+      },
+      "parse_named_call": {
+        "x": {}
+      },
+      "friendly_type_of": {
+        "x": {}
+      },
+      "as_friendly_type": {
+        "type": {}
+      },
+      "filter_bullets.default": {
+        "cnd": {},
+        "...": {}
+      },
+      "capture_error_msg": {
+        "expr": {}
+      },
+      "standardise_join_by": {
+        "by": {},
+        "x_names": {},
+        "y_names": {},
+        "error_call": ["caller_env()"]
+      },
+      "index_flatten": {
+        "x": {}
+      },
+      "mutate_bullets.default": {
+        "cnd": {},
+        "...": {}
+      },
+      "default_missing": {
+        "x": {}
+      },
+      "default_missing.default": {
+        "x": {}
+      },
+      "default_missing.data.frame": {
+        "x": {}
+      },
+      "list_or_dots": {
+        "...": {}
+      },
+      "is_dataframe_like": {
+        "x": {}
+      },
+      "rows_check_containment": {
+        "x": {},
+        "y": {},
+        "...": {},
+        "error_call": ["caller_env()"]
+      },
+      "rows_select_key": {
+        "x": {},
+        "by": {},
+        "arg": {},
+        "...": {},
+        "unique": [false],
+        "error_call": ["caller_env()"]
+      },
+      "check_slice_dots": {
+        "...": {},
+        "n": {},
+        "prop": {},
+        "error_call": ["caller_env()"]
+      },
+      "smaller_ranks": {
+        "x": {},
+        "y": {}
+      },
+      "summarise_bullets.default": {
+        "cnd": {},
+        "...": {}
+      },
+      "summarise_bullets.dplyr:::error_incompatible_combine": {
+        "cnd": {},
+        "...": {}
+      }
+    },
+    "modified": {
+      "across": {
+        "old": {
+          ".cols": ["everything()"],
+          ".fns": {},
+          "...": {},
+          ".names": {}
+        },
+        "new": {
+          ".cols": {},
+          ".fns": {},
+          "...": {},
+          ".names": {},
+          ".unpack": [false]
+        }
+      },
+      "if_any": {
+        "old": {
+          ".cols": ["everything()"],
+          ".fns": {},
+          "...": {},
+          ".names": {}
+        },
+        "new": {
+          ".cols": {},
+          ".fns": {},
+          "...": {},
+          ".names": {}
+        }
+      },
+      "if_all": {
+        "old": {
+          ".cols": ["everything()"],
+          ".fns": {},
+          "...": {},
+          ".names": {}
+        },
+        "new": {
+          ".cols": {},
+          ".fns": {},
+          "...": {},
+          ".names": {}
+        }
+      },
+      "c_across": {
+        "old": {
+          "cols": ["everything()"]
+        },
+        "new": {
+          "cols": {}
+        }
+      },
+      "across_setup": {
+        "old": {
+          "cols": {},
+          "fns": {},
+          "names": {},
+          ".caller_env": {},
+          "mask": ["peek_mask(\"across\")"],
+          "inline": [false]
+        },
+        "new": {
+          "cols": {},
+          "fns": {},
+          "names": {},
+          ".caller_env": {},
+          "mask": {},
+          "error_call": ["caller_env()"],
+          "across_if_fn": ["across"]
+        }
+      },
+      "c_across_setup": {
+        "old": {
+          "cols": {}
+        },
+        "new": {
+          "cols": {},
+          "mask": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "is_inlinable_formula": {
+        "old": {
+          "x": {},
+          "mask": {}
+        },
+        "new": {
+          "x": {}
+        }
+      },
+      "arrange.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".by_group": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by_group": [false],
+          ".locale": {}
+        }
+      },
+      "arrange_rows": {
+        "old": {
+          ".data": {},
+          "dots": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "data": {},
+          "dots": {},
+          "locale": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "case_when": {
+        "old": {
+          "...": {}
+        },
+        "new": {
+          "...": {},
+          ".default": {},
+          ".ptype": {},
+          ".size": {}
+        }
+      },
+      "coalesce": {
+        "old": {
+          "...": {}
+        },
+        "new": {
+          "...": {},
+          ".ptype": {},
+          ".size": {}
+        }
+      },
+      "arrange_all": {
+        "old": {
+          ".tbl": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false]
+        },
+        "new": {
+          ".tbl": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false],
+          ".locale": {}
+        }
+      },
+      "arrange_at": {
+        "old": {
+          ".tbl": {},
+          ".vars": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false]
+        },
+        "new": {
+          ".tbl": {},
+          ".vars": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false],
+          ".locale": {}
+        }
+      },
+      "arrange_if": {
+        "old": {
+          ".tbl": {},
+          ".predicate": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false]
+        },
+        "new": {
+          ".tbl": {},
+          ".predicate": {},
+          ".funs": ["list()"],
+          "...": {},
+          ".by_group": [false],
+          ".locale": {}
+        }
+      },
+      "as_fun_list": {
+        "old": {
+          ".funs": {},
+          ".env": {},
+          "...": {},
+          ".caller": {},
+          ".caller_arg": ["..."],
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          ".funs": {},
+          ".env": {},
+          "...": {},
+          ".caller": {},
+          ".caller_arg": ["..."],
+          "error_call": ["caller_env()"],
+          ".user_env": ["caller_env(2)"]
+        }
+      },
+      "local_error_context": {
+        "old": {
+          "dots": {},
+          ".index": {},
+          "mask": {},
+          "frame": ["caller_env()"]
+        },
+        "new": {
+          "dots": {},
+          "i": {},
+          "mask": {},
+          "frame": ["caller_env()"]
+        }
+      },
+      "cur_group_label": {
+        "old": [],
+        "new": {
+          "type": ["mask_type()"],
+          "id": ["cur_group_id()"],
+          "group": ["cur_group()"]
+        }
+      },
+      "context_peek": {
+        "old": {
+          "name": {},
+          "fun": {},
+          "location": ["dplyr verbs"]
+        },
+        "new": {
+          "name": {},
+          "location": {},
+          "call": ["caller_env()"]
+        }
+      },
+      "peek_column": {
+        "old": [],
+        "new": {
+          "call": ["caller_env()"]
+        }
+      },
+      "peek_mask": {
+        "old": {
+          "fun": ["peek_mask"]
+        },
+        "new": {
+          "call": ["caller_env()"]
+        }
+      },
+      "lazy_deprec": {
+        "old": {
+          "fun": {},
+          "hint": [true]
+        },
+        "new": {
+          "fun": {},
+          "hint": [true],
+          "env": ["caller_env()"],
+          "user_env": ["caller_env(2)"]
+        }
+      },
+      "filter": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".preserve": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".preserve": [false]
+        }
+      },
+      "filter.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".preserve": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".preserve": [false]
+        }
+      },
+      "filter_rows": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "caller_env": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "data": {},
+          "dots": {},
+          "by": {},
+          "error_call": ["caller_env()"],
+          "user_env": ["caller_env(2)"]
+        }
+      },
+      "check_filter": {
+        "old": {
+          "dots": {},
+          "error_call": {}
+        },
+        "new": {
+          "dots": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "filter_eval": {
+        "old": {
+          "dots": {},
+          "mask": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "dots": {},
+          "mask": {},
+          "error_call": ["caller_env()"],
+          "user_env": ["caller_env(2)"]
+        }
+      },
+      "dplyr_col_select": {
+        "old": {
+          ".data": {},
+          "loc": {},
+          "names": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          ".data": {},
+          "loc": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "group_walk": {
+        "old": {
+          ".data": {},
+          ".f": {},
+          "...": {}
+        },
+        "new": {
+          ".data": {},
+          ".f": {},
+          "...": {},
+          ".keep": [false]
+        }
+      },
+      "if_else": {
+        "old": {
+          "condition": {},
+          "true": {},
+          "false": {},
+          "missing": {}
+        },
+        "new": {
+          "condition": {},
+          "true": {},
+          "false": {},
+          "missing": {},
+          "...": {},
+          "ptype": {},
+          "size": {}
+        }
+      },
+      "check_name": {
+        "old": {
+          "name": {},
+          "vars": {}
+        },
+        "new": {
+          "x": {},
+          "...": {},
+          "allow_null": [false],
+          "arg": ["caller_arg(x)"],
+          "call": ["caller_env()"]
+        }
+      },
+      "join_cols": {
+        "old": {
+          "x_names": {},
+          "y_names": {},
+          "by": {},
+          "suffix": ["c(\".x\", \".y\")"],
+          "keep": [false],
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "x_names": {},
+          "y_names": {},
+          "by": {},
+          "...": {},
+          "suffix": ["c(\".x\", \".y\")"],
+          "keep": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "check_join_vars": {
+        "old": {
+          "vars": {},
+          "names": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "vars": {},
+          "names": {},
+          "condition": {},
+          "input": {},
+          "...": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "check_duplicate_vars": {
+        "old": {
+          "vars": {},
+          "input": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "vars": {},
+          "input": {},
+          "...": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "standardise_join_suffix": {
+        "old": {
+          "x": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "x": {},
+          "...": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "join_rows": {
+        "old": {
+          "x_key": {},
+          "y_key": {},
+          "type": ["c(\"inner\", \"left\", \"right\", \"full\")"],
+          "na_equal": [true],
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "x_key": {},
+          "y_key": {},
+          "...": {},
+          "type": ["c(\"inner\", \"left\", \"right\", \"full\", \"semi\", \"anti\", \"nest\")"],
+          "na_matches": ["na"],
+          "condition": ["=="],
+          "filter": ["none"],
+          "cross": [false],
+          "multiple": ["all"],
+          "unmatched": ["drop"],
+          "relationship": {},
+          "error_call": ["caller_env()"],
+          "user_env": ["caller_env()"]
+        }
+      },
+      "lag": {
+        "old": {
+          "x": {},
+          "n": [1],
+          "default": [null],
+          "order_by": {},
+          "...": {}
+        },
+        "new": {
+          "x": {},
+          "n": [1],
+          "default": {},
+          "order_by": {},
+          "...": {}
+        }
+      },
+      "lead": {
+        "old": {
+          "x": {},
+          "n": [1],
+          "default": [null],
+          "order_by": {},
+          "...": {}
+        },
+        "new": {
+          "x": {},
+          "n": [1],
+          "default": {},
+          "order_by": {},
+          "...": {}
+        }
+      },
+      "mutate.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".keep": ["c(\"all\", \"used\", \"unused\", \"none\")"],
+          ".before": {},
+          ".after": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".keep": ["c(\"all\", \"used\", \"unused\", \"none\")"],
+          ".before": {},
+          ".after": {}
+        }
+      },
+      "mutate_cols": {
+        "old": {
+          ".data": {},
+          "dots": {},
+          "caller_env": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "data": {},
+          "dots": {},
+          "by": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "nth": {
+        "old": {
+          "x": {},
+          "n": {},
+          "order_by": {},
+          "default": ["default_missing(x)"]
+        },
+        "new": {
+          "x": {},
+          "n": {},
+          "order_by": {},
+          "default": {},
+          "na_rm": [false]
+        }
+      },
+      "first": {
+        "old": {
+          "x": {},
+          "order_by": {},
+          "default": ["default_missing(x)"]
+        },
+        "new": {
+          "x": {},
+          "order_by": {},
+          "default": {},
+          "na_rm": [false]
+        }
+      },
+      "last": {
+        "old": {
+          "x": {},
+          "order_by": {},
+          "default": ["default_missing(x)"]
+        },
+        "new": {
+          "x": {},
+          "order_by": {},
+          "default": {},
+          "na_rm": [false]
+        }
+      },
+      "slice": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".preserve": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".preserve": [false]
+        }
+      },
+      "slice.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".preserve": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".preserve": [false]
+        }
+      },
+      "slice_head": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {}
+        }
+      },
+      "slice_head.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {}
+        }
+      },
+      "slice_tail": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {}
+        }
+      },
+      "slice_tail.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {}
+        }
+      },
+      "slice_min": {
+        "old": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "with_ties": [true]
+        },
+        "new": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "with_ties": [true],
+          "na_rm": [false]
+        }
+      },
+      "slice_min.data.frame": {
+        "old": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "with_ties": [true]
+        },
+        "new": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "with_ties": [true],
+          "na_rm": [false]
+        }
+      },
+      "slice_max": {
+        "old": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "with_ties": [true]
+        },
+        "new": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "with_ties": [true],
+          "na_rm": [false]
+        }
+      },
+      "slice_max.data.frame": {
+        "old": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "with_ties": [true]
+        },
+        "new": {
+          ".data": {},
+          "order_by": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "with_ties": [true],
+          "na_rm": [false]
+        }
+      },
+      "slice_sample": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "weight_by": {},
+          "replace": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "weight_by": {},
+          "replace": [false]
+        }
+      },
+      "slice_sample.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "weight_by": {},
+          "replace": [false]
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          "n": {},
+          "prop": {},
+          "by": {},
+          "weight_by": {},
+          "replace": [false]
+        }
+      },
+      "slice_rows": {
+        "old": {
+          ".data": {},
+          "...": {},
+          "caller_env": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "data": {},
+          "dots": {},
+          "by": {},
+          "error_call": ["caller_env()"],
+          "user_env": ["caller_env(2)"]
+        }
+      },
+      "slice_eval": {
+        "old": {
+          "mask": {},
+          "dots": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "mask": {},
+          "dots": {},
+          "error_call": ["caller_env()"],
+          "user_env": ["caller_env(2)"]
+        }
+      },
+      "slice_combine": {
+        "old": {
+          "chunks": {},
+          "mask": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "chunks": {},
+          "dots": {},
+          "mask": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "get_slice_size": {
+        "old": {
+          "n": {},
+          "prop": {},
+          "allow_negative": [true],
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "n": {},
+          "prop": {},
+          "allow_outsize": [false],
+          "error_call": ["caller_env()"]
+        }
+      },
+      "summarise": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".groups": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".groups": {}
+        }
+      },
+      "summarise.data.frame": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".groups": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".groups": {}
+        }
+      },
+      "summarise.grouped_df": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".groups": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".groups": {}
+        }
+      },
+      "summarise.rowwise_df": {
+        "old": {
+          ".data": {},
+          "...": {},
+          ".groups": {}
+        },
+        "new": {
+          ".data": {},
+          "...": {},
+          ".by": {},
+          ".groups": {}
+        }
+      },
+      "summarise_cols": {
+        "old": {
+          ".data": {},
+          "dots": {},
+          "caller_env": {},
+          "error_call": ["caller_env()"]
+        },
+        "new": {
+          "data": {},
+          "dots": {},
+          "by": {},
+          "verb": {},
+          "error_call": ["caller_env()"]
+        }
+      },
+      "summarise_build": {
+        "old": {
+          ".data": {},
+          "cols": {}
+        },
+        "new": {
+          "by": {},
+          "cols": {}
+        }
+      },
+      "summarise_bullets": {
+        "old": {
+          "cnd": {},
+          "..": {}
+        },
+        "new": {
+          "cnd": {},
+          "...": {}
+        }
+      }
+    }
+  },
+  "test_m": [
+    {
+      "exported_function": "tbl_sum",
+      "field": "function_type",
+      "value_dplyr_1.1.4": "S3 method",
+      "value_dplyr_1.0.9": "S3 generic + method; unresolved or helper"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "package": ["dplyr"],
+  "version_new": ["1.1.4"],
+  "version_old": ["1.1.3"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      },
+      "Imports": {
+        "added": [],
+        "removed": [],
+        "modified": ["vctrs: >= 0.6.0 -> >= 0.6.4"]
+      },
+      "Suggests": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "stop_invalid_namespaced_expression": {
+        "expr": {},
+        "i": {},
+        "call": {}
+      },
+      "rethrow_error_join_matches_overflow": {
+        "cnd": {},
+        "call": {}
+      }
+    },
+    "removed": {},
+    "modified": {
+      "import_vctrs": {
+        "old": {
+          "name": {}
+        },
+        "new": {
+          "name": {},
+          "optional": [false]
+        }
+      },
+      "import_from": {
+        "old": {
+          "name": {},
+          "package": {}
+        },
+        "new": {
+          "name": {},
+          "package": {},
+          "optional": [false]
+        }
+      }
+    }
+  },
+  "test_m": []
+}

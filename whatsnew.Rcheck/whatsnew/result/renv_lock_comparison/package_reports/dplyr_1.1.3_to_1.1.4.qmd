@@ -1,0 +1,18 @@
+---
+title: "dplyr 1.1.3 → 1.1.4"
+format: html
+---
+
+```
+-- Imports --
+  Modified:
+     vctrs: >= 0.6.0 -> >= 0.6.4
+-- Functions (Added) --
+  stop_invalid_namespaced_expression
+  rethrow_error_join_matches_overflow
+
+-- Functions (Modified) --
+  import_vctrs
+  import_from
+
+```

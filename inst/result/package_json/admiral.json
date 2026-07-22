@@ -1,0 +1,510 @@
+{
+  "package": ["admiral"],
+  "version_new": ["1.2.0"],
+  "version_old": ["1.1.1"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {
+        "added": [],
+        "removed": [],
+        "modified": ["R: >= 4.0 -> >= 4.1"]
+      },
+      "Imports": {
+        "added": [],
+        "removed": [],
+        "modified": ["admiraldev: >= 1.1.0 -> >= 1.2.0"]
+      },
+      "Suggests": {
+        "added": ["withr"],
+        "removed": [],
+        "modified": {}
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "get_joined_sub_data": {
+        "dataset": {},
+        "dataset_add": {},
+        "by_vars": {},
+        "tmp_obs_nr_var": {},
+        "tmp_obs_nr_left": {},
+        "join_type": {},
+        "first_cond_upper": {},
+        "first_cond_lower": {},
+        "filter_join": {}
+      },
+      "derive_vars_cat": {
+        "dataset": {},
+        "definition": {},
+        "by_vars": {}
+      },
+      "extend_condition": {
+        "cond": {},
+        "var": {},
+        "is": {}
+      },
+      "derive_vars_crit_flag": {
+        "dataset": {},
+        "crit_nr": [1],
+        "condition": {},
+        "description": {},
+        "values_yn": [false],
+        "create_numeric_flag": [false]
+      },
+      "roxygen_save_memory": [],
+      "transform_range": {
+        "source": {},
+        "source_range": {},
+        "target_range": {},
+        "flip_direction": [false],
+        "outside_range": ["NA"]
+      }
+    },
+    "removed": {},
+    "modified": {
+      "set_admiral_options": {
+        "old": {
+          "subject_keys": {},
+          "signif_digits": {}
+        },
+        "new": {
+          "subject_keys": {},
+          "signif_digits": {},
+          "save_memory": {}
+        }
+      },
+      "consolidate_metadata": {
+        "old": {
+          "datasets": {},
+          "key_vars": {},
+          "source_var": {},
+          "check_vars": ["warning"],
+          "check_keys": {},
+          "check_type": ["error"]
+        },
+        "new": {
+          "datasets": {},
+          "key_vars": {},
+          "source_var": {},
+          "check_vars": ["warning"],
+          "check_type": ["error"]
+        }
+      },
+      "create_single_dose_dataset": {
+        "old": {
+          "dataset": {},
+          "dose_freq": {},
+          "start_date": {},
+          "start_datetime": {},
+          "end_date": {},
+          "end_datetime": {},
+          "lookup_table": {},
+          "lookup_column": {},
+          "nominal_time": {},
+          "keep_source_vars": ["expr_c(exprs(USUBJID), dose_freq, start_date, start_datetime, ", "    end_date, end_datetime)"]
+        },
+        "new": {
+          "dataset": {},
+          "dose_freq": {},
+          "start_date": {},
+          "start_datetime": {},
+          "end_date": {},
+          "end_datetime": {},
+          "lookup_table": {},
+          "lookup_column": {},
+          "nominal_time": {},
+          "keep_source_vars": ["expr_c(get_admiral_option(\"subject_keys\"), dose_freq, start_date, ", "    start_datetime, end_date, end_datetime)"]
+        }
+      },
+      "derive_extreme_event": {
+        "old": {
+          "dataset": {},
+          "by_vars": {},
+          "events": {},
+          "tmp_event_nr_var": {},
+          "order": {},
+          "mode": {},
+          "source_datasets": {},
+          "ignore_event_order": {},
+          "check_type": ["warning"],
+          "set_values_to": {},
+          "keep_source_vars": ["exprs(everything())"]
+        },
+        "new": {
+          "dataset": {},
+          "by_vars": {},
+          "events": {},
+          "tmp_event_nr_var": {},
+          "order": {},
+          "mode": {},
+          "source_datasets": {},
+          "check_type": ["warning"],
+          "set_values_to": {},
+          "keep_source_vars": ["exprs(everything())"]
+        }
+      },
+      "derive_vars_merged": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "order": {},
+          "new_vars": {},
+          "filter_add": {},
+          "mode": {},
+          "match_flag": {},
+          "exist_flag": {},
+          "true_value": ["Y"],
+          "false_value": [null],
+          "missing_values": {},
+          "check_type": ["warning"],
+          "duplicate_msg": {},
+          "relationship": {}
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "order": {},
+          "new_vars": {},
+          "filter_add": {},
+          "mode": {},
+          "exist_flag": {},
+          "true_value": ["Y"],
+          "false_value": [null],
+          "missing_values": {},
+          "check_type": ["warning"],
+          "duplicate_msg": {},
+          "relationship": {}
+        }
+      },
+      "derive_var_merged_summary": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "new_vars": {},
+          "new_var": {},
+          "filter_add": {},
+          "missing_values": {},
+          "analysis_var": {},
+          "summary_fun": {}
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "new_vars": {},
+          "filter_add": {},
+          "missing_values": {}
+        }
+      },
+      "derive_param_exposure": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "input_code": {},
+          "analysis_var": {},
+          "summary_fun": {},
+          "filter": {},
+          "filter_add": {},
+          "set_values_to": {}
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "input_code": {},
+          "filter_add": {},
+          "set_values_to": {}
+        }
+      },
+      "derive_param_tte": {
+        "old": {
+          "dataset": {},
+          "dataset_adsl": {},
+          "source_datasets": {},
+          "by_vars": {},
+          "start_date": {},
+          "event_conditions": {},
+          "censor_conditions": {},
+          "create_datetime": [false],
+          "set_values_to": {},
+          "subject_keys": ["get_admiral_option(\"subject_keys\")"]
+        },
+        "new": {
+          "dataset": {},
+          "dataset_adsl": {},
+          "source_datasets": {},
+          "by_vars": {},
+          "start_date": {},
+          "event_conditions": {},
+          "censor_conditions": {},
+          "create_datetime": [false],
+          "set_values_to": {},
+          "subject_keys": ["get_admiral_option(\"subject_keys\")"],
+          "check_type": ["warning"]
+        }
+      },
+      "filter_date_sources": {
+        "old": {
+          "sources": {},
+          "source_datasets": {},
+          "by_vars": {},
+          "create_datetime": [false],
+          "subject_keys": {},
+          "mode": {}
+        },
+        "new": {
+          "sources": {},
+          "source_datasets": {},
+          "by_vars": {},
+          "create_datetime": [false],
+          "subject_keys": {},
+          "mode": {},
+          "check_type": ["none"]
+        }
+      },
+      "tte_source": {
+        "old": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "censor": [0],
+          "set_values_to": {}
+        },
+        "new": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "censor": [0],
+          "set_values_to": {},
+          "order": {}
+        }
+      },
+      "event_source": {
+        "old": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "set_values_to": {}
+        },
+        "new": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "set_values_to": {},
+          "order": {}
+        }
+      },
+      "censor_source": {
+        "old": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "censor": [1],
+          "set_values_to": {}
+        },
+        "new": {
+          "dataset_name": {},
+          "filter": {},
+          "date": {},
+          "censor": [1],
+          "set_values_to": {},
+          "order": {}
+        }
+      },
+      "derive_summary_records": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "dataset_ref": {},
+          "by_vars": {},
+          "filter": {},
+          "filter_add": {},
+          "analysis_var": {},
+          "summary_fun": {},
+          "set_values_to": {},
+          "missing_values": {}
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "dataset_ref": {},
+          "by_vars": {},
+          "filter_add": {},
+          "set_values_to": {},
+          "missing_values": {}
+        }
+      },
+      "derive_var_atoxgr_dir": {
+        "old": {
+          "dataset": {},
+          "new_var": {},
+          "tox_description_var": {},
+          "meta_criteria": {},
+          "criteria_direction": {},
+          "get_unit_expr": {},
+          "signif_dig": ["get_admiral_option(\"signif_digits\")"]
+        },
+        "new": {
+          "dataset": {},
+          "new_var": {},
+          "tox_description_var": {},
+          "meta_criteria": {},
+          "criteria_direction": {},
+          "abnormal_indicator": {},
+          "get_unit_expr": {},
+          "signif_dig": ["get_admiral_option(\"signif_digits\")"]
+        }
+      },
+      "derive_var_joined_exist_flag": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "order": {},
+          "new_var": {},
+          "tmp_obs_nr_var": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "filter": {},
+          "filter_add": {},
+          "filter_join": {},
+          "true_value": ["Y"],
+          "false_value": [null],
+          "check_type": ["warning"]
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "order": {},
+          "new_var": {},
+          "tmp_obs_nr_var": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "filter_add": {},
+          "filter_join": {},
+          "true_value": ["Y"],
+          "false_value": [null],
+          "check_type": ["warning"]
+        }
+      },
+      "derive_vars_atc": {
+        "old": {
+          "dataset": {},
+          "dataset_facm": {},
+          "by_vars": ["exprs(USUBJID, CMREFID = FAREFID)"],
+          "id_vars": {},
+          "value_var": {}
+        },
+        "new": {
+          "dataset": {},
+          "dataset_facm": {},
+          "by_vars": ["exprs(!!!get_admiral_option(\"subject_keys\"), CMREFID = FAREFID)"],
+          "id_vars": {},
+          "value_var": {}
+        }
+      },
+      "signal_duplicate_records": {
+        "old": {
+          "dataset": {},
+          "by_vars": {},
+          "msg": ["paste(\"Dataset contains duplicate records\", \"with respect to\", ", "    \"{.var {replace_values_by_names(by_vars)}}\")"],
+          "cnd_type": ["error"]
+        },
+        "new": {
+          "dataset": {},
+          "by_vars": {},
+          "msg": ["paste(\"Dataset contains duplicate records\", \"with respect to\", ", "    \"{.var {replace_values_by_names(by_vars)}}\")"],
+          "cnd_type": ["error"],
+          "class": {}
+        }
+      },
+      "event_joined": {
+        "old": {
+          "dataset_name": {},
+          "condition": {},
+          "order": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "set_values_to": {},
+          "keep_source_vars": {},
+          "description": {}
+        },
+        "new": {
+          "dataset_name": {},
+          "condition": {},
+          "order": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "set_values_to": {},
+          "keep_source_vars": {},
+          "description": {}
+        }
+      },
+      "filter_joined": {
+        "old": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "order": {},
+          "tmp_obs_nr_var": {},
+          "filter_add": {},
+          "filter_join": {},
+          "filter": {},
+          "check_type": ["warning"]
+        },
+        "new": {
+          "dataset": {},
+          "dataset_add": {},
+          "by_vars": {},
+          "join_vars": {},
+          "join_type": {},
+          "first_cond_lower": {},
+          "first_cond_upper": {},
+          "order": {},
+          "tmp_obs_nr_var": {},
+          "filter_add": {},
+          "filter_join": {},
+          "check_type": ["warning"]
+        }
+      },
+      "get_summary_records": {
+        "old": {
+          "dataset": {},
+          "by_vars": {},
+          "filter": {},
+          "analysis_var": {},
+          "summary_fun": {},
+          "set_values_to": {}
+        },
+        "new": {
+          "dataset": {},
+          "by_vars": {},
+          "filter": {},
+          "set_values_to": {}
+        }
+      }
+    }
+  },
+  "test_m": []
+}

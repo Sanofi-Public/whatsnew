@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+# pkgdown writes the full site here locally; only minimal placeholders are tracked (see docs/)
+docs/*
+!docs/.nojekyll
+!docs/index.html
+.cursor

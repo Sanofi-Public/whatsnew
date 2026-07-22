@@ -1,0 +1,15 @@
+compare	compare
+compare_column	compare_column
+compare_dependencies	compare_dependencies
+compare_dep_fields	compare_dep_fields
+compare_funcs	compare_funcs
+compare_tm	compare_tm
+extract_versions	extract_versions
+format_formals	format_formals
+function_tree	function_tree
+get_func_descriptions	get_func_descriptions
+get_info	get_info
+get_package_functions	get_package_functions
+get_pkg_desc	get_pkg_desc
+print_function_tree	print_function_tree
+print_func_diff	print_func_diff

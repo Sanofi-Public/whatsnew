@@ -1,0 +1,68 @@
+{
+  "package": ["here"],
+  "version_new": ["1.0.1"],
+  "version_old": ["1.0.2"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Imports": {
+        "added": [],
+        "removed": [],
+        "modified": ["rprojroot: >= 2.1.0 -> >= 2.0.2"]
+      },
+      "Suggests": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "format_root_section": [],
+      "format_root_criteria_items": {
+        "indent": [0]
+      },
+      "dr_here": {
+        "show_reason": [true]
+      },
+      "format_dr_here": {
+        "show_reason": {}
+      },
+      "format_reason": [],
+      "here": {
+        "...": {}
+      },
+      "set_root_crit": {
+        "criterion": {}
+      },
+      "do_refresh_here": {
+        "path": {}
+      },
+      "set_fix_fun": {
+        "f": {},
+        "i_am": {}
+      },
+      "i_am": {
+        "path": {},
+        "...": {},
+        "uuid": {}
+      },
+      "mockable_getwd": [],
+      "set_here": {
+        "path": ["."],
+        "verbose": [true]
+      },
+      ".onLoad": {
+        "libname": {},
+        "pkgname": {}
+      },
+      ".onAttach": {
+        "libname": {},
+        "pkgname": {}
+      }
+    },
+    "removed": [],
+    "modified": []
+  },
+  "test_m": {}
+}

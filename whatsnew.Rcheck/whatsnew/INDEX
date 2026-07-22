@@ -1,0 +1,11 @@
+compare                 Compare Two Versions of a Package
+compare_column          Compare one column across two data frames by
+                        key
+compare_funcs           Compare Exported Functions Between Two Versions
+compare_tm              Compare Traceability Matrices (TM) Between Two
+                        Package Versions
+extract_versions        Extract Package Names and Versions from
+                        DESCRIPTION Dependency Fields
+function_tree           Build a Nested Function Call Tree
+get_info                Download and Parse a Specific Package Version
+print_function_tree     Print a Function Call Tree

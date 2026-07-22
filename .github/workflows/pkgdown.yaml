@@ -1,0 +1,88 @@
+name: "Deploy pkgdown GitHub Page"
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-site:
+    runs-on: atmos-aws-arc-runner-set
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.3'
+
+      - name: Install wget
+        run: sudo apt-get update && sudo apt-get install -y wget
+
+      - name: Set up Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.5.50
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libssl-dev libcurl4-openssl-dev
+
+      - name: Setup pak
+        uses: Sanofi-GitHub/sih-github-actions/setup-pak@main
+
+      - name: Copy .qmd reports to vignettes/
+        run: |
+          mkdir -p vignettes
+          cp inst/result/*.qmd vignettes/ || echo "No .qmd files to copy."
+
+      - name: Build pkgdown site
+        run: |
+          options(repos = c(
+            RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/latest",
+            INTERNAL = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/art-git/latest",
+            INTERNAL_RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com"
+          ))
+          pak::pkg_install("covr")
+          pak::pkg_install("xml2")
+          pak::pkg_install(c("knitr", "rmarkdown", "mockery", "testthat"))
+          pak::pkg_install(c("igraph", "pkgnet"))
+          pak::pkg_install("here")
+          pak::pkg_install(c('remotes', 'dplyr', 'tibble', 'purrr', 'stringr', 'magrittr', 'fs', 'glue', 'risk.assessr'))
+          pak::pkg_install(c('pkgdown', 'quarto'))
+
+          # Install whatsnew package locally (this is the whatsnew repo)
+          remotes::install_local(force = TRUE, dependencies = FALSE)
+
+          # Verify installation
+          if (!requireNamespace("whatsnew", quietly = TRUE)) {
+            stop("Failed to install whatsnew package")
+          }
+
+          library(pkgdown)
+          library(whatsnew)
+
+          pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+
+        shell: Rscript {0}
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        with:
+          folder: docs
+          branch: gh-pages
+          clean: false
+          token: ${{ secrets.GITHUB_TOKEN }}

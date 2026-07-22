@@ -1,0 +1,32 @@
+name: SPAR Agents
+
+on:
+  workflow_dispatch:
+    inputs:
+      agent:
+        description: 'SPAR agent to use for code review (e.g. statprog, r-package)'
+        required: true
+        type: string
+      prompt:
+        description: 'Custom prompt to guide the agent (optional)'
+        required: false
+        default: 'Please review the code at the specified path and provide feedback on potential issues, improvements, and best practices.'
+        type: string
+
+permissions: read-all
+
+jobs:
+  run-spar-agent:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run SPAR Agent
+        uses: Sanofi-GitHub/spar-agents@main
+        with:
+          agent: ${{ inputs.agent }}
+          prompt: ${{ inputs.prompt }}
+          token: ${{ secrets.GT_TOKEN }}
+

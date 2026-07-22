@@ -1,0 +1,10 @@
+utils::globalVariables(c(
+  "exported_function",
+  "function_body",
+  "code_script",
+  "description",
+  "documentation",
+  "join_key",
+  "name",
+  "field"
+))

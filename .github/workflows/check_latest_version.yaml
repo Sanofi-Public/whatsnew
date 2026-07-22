@@ -1,0 +1,168 @@
+name: Check Latest Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_package:
+        description: 'Path to tar.gz file to use as local package source for testing (e.g., inst/test-data/here.tar.gz). Leave empty to use repository root.'
+        required: false
+        default: ''
+        type: string
+      save_result:
+        description: 'Save comparison JSON to inst/versions/ folder and commit to repo'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-version:
+    runs-on: atmos-aws-arc-runner-set
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libssl-dev libcurl4-openssl-dev
+
+      - name: Install R dependencies
+        run: |
+          options(repos = c(
+            RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/latest",
+            INTERNAL = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/art-git/latest",
+            INTERNAL_RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com"
+          ))
+          install.packages("remotes")
+          install.packages(c("desc", "jsonlite"), dependencies = TRUE)
+        shell: Rscript {0}
+
+      - name: Install whatsnew package and dependencies
+        run: |
+          options(repos = c(
+            RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/latest",
+            INTERNAL = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/art-git/latest",
+            INTERNAL_RSPM = "https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com"
+          ))
+          remotes::install_deps(dependencies = TRUE)
+          install_ok <- FALSE
+          tryCatch({
+            remotes::install_local(force = TRUE, dependencies = TRUE)
+            install_ok <- requireNamespace("whatsnew", quietly = TRUE)
+          }, error = function(e) {
+            cat("Local install failed:", conditionMessage(e), "\n")
+          })
+          if (!install_ok) {
+            tryCatch({
+              cat("Installing whatsnew from GitHub...\n")
+              remotes::install_github("Sanofi-GitHub/whatsnew", dependencies = TRUE, upgrade = "never")
+              install_ok <- requireNamespace("whatsnew", quietly = TRUE)
+            }, error = function(e) {
+              cat("GitHub install failed:", conditionMessage(e), "\n")
+            })
+          }
+          if (!install_ok) {
+            cat("Installing whatsnew from internal RSPM repositories...\n")
+            install.packages("whatsnew", dependencies = TRUE)
+            install_ok <- requireNamespace("whatsnew", quietly = TRUE)
+          }
+          if (!install_ok) stop("Failed to install whatsnew (local, GitHub, and internal repos all failed)")
+        shell: Rscript {0}
+
+      - name: Compare versions using whatsnew
+        id: version-check
+        run: |
+          # Always work from repository root (workflow is meant for package repos)
+          TEST_PACKAGE="${{ github.event.inputs.test_package || inputs.test_package || '' }}"
+          SAVE_RESULT="${{ github.event.inputs.save_result || inputs.save_result || false }}"
+          
+          # Get absolute path to script (relative to repo root)
+          SCRIPT_PATH="${{ github.workspace }}/.github/scripts/compare_latest.R"
+          
+          # Run from workspace root
+          cd "${{ github.workspace }}"
+          
+          # Run the comparison script
+          # If test_package is provided, pass it as first argument; save_result as second
+          # Otherwise, pass save_result as first argument
+          if [ -n "$TEST_PACKAGE" ]; then
+            echo "Using test package: $TEST_PACKAGE"
+            # Resolve absolute path to test package
+            if [ -f "$TEST_PACKAGE" ]; then
+              TEST_PACKAGE_ABS="$TEST_PACKAGE"
+            elif [ -f "${{ github.workspace }}/$TEST_PACKAGE" ]; then
+              TEST_PACKAGE_ABS="${{ github.workspace }}/$TEST_PACKAGE"
+            else
+              echo "Error: Test package file not found: $TEST_PACKAGE"
+              exit 1
+            fi
+            echo "Test package absolute path: $TEST_PACKAGE_ABS"
+            Rscript "$SCRIPT_PATH" "$TEST_PACKAGE_ABS" "$SAVE_RESULT"
+          else
+            echo "Using repository root as package source"
+            Rscript "$SCRIPT_PATH" "$SAVE_RESULT"
+          fi
+          
+          # Read outputs from R script and set GitHub Actions outputs
+          if [ -f "version_env.txt" ]; then
+            export $(cat "version_env.txt" | xargs)
+            echo "status=${STATUS}" >> $GITHUB_OUTPUT
+            echo "repo_version=${REPO_VERSION}" >> $GITHUB_OUTPUT
+            echo "cran_version=${CRAN_VERSION}" >> $GITHUB_OUTPUT
+            echo "version_new=${VERSION_NEW}" >> $GITHUB_OUTPUT
+            echo "version_old=${VERSION_OLD}" >> $GITHUB_OUTPUT
+            echo "direction=${DIRECTION}" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+      
+      - name: Commit inst/versions to repo
+        if: github.event.inputs.save_result == 'true'
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            branch="${GITHUB_HEAD_REF}"
+          else
+            branch="${GITHUB_REF_NAME}"
+          fi
+          
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git fetch origin "$branch"
+          git checkout -B "$branch" "origin/$branch"
+          
+          echo "Rebasing from remote branch: $branch"
+          git pull --rebase origin "$branch"
+          
+          git status
+          git add "inst/versions" || true
+          git commit -m "Auto-generate version comparison JSON in inst/versions" || echo "No changes to commit"
+          
+          echo "Pulling latest changes from branch: $branch"
+          git pull --rebase --autostash -X ours origin "$branch"
+          
+          echo "Pushing to branch: $branch"
+          git push origin "$branch"
+
+      - name: Upload comparison artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-comparison
+          path: |
+            ./package_comparison.json
+            ./version_env.txt
+          retention-days: 7
+          if-no-files-found: ignore
+

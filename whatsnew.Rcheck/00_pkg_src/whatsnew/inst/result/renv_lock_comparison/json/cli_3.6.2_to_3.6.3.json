@@ -1,0 +1,30 @@
+{
+  "package": ["cli"],
+  "version_new": ["3.6.3"],
+  "version_old": ["3.6.2"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      },
+      "Imports": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      },
+      "Suggests": {
+        "added": [],
+        "removed": [],
+        "modified": {}
+      }
+    }
+  },
+  "functions_diff": {
+    "added": {},
+    "removed": {},
+    "modified": []
+  },
+  "test_m": []
+}

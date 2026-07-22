@@ -1,0 +1,141 @@
+# Parameters: workflow_dispatch inputs below; if empty, repository variables apply
+# (Settings → Variables). Target branch: variable OPEN_SOURCE_BRANCH only (default open_source if unset).
+on:
+  release:
+    types: [published]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      oss_github_from:
+        description: Internal GitHub org/repo for link replacement (e.g. Org/internal-repo)
+        required: false
+        default: Sanofi-GitHub/whatsnew
+        type: string
+      oss_github_to:
+        description: Public GitHub org/repo for link replacement
+        required: false
+        default: Sanofi-Public/whatsnew
+        type: string
+      oss_pm_host:
+        description: Internal PM hostname to find in sources (no https://); replacement URL is oss_options_repos
+        required: false
+        default: rstudio-pm.prod.p488440267176.aws-emea.sanofi.com
+        type: string
+      oss_options_repos:
+        description: Public repo URL used as replacement for internal PM URLs and for README options(repos="…")
+        required: false
+        default: https://cloud.r-project.org
+        type: string
+
+name: Open-source tools
+
+concurrency:
+  group: ${{ github.workflow }}-${{ vars.OPEN_SOURCE_BRANCH != '' && vars.OPEN_SOURCE_BRANCH || 'open_source' }}-sync
+  cancel-in-progress: true
+
+jobs:
+  sync-open-source-branch:
+    runs-on: ubuntu-latest
+    env:
+      OPEN_SOURCE_BRANCH: ${{ vars.OPEN_SOURCE_BRANCH != '' && vars.OPEN_SOURCE_BRANCH || 'open_source' }}
+      OSS_TRANSFORM_GITHUB_FROM: ${{ github.event.inputs.oss_github_from != '' && github.event.inputs.oss_github_from || (vars.OSS_TRANSFORM_GITHUB_FROM != '' && vars.OSS_TRANSFORM_GITHUB_FROM || 'Sanofi-GitHub/bp-art-sanofi.risk.assessr') }}
+      OSS_TRANSFORM_GITHUB_TO: ${{ github.event.inputs.oss_github_to != '' && github.event.inputs.oss_github_to || (vars.OSS_TRANSFORM_GITHUB_TO != '' && vars.OSS_TRANSFORM_GITHUB_TO || 'Sanofi-Public/risk.assessr') }}
+      OSS_TRANSFORM_INTERNAL_PM_HOST: ${{ github.event.inputs.oss_pm_host != '' && github.event.inputs.oss_pm_host || (vars.OSS_TRANSFORM_INTERNAL_PM_HOST != '' && vars.OSS_TRANSFORM_INTERNAL_PM_HOST || 'rstudio-pm.prod.p488440267176.aws-emea.sanofi.com') }}
+      OSS_TRANSFORM_OPTIONS_REPOS_URL: ${{ github.event.inputs.oss_options_repos != '' && github.event.inputs.oss_options_repos || (vars.OSS_TRANSFORM_OPTIONS_REPOS_URL != '' && vars.OSS_TRANSFORM_OPTIONS_REPOS_URL || 'https://cloud.r-project.org') }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::devtools
+            any::pkgdown
+            any::rcmdcheck
+          needs: check, build, vignettes
+          
+      - name: Terms scan
+        run: Rscript .github/scripts/term_scan.R
+        
+      - name: Apply open-source transform
+        run: Rscript .github/scripts/apply_opensource_transform.R
+
+      - name: Regenerate documentation (roxygen)
+        run: Rscript -e "devtools::document()"
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Build pkgdown site (drop internal-only header includes)
+        run: |
+          yq -i 'del(.template.includes)' _pkgdown.yml
+          Rscript -e "pkgdown::build_site()"
+
+      - name: Build package tarball
+        id: pkg_tar
+        run: |
+          R CMD build .
+          echo "pkg_tgz=$(ls -t *.tar.gz | head -1)" >> "$GITHUB_OUTPUT"
+
+      - name: Check package tarball
+        run: R CMD check "${{ steps.pkg_tar.outputs.pkg_tgz }}" --no-manual
+
+      - name: Upload package tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: r-package-tarball
+          path: ${{ steps.pkg_tar.outputs.pkg_tgz }}
+
+      - name: Upload terms scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: terms-scan-results
+          path: scan-results.csv
+
+      - name: Upload pkgdown site
+        uses: actions/upload-artifact@v4
+        with:
+          name: pkgdown-site
+          path: docs
+
+      - name: Commit and push target branch
+        env:
+          SOURCE_LABEL: ${{ github.ref_name }}
+        run: |
+          rm -f scan-results.csv
+          rm -f *.tar.gz
+          SOURCE_SHA=$(git rev-parse HEAD)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$OPEN_SOURCE_BRANCH"
+          # GITHUB_TOKEN cannot push commits that touch .github/workflows without workflows:write.
+          # Open-source layout steps do not intentionally edit workflows; reset to release HEAD.
+          git checkout HEAD -- .github/workflows
+          git clean -fd .github/workflows
+          git add -A
+          # docs/ is gitignored for normal dev; include built pkgdown on target branch
+          git add -f docs
+          if git diff --staged --quiet; then
+            echo "No tree changes after transform; updating ${OPEN_SOURCE_BRANCH} to match ${SOURCE_LABEL} (${SOURCE_SHA:0:7}) if needed."
+          else
+            git commit -m "chore: open-source layout sync from ${SOURCE_LABEL} (${SOURCE_SHA:0:7})"
+          fi
+          # Drop stale refs (e.g. branch deleted on GitHub but origin/<branch> still local) so
+          # --force-with-lease does not fail with "stale info".
+          git fetch origin --prune
+          git fetch origin "${OPEN_SOURCE_BRANCH}" 2>/dev/null || true
+          git push --force-with-lease origin "HEAD:${OPEN_SOURCE_BRANCH}"

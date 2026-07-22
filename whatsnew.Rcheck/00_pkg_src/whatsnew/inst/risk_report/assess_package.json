@@ -1,0 +1,1629 @@
+{
+  "results": {
+    "pkg_name": "whatsnew",
+    "pkg_version": "1.0.0",
+    "pkg_source_path": "/tmp/RtmpecluCC/temp_file_1eff1804f06f/whatsnew",
+    "date_time": "2026-07-21 12:59:38.335327",
+    "executor": "runner",
+    "sysname": "Linux",
+    "version": "#20~24.04.1-Ubuntu SMP Fri Jun 19 20:09:14 UTC 2026",
+    "release": "6.17.0-1020-azure",
+    "machine": "x86_64",
+    "comments": " ",
+    "has_bug_reports_url": "https://github.com/Sanofi-GitHub/whatsnew/issues",
+    "license_name": "GPL (>= 3)",
+    "has_examples": {
+      "data": [
+        {
+          "function_name": "format_formals",
+          "documentation_name": "format_formals",
+          "documentation_location": "man/format_formals.Rd",
+          "example": "no example"
+        },
+        {
+          "function_name": "compare",
+          "documentation_name": "compare",
+          "documentation_location": "man/compare.Rd",
+          "example": "pkg_diff <- compare(\"dplyr\", \"1.1.4\", \"1.0.9\")\nstr(pkg_diff)"
+        },
+        {
+          "function_name": "get_info",
+          "documentation_name": "get_info",
+          "documentation_location": "man/get_info.Rd",
+          "example": "info_old <- get_info(\"dplyr\", \"1.0.9\")\ninfo_new <- get_info(\"dplyr\", \"1.1.4\")"
+        },
+        {
+          "function_name": "function_tree",
+          "documentation_name": "function_tree",
+          "documentation_location": "man/function_tree.Rd",
+          "example": "# Build a function call tree for stringr::str_detect\nft <- function_tree(\"stringr\", root = \"str_detect\", depth = 3,\n                    direction = \"downstream\")\n\nprint_function_tree(ft)"
+        },
+        {
+          "function_name": "print_func_diff",
+          "documentation_name": "print_func_diff",
+          "documentation_location": "man/print_func_diff.Rd",
+          "example": "no example"
+        },
+        {
+          "function_name": "compare_funcs",
+          "documentation_name": "compare_funcs",
+          "documentation_location": "man/compare_funcs.Rd",
+          "example": "no example"
+        },
+        {
+          "function_name": "print_function_tree",
+          "documentation_name": "print_function_tree",
+          "documentation_location": "man/print_function_tree.Rd",
+          "example": "# Build a function tree (leaves are NULL)\nft <- function_tree_nested(\"stringr\", root = \"str_detect\", depth = 3,\n                           direction = \"downstream\", name_style = \"pretty\")\n\n# Print with ASCII (default)\nprint_function_tree(ft)"
+        },
+        {
+          "function_name": "extract_versions",
+          "documentation_name": "extract_versions",
+          "documentation_location": "man/extract_versions.Rd",
+          "example": "no example"
+        },
+        {
+          "function_name": "compare_column",
+          "documentation_name": "compare_column",
+          "documentation_location": "man/compare_column.Rd",
+          "example": "no example"
+        },
+        {
+          "function_name": "compare_tm",
+          "documentation_name": "compare_tm",
+          "documentation_location": "man/compare_tm.Rd",
+          "example": "# Compare traceability matrices for two versions of a package\ndiff_tm <- compare_tm(\"dplyr\", \"1.1.4\", \"1.0.8\")\nhead(diff_tm)"
+        }
+      ],
+      "example_score": 0.5
+    },
+    "has_docs": {
+      "data": [
+        {
+          "function_name": "format_formals",
+          "documentation_name": "format_formals",
+          "documentation_location": "man/format_formals.Rd"
+        },
+        {
+          "function_name": "compare",
+          "documentation_name": "compare",
+          "documentation_location": "man/compare.Rd"
+        },
+        {
+          "function_name": "get_info",
+          "documentation_name": "get_info",
+          "documentation_location": "man/get_info.Rd"
+        },
+        {
+          "function_name": "function_tree",
+          "documentation_name": "function_tree",
+          "documentation_location": "man/function_tree.Rd"
+        },
+        {
+          "function_name": "print_func_diff",
+          "documentation_name": "print_func_diff",
+          "documentation_location": "man/print_func_diff.Rd"
+        },
+        {
+          "function_name": "compare_funcs",
+          "documentation_name": "compare_funcs",
+          "documentation_location": "man/compare_funcs.Rd"
+        },
+        {
+          "function_name": "print_function_tree",
+          "documentation_name": "print_function_tree",
+          "documentation_location": "man/print_function_tree.Rd"
+        },
+        {
+          "function_name": "extract_versions",
+          "documentation_name": "extract_versions",
+          "documentation_location": "man/extract_versions.Rd"
+        },
+        {
+          "function_name": "compare_column",
+          "documentation_name": "compare_column",
+          "documentation_location": "man/compare_column.Rd"
+        },
+        {
+          "function_name": "compare_tm",
+          "documentation_name": "compare_tm",
+          "documentation_location": "man/compare_tm.Rd"
+        }
+      ],
+      "has_docs_score": 1
+    },
+    "has_ex_docs_score": 0.75,
+    "has_maintainer": [
+      {
+        "given": "Hugo",
+        "family": "Bottois",
+        "role": ["cre", "aut"],
+        "email": "hugo.bottois@sanofi.com",
+        "comment": "0000-0003-4674-0875"
+      }
+    ],
+    "size_codebase": 648,
+    "has_news": 1,
+    "has_source_control": "https://github.com/Sanofi-GitHub/whatsnew/issues",
+    "has_vignettes": 1,
+    "news_current": 1,
+    "export_help": 1,
+    "export_calc": 1,
+    "check": 1,
+    "covr": 0.8937,
+    "dependencies": {
+      "imports": {
+        "remotes": "2.5.0",
+        "dplyr": "1.2.1",
+        "purrr": "1.2.2",
+        "magrittr": "2.0.5",
+        "rlang": "1.3.0",
+        "utils": "No package version found",
+        "risk.assessr": "4.1.2",
+        "igraph": "2.3.3",
+        "pkgnet": "0.6.0"
+      },
+      "suggests": {
+        "knitr": "1.51",
+        "rmarkdown": "2.31",
+        "mockery": "0.4.5",
+        "withr": "3.0.3",
+        "testthat": "3.3.2",
+        "stringr": "1.6.0",
+        "here": "1.0.2",
+        "jsonlite": "2.0.0"
+      }
+    },
+    "suggested_deps": [
+      {
+        "source": "compare_column",
+        "suggested_function": "%>%",
+        "targeted_package": "testthat",
+        "message": "Please check if the targeted package should be in Imports"
+      },
+      {
+        "source": "compare_tm",
+        "suggested_function": "%>%",
+        "targeted_package": "testthat",
+        "message": "Please check if the targeted package should be in Imports"
+      }
+    ],
+    "rev_deps": 0,
+    "author": {
+      "maintainer": [
+        {
+          "given": "Hugo",
+          "family": "Bottois",
+          "role": ["cre", "aut"],
+          "email": "hugo.bottois@sanofi.com",
+          "comment": "0000-0003-4674-0875"
+        }
+      ],
+      "funder": [
+        {
+          "given": "Sanofi",
+          "family": {},
+          "role": ["cph", "fnd"],
+          "email": {},
+          "comment": {}
+        }
+      ],
+      "authors": [
+        {
+          "given": "Hugo",
+          "family": "Bottois",
+          "role": ["cre", "aut"],
+          "email": "hugo.bottois@sanofi.com",
+          "comment": "0000-0003-4674-0875"
+        },
+        {
+          "given": "Edward",
+          "family": "Gillian",
+          "role": "aut",
+          "email": "edward.gillian-ext@sanofi.com",
+          "comment": "0000-0003-2732-5107"
+        },
+        {
+          "given": "Paulin",
+          "family": "Charliquart",
+          "role": "aut",
+          "email": "paulin.charliquart@sanofi.com",
+          "comment": {}
+        },
+        {
+          "given": "Andre",
+          "family": "Couturier",
+          "role": "aut",
+          "email": "andre.couturier@sanofi.com",
+          "comment": {}
+        },
+        {
+          "given": "Sanofi",
+          "family": {},
+          "role": ["cph", "fnd"],
+          "email": {},
+          "comment": {}
+        }
+      ]
+    },
+    "host": {
+      "github_links": "https://github.com/Sanofi-GitHub/whatsnew",
+      "cran_links": {},
+      "internal_links": {},
+      "bioconductor_links": {}
+    },
+    "github_data": {
+      "created_at": [],
+      "stars": {},
+      "forks": {},
+      "date": "2026-07-21",
+      "recent_commits_count": 0,
+      "open_issues": {},
+      "average_issue_close_time": 0
+    },
+    "version_info": {
+      "all_versions": {},
+      "last_version": {},
+      "difference_version_months": 0
+    },
+    "download": {
+      "total_download": 0,
+      "last_month_download": 0
+    },
+    "vulnerabilities": [],
+    "tests": {
+      "has_testthat": true,
+      "has_snaps": true,
+      "has_testit": false,
+      "has_tests_base": false,
+      "has_BioG_test": false,
+      "has_RUnit_test": false,
+      "bioc_unit_tests_dir": 0,
+      "bioc_run_ut_path": 0,
+      "doRUnit_path": 0,
+      "n_golden_tests": 2,
+      "n_test_files": 10,
+      "has_tinytest": false,
+      "tinytest_dir": 0,
+      "tinytest_runner_paths": [],
+      "n_tinytest_files": 0,
+      "has_data_table_tests": false,
+      "data_table_tests_path": 0
+    }
+  },
+  "covr_list": {
+    "pkg_name": "whatsnew",
+    "pkg_ver": "1.0.0",
+    "date_time": "2026-07-21 12:59:38.450491",
+    "executor": "runner",
+    "sysname": "Linux",
+    "version": "#20~24.04.1-Ubuntu SMP Fri Jun 19 20:09:14 UTC 2026",
+    "release": "6.17.0-1020-azure",
+    "machine": "x86_64",
+    "r_version": "4.3.3",
+    "test_framework_type": "standard testing framework",
+    "total_cov": 0.8937,
+    "res_cov": {
+      "name": "whatsnew",
+      "coverage": {
+        "filecoverage": [100, 100, 100, 100, 100, 71.73, 95.45, 98.25, 100, 100, 100],
+        "totalcoverage": 89.37
+      },
+      "errors": null,
+      "notes": null
+    },
+    "test_pkg_data": {
+      "has_testthat": true,
+      "has_snaps": true,
+      "has_testit": false,
+      "has_tests_base": false,
+      "has_BioG_test": false,
+      "has_RUnit_test": false,
+      "bioc_unit_tests_dir": null,
+      "bioc_run_ut_path": null,
+      "doRUnit_path": null,
+      "n_golden_tests": 2,
+      "n_test_files": 10,
+      "has_tinytest": false,
+      "tinytest_dir": null,
+      "tinytest_runner_paths": [],
+      "n_tinytest_files": 0,
+      "has_data_table_tests": false,
+      "data_table_tests_path": null
+    }
+  },
+  "tm_list": {
+    "tm": [
+      {
+        "exported_function": "compare",
+        "function_type": "regular function",
+        "function_body": "{\n    info_new <- get_info(package_name, package_version_new)\n    info_old <- get_info(package_name, package_version_old)\n    dep <- compare_dependencies(info_new, info_old)\n    funct <- compare_funcs(info_new, info_old)\n    diff_tm <- compare_tm(package_name, package_version_new, \n        package_version_old)\n    pkg_diff <- list(package = package_name, version_new = package_version_new, \n        version_old = package_version_old, dependencies_diff = dep, \n        functions_diff = funct, test_m = diff_tm)\n    return(pkg_diff)\n}",
+        "where": "whatsnew",
+        "documentation": "man/compare.Rd",
+        "code_script": "R/compare.R",
+        "description": "\nThis function retrieves information for two versions of an R package,\ncompares their dependencies, exported functions, and test metrics,\nand returns the differences as a structured R list.\n"
+      },
+      {
+        "exported_function": "compare_column",
+        "function_type": "regular function",
+        "function_body": "{\n    aggregate_values <- function(df, key_col, val_col) {\n        df %>% dplyr::distinct(dplyr::across(dplyr::all_of(c(key_col, \n            val_col)))) %>% dplyr::group_by(dplyr::across(dplyr::all_of(key_col))) %>% \n            dplyr::summarise(`:=`(!!val_col, {\n                vals <- unique(.data[[val_col]])\n                non_na <- sort(vals[!is.na(vals)])\n                if (length(non_na) == 0) {\n                  NA_character_\n                }\n                else if (length(non_na) == 1) {\n                  non_na\n                }\n                else {\n                  paste(non_na, collapse = \"; \")\n                }\n            }), .groups = \"drop\")\n    }\n    df1 <- aggregate_values(df1, key, param_col)\n    df2 <- aggregate_values(df2, key, param_col)\n    col1 <- paste0(param_col, \"_\", name1)\n    col2 <- paste0(param_col, \"_\", name2)\n    if (nrow(df1) == 0 || nrow(df2) == 0) {\n        empty_keys <- if (nrow(df1) > 0) {\n            df1[0, key, drop = FALSE]\n        }\n        else {\n            df2[0, key, drop = FALSE]\n        }\n        return(dplyr::bind_cols(empty_keys, dplyr::tibble(`:=`(!!col1, \n            character()), `:=`(!!col2, character()), different = logical())))\n    }\n    result <- df1 %>% dplyr::inner_join(df2, by = key, suffix = c(paste0(\"_\", \n        name1), paste0(\"_\", name2))) %>% dplyr::select(dplyr::all_of(c(key, \n        col1, col2))) %>% dplyr::mutate(different = dplyr::case_when(is.na(.data[[col1]]) & \n        is.na(.data[[col2]]) ~ FALSE, xor(is.na(.data[[col1]]), \n        is.na(.data[[col2]])) ~ TRUE, TRUE ~ .data[[col1]] != \n        .data[[col2]]))\n    if (only_diff) {\n        result <- dplyr::filter(result, .data$different)\n    }\n    result\n}",
+        "where": "whatsnew",
+        "documentation": "man/compare_column.Rd",
+        "code_script": "R/compare_column.R",
+        "description": "\nInner-joins two data frames on key column(s) and compares a single column\nbetween them. Returns the keys, the two suffixed columns, and a logical\n`different` flag with NA-aware rules.\n"
+      },
+      {
+        "exported_function": "compare_funcs",
+        "function_type": "regular function",
+        "function_body": "{\n    new_funcs <- new_funcs$functions\n    old_funcs <- old_funcs$functions\n    new_names <- names(new_funcs)\n    old_names <- names(old_funcs)\n    new_names <- new_names[!is.na(new_names) & nzchar(new_names)]\n    old_names <- old_names[!is.na(old_names) & nzchar(old_names)]\n    added_names <- setdiff(new_names, old_names)\n    removed_names <- setdiff(old_names, new_names)\n    common_names <- intersect(new_names, old_names)\n    modified <- list()\n    for (fn in common_names) {\n        old_formals <- old_funcs[[fn]]\n        new_formals <- new_funcs[[fn]]\n        if (!identical(old_formals, new_formals)) {\n            modified[[fn]] <- list(old = old_formals, new = new_formals)\n        }\n    }\n    list(added = new_funcs[added_names], removed = old_funcs[removed_names], \n        modified = modified)\n}",
+        "where": "whatsnew",
+        "documentation": "man/compare_funcs.Rd",
+        "code_script": "R/compare_funcs.R",
+        "description": "\nCompare Exported Functions Between Two Versions\n"
+      },
+      {
+        "exported_function": "compare_tm",
+        "function_type": "regular function",
+        "function_body": "{\n    tm_list_new <- risk.assessr::generate_traceability_matrix(package_name, \n        version_new)\n    tm_list_old <- risk.assessr::generate_traceability_matrix(package_name, \n        version_old)\n    name_new <- paste0(package_name, \"_\", version_new)\n    name_old <- paste0(package_name, \"_\", version_old)\n    func_cmp <- purrr::map_dfr(fields, function(field) {\n        compare_column(tm_list_new$tm, tm_list_old$tm, key = \"exported_function\", \n            param_col = field, name1 = name_new, name2 = name_old, \n            only_diff = TRUE) %>% dplyr::transmute(exported_function, \n            field = field, `:=`(!!paste0(\"value_\", name_new), \n                .data[[paste0(field, \"_\", name_new)]]), `:=`(!!paste0(\"value_\", \n                name_old), .data[[paste0(field, \"_\", name_old)]]))\n    }) %>% dplyr::arrange(exported_function, field)\n    func_cmp\n}",
+        "where": "whatsnew",
+        "documentation": "man/compare_tm.Rd",
+        "code_script": "R/compare_tm.R",
+        "description": "\nThis function compares the traceability matrices (TMs) generated for two\nversions of an R package. It identifies differences in selected fields\n(such as function type, body, and description) across versions.\n"
+      },
+      {
+        "exported_function": "extract_versions",
+        "function_type": "regular function",
+        "function_body": "{\n    if (is.null(dep_string)) {\n        return(data.frame(pkg = character(), version = character(), \n            stringsAsFactors = FALSE))\n    }\n    dep_string <- gsub(\"\\\\\\\\n|\\\\\\\\r|[\\r\\n]\", \" \", dep_string)\n    dep_string <- gsub(\"\\\\s+\", \" \", dep_string)\n    parts <- unlist(strsplit(dep_string, \",\"))\n    parts <- trimws(parts)\n    result <- lapply(parts, function(entry) {\n        pkg <- trimws(gsub(\"\\\\s*\\\\(.*\\\\)\", \"\", entry))\n        m <- regmatches(entry, regexec(\"\\\\(([^\\\\)]+)\\\\)\", entry))[[1]]\n        version <- if (length(m) >= 2) \n            m[2]\n        else NA\n        c(pkg = pkg, version = version)\n    })\n    df <- do.call(rbind, result)\n    colnames(df) <- c(\"pkg\", \"version\")\n    rownames(df) <- df[, \"pkg\"]\n    as.data.frame(df, stringsAsFactors = FALSE)\n}",
+        "where": "whatsnew",
+        "documentation": "man/extract_versions.Rd",
+        "code_script": "R/extract_versions.R",
+        "description": "\nParses a string of dependencies (e.g. from 'Imports' or 'Depends') into a data frame with package names and versions.\n",
+        "coverage_percent": 100
+      },
+      {
+        "exported_function": "format_formals",
+        "function_type": "regular function",
+        "function_body": "{\n    unname(sapply(names(formals), function(arg) {\n        default <- formals[[arg]]\n        if (is.null(default)) {\n            paste0(arg)\n        }\n        else {\n            paste0(arg, \" = \", default)\n        }\n    }))\n}",
+        "where": "whatsnew",
+        "documentation": "man/format_formals.Rd",
+        "code_script": "R/format_formals.R",
+        "description": "\nHelper that formats a list of function arguments and their default values.\n"
+      },
+      {
+        "exported_function": "function_tree",
+        "function_type": "S7 constructor",
+        "function_body": "{\n    direction <- match.arg(direction)\n    mode <- if (direction == \"downstream\") \n        \"out\"\n    else \"in\"\n    if (!is.null(pkg_version)) {\n        if (!requireNamespace(pkg_name, quietly = TRUE)) {\n            stop(sprintf(\"Package '%s' is not installed on current .libPaths().\", \n                pkg_name), call. = FALSE)\n        }\n        found <- as.character(utils::packageVersion(pkg_name))\n        want <- as.character(package_version(pkg_version))\n        if (!identical(found, want)) {\n            stop(sprintf(\"Found %s %s, but you requested %s. Adjust lib_paths or install that version.\", \n                pkg_name, found, want), call. = FALSE)\n        }\n    }\n    fr <- pkgnet::FunctionReporter$new()\n    suppressWarnings(suppressMessages(fr$set_package(pkg_name = pkg_name)))\n    g <- fr$pkg_graph$igraph\n    strip_ns <- function(x) sub(\"^[^:]+::+\", \"\", x)\n    key_name <- function(x) strip_ns(x)\n    prune_set <- NULL\n    if (!is.null(prune)) {\n        if (is.character(prune)) {\n            prune_set <- unique(strip_ns(prune))\n        }\n        else if (is.data.frame(prune) && \"exported_function\" %in% \n            names(prune)) {\n            prune_set <- unique(strip_ns(as.character(prune$exported_function)))\n        }\n        else {\n            stop(\"`prune` must be NULL, a character vector, or a data.frame with column 'exported_function'.\", \n                call. = FALSE)\n        }\n    }\n    vn <- igraph::V(g)$name\n    vn_stripped <- strip_ns(vn)\n    pick_vertex_name <- function(fun) {\n        exact <- vn[vn %in% c(fun, paste0(pkg_name, \"::\", fun))]\n        if (length(exact)) {\n            return(exact[1])\n        }\n        idx <- which(vn_stripped == strip_ns(fun))\n        if (!length(idx)) {\n            return(NA_character_)\n        }\n        in_pkg <- startsWith(vn[idx], paste0(pkg_name, \"::\"))\n        if (any(in_pkg)) \n            vn[idx[which(in_pkg)][1]]\n        else vn[idx[1]]\n    }\n    max_depth <- if (is.infinite(depth)) \n        igraph::vcount(g)\n    else as.integer(depth)\n    build_node <- function(node_name, depth_left, seen) {\n        node_key <- key_name(node_name)\n        if (is.na(node_name) || !nzchar(node_name) || !(node_name %in% \n            vn)) {\n            return(NULL)\n        }\n        if (node_name %in% seen) {\n            return(list(`__cycle_to` = node_key))\n        }\n        if (depth_left <= 0) {\n            return(NULL)\n        }\n        vsel <- which(vn == node_name)\n        if (!length(vsel)) {\n            return(NULL)\n        }\n        nbrs <- igraph::neighbors(g, v = igraph::V(g)[vsel], \n            mode = mode)\n        if (length(nbrs) == 0) {\n            return(NULL)\n        }\n        child_names <- sort(igraph::V(g)[nbrs]$name)\n        out <- vector(\"list\", length(child_names))\n        names(out) <- vapply(child_names, key_name, character(1))\n        for (i in seq_along(child_names)) {\n            child_val <- build_node(child_names[i], depth_left - \n                1, c(seen, node_name))\n            if (is.null(child_val)) \n                out[i] <- list(NULL)\n            else out[[i]] <- child_val\n        }\n        out\n    }\n    first_level_vertex_names <- character()\n    if (!is.null(prune_set)) {\n        if (!is.null(root)) {\n            if (strip_ns(root) %in% prune_set) {\n                picked <- pick_vertex_name(root)\n                if (!length(picked)) {\n                  stop(\"Specified `root` not found in the package call graph.\")\n                }\n                first_level_vertex_names <- picked\n            }\n            else {\n                stop(\"`root` is not in the supplied exported function set (`prune`).\", \n                  call. = FALSE)\n            }\n        }\n        else {\n            mapped <- vapply(prune_set, pick_vertex_name, character(1))\n            first_level_vertex_names <- unname(mapped[!is.na(mapped) & \n                nzchar(mapped)])\n            if (!length(first_level_vertex_names)) {\n                unknown <- setdiff(prune_set, vn_stripped)\n                stop(sprintf(\"None of the exported functions in `prune` were found in the package call graph. Missing: %s\", \n                  paste(unknown, collapse = \", \")), call. = FALSE)\n            }\n        }\n    }\n    else {\n        if (!is.null(root)) {\n            picked <- pick_vertex_name(root)\n            if (is.na(picked) || !nzchar(picked)) {\n                stop(sprintf(\"Root function '%s' not found in the package call graph for '%s'.\", \n                  root, pkg_name), call. = FALSE)\n            }\n            first_level_vertex_names <- picked\n        }\n        else {\n            if (direction == \"downstream\") {\n                indeg <- igraph::degree(g, mode = \"in\")\n                roots <- names(indeg[indeg == 0])\n                if (!length(roots)) \n                  roots <- igraph::V(g)$name\n            }\n            else {\n                outdeg <- igraph::degree(g, mode = \"out\")\n                roots <- names(outdeg[outdeg == 0])\n                if (!length(roots)) \n                  roots <- igraph::V(g)$name\n            }\n            first_level_vertex_names <- sort(roots)\n        }\n    }\n    res <- list()\n    res[[pkg_name]] <- list()\n    res[[pkg_name]]$version <- as.character(utils::packageVersion(pkg_name))\n    for (v in first_level_vertex_names) {\n        r_key <- key_name(v)\n        res[[pkg_name]][r_key] <- list(build_node(v, max_depth, \n            seen = character()))\n    }\n    return(res)\n}",
+        "where": "whatsnew",
+        "documentation": "man/function_tree.Rd",
+        "code_script": "R/function_tree.R",
+        "description": "\nBuilds a nested list representation of a package’s **function call tree** using\n[pkgnet::FunctionReporter]. This is usually consumed by\n[print_function_tree()] for pretty-printing, but you can also\nwork with the nested list directly.\n",
+        "coverage_percent": 71.73
+      },
+      {
+        "exported_function": "get_info",
+        "function_type": "regular function",
+        "function_body": "{\n    if (use_isolated_lib) {\n        message(paste0(\"Creating isolated library path for \", \n            package_name, \" \", version))\n        lib_path <- file.path(tempdir(), paste0(package_name, \n            \"_\", version))\n        dir.create(lib_path, showWarnings = FALSE)\n        old_lib <- .libPaths()\n        on.exit(.libPaths(old_lib))\n        .libPaths(c(lib_path, old_lib))\n        old_options <- options()\n        on.exit(options(old_options), add = TRUE)\n        all_old_env <- Sys.getenv()\n        on.exit({\n            current_env <- Sys.getenv()\n            added_vars <- setdiff(names(current_env), names(all_old_env))\n            if (length(added_vars) > 0) {\n                try(Sys.unsetenv(added_vars), silent = TRUE)\n            }\n            do.call(Sys.setenv, as.list(all_old_env))\n        }, add = TRUE)\n        if (package_name %in% loadedNamespaces()) {\n            message(paste0(\"Unloading cached \", package_name, \n                \" from namespace\"))\n            try(unloadNamespace(package_name), silent = TRUE)\n        }\n    }\n    temp_file <- tryCatch({\n        remotes::download_version(package = package_name, version = version)\n    }, error = function(e) {\n        message(paste(\"Failed to download version\", version, \n            \":\", e$message))\n        return(NULL)\n    })\n    if (is.null(temp_file)) {\n        return(NULL)\n    }\n    temp_dir <- tempfile()\n    dir.create(temp_dir)\n    untar(temp_file, exdir = temp_dir)\n    pkg_source_path <- list.dirs(temp_dir, full.names = TRUE, \n        recursive = FALSE)[1]\n    pkg_desc <- get_pkg_desc(pkg_source_path)\n    func_names <- tryCatch({\n        get_package_functions(pkg_source_path)\n    }, error = function(e) {\n        message(paste(\"Failed to parse functions:\", e$message))\n        return(NULL)\n    })\n    list(desc = pkg_desc, functions = func_names)\n}",
+        "where": "whatsnew",
+        "documentation": "man/get_info.Rd",
+        "code_script": "R/get_info.R",
+        "description": "\nDownloads a specified version of a CRAN package and extracts DESCRIPTION info and function names.\n",
+        "coverage_percent": 98.25
+      },
+      {
+        "exported_function": "print_func_diff",
+        "function_type": "regular function",
+        "function_body": "{\n    cat(\"\\n-- Functions --\\n\")\n    if (length(func_cmp$added)) {\n        cat(\"  Added:\\n\")\n        for (fn in names(func_cmp$added)) {\n            args <- format_formals(func_cmp$added[[fn]])\n            cat(sprintf(\"    + %s(%s)\\n\", fn, paste(args, collapse = \", \")))\n        }\n    }\n    if (length(func_cmp$removed)) {\n        cat(\"  Removed:\\n\")\n        for (fn in names(func_cmp$removed)) {\n            args <- format_formals(func_cmp$removed[[fn]])\n            cat(sprintf(\"    - %s(%s)\\n\", fn, paste(args, collapse = \", \")))\n        }\n    }\n    if (length(func_cmp$modified)) {\n        cat(\"  Modified:\\n\")\n        for (fn in names(func_cmp$modified)) {\n            old_args <- format_formals(func_cmp$modified[[fn]]$old)\n            new_args <- format_formals(func_cmp$modified[[fn]]$new)\n            cat(sprintf(\"    * %s\\n\", fn))\n            cat(sprintf(\"      - %s: (%s)\\n\", old_version, paste(old_args, \n                collapse = \", \")))\n            cat(sprintf(\"      + %s: (%s)\\n\", new_version, paste(new_args, \n                collapse = \", \")))\n        }\n    }\n    invisible(NULL)\n}",
+        "where": "whatsnew",
+        "documentation": "man/print_func_diff.Rd",
+        "code_script": "R/print_func_diff.R",
+        "description": "\nThis helper function prints the differences between functions in two versions\nof a package. It shows which functions were added, removed, or modified,\nincluding their arguments.\n",
+        "coverage_percent": 100
+      },
+      {
+        "exported_function": "print_function_tree",
+        "function_type": "regular function",
+        "function_body": "{\n    ch <- list(tee = \"|-- \", elbow = \"\\\\-- \", pipe = \"|   \", \n        blank = \"    \")\n    if (is.list(tree) && length(tree) == 1L && is.list(tree[[1]]) && \n        \"version\" %in% names(tree[[1]])) {\n        pkg_name <- names(tree)[1]\n        inner <- tree[[1]]\n    }\n    else if (is.list(tree) && \"version\" %in% names(tree)) {\n        pkg_name <- \"package\"\n        inner <- tree\n    }\n    else {\n        stop(\"`tree` must be the object returned by function_tree_nested(), or its inner package list.\")\n    }\n    ver <- tryCatch(as.character(inner$version), error = function(e) {\n        NA_character_\n    })\n    header <- if (show_version && !is.na(ver) && nzchar(ver)) {\n        paste0(pkg_name, \" (v\", ver, \")\")\n    }\n    else {\n        pkg_name\n    }\n    cat(ch$elbow, header, \"\\n\", sep = \"\")\n    roots <- inner[setdiff(names(inner), \"version\")]\n    print_children <- function(nodes, pref) {\n        if (length(nodes) == 0) {\n            return(invisible())\n        }\n        nms <- names(nodes)\n        for (i in seq_along(nms)) {\n            nm <- nms[i]\n            val <- nodes[[nm]]\n            last <- (i == length(nms))\n            cat(pref, if (last) \n                ch$elbow\n            else ch$tee, nm, sep = \"\")\n            is_cycle <- is.list(val) && !is.null(names(val)) && \n                \"__cycle_to\" %in% names(val)\n            if (is_cycle) {\n                cat(\" (cycle to \", val$`__cycle_to`, \")\", sep = \"\")\n            }\n            cat(\"\\n\")\n            if (!is.null(val) && !is_cycle && is.list(val)) {\n                next_pref <- paste0(pref, if (last) \n                  ch$blank\n                else ch$pipe)\n                print_children(val, next_pref)\n            }\n        }\n        invisible()\n    }\n    print_children(roots, pref = ch$blank)\n    invisible(tree)\n}",
+        "where": "whatsnew",
+        "documentation": "man/print_function_tree.Rd",
+        "code_script": "R/print_function_tree.R",
+        "description": "\nPretty-prints a hierarchical representation of a package's **function call tree**\nas produced by `function_tree_nested()`. Leaves (no further calls) are shown\nas plain names (their values are `NULL`). Cycles are annotated.\n"
+      }
+    ],
+    "coverage": {
+      "high_risk": [
+        {
+          "exported_function": "compare",
+          "function_type": "regular function",
+          "function_body": "{\n    info_new <- get_info(package_name, package_version_new)\n    info_old <- get_info(package_name, package_version_old)\n    dep <- compare_dependencies(info_new, info_old)\n    funct <- compare_funcs(info_new, info_old)\n    diff_tm <- compare_tm(package_name, package_version_new, \n        package_version_old)\n    pkg_diff <- list(package = package_name, version_new = package_version_new, \n        version_old = package_version_old, dependencies_diff = dep, \n        functions_diff = funct, test_m = diff_tm)\n    return(pkg_diff)\n}",
+          "where": "whatsnew",
+          "documentation": "man/compare.Rd",
+          "code_script": "R/compare.R",
+          "description": "\nThis function retrieves information for two versions of an R package,\ncompares their dependencies, exported functions, and test metrics,\nand returns the differences as a structured R list.\n"
+        },
+        {
+          "exported_function": "compare_column",
+          "function_type": "regular function",
+          "function_body": "{\n    aggregate_values <- function(df, key_col, val_col) {\n        df %>% dplyr::distinct(dplyr::across(dplyr::all_of(c(key_col, \n            val_col)))) %>% dplyr::group_by(dplyr::across(dplyr::all_of(key_col))) %>% \n            dplyr::summarise(`:=`(!!val_col, {\n                vals <- unique(.data[[val_col]])\n                non_na <- sort(vals[!is.na(vals)])\n                if (length(non_na) == 0) {\n                  NA_character_\n                }\n                else if (length(non_na) == 1) {\n                  non_na\n                }\n                else {\n                  paste(non_na, collapse = \"; \")\n                }\n            }), .groups = \"drop\")\n    }\n    df1 <- aggregate_values(df1, key, param_col)\n    df2 <- aggregate_values(df2, key, param_col)\n    col1 <- paste0(param_col, \"_\", name1)\n    col2 <- paste0(param_col, \"_\", name2)\n    if (nrow(df1) == 0 || nrow(df2) == 0) {\n        empty_keys <- if (nrow(df1) > 0) {\n            df1[0, key, drop = FALSE]\n        }\n        else {\n            df2[0, key, drop = FALSE]\n        }\n        return(dplyr::bind_cols(empty_keys, dplyr::tibble(`:=`(!!col1, \n            character()), `:=`(!!col2, character()), different = logical())))\n    }\n    result <- df1 %>% dplyr::inner_join(df2, by = key, suffix = c(paste0(\"_\", \n        name1), paste0(\"_\", name2))) %>% dplyr::select(dplyr::all_of(c(key, \n        col1, col2))) %>% dplyr::mutate(different = dplyr::case_when(is.na(.data[[col1]]) & \n        is.na(.data[[col2]]) ~ FALSE, xor(is.na(.data[[col1]]), \n        is.na(.data[[col2]])) ~ TRUE, TRUE ~ .data[[col1]] != \n        .data[[col2]]))\n    if (only_diff) {\n        result <- dplyr::filter(result, .data$different)\n    }\n    result\n}",
+          "where": "whatsnew",
+          "documentation": "man/compare_column.Rd",
+          "code_script": "R/compare_column.R",
+          "description": "\nInner-joins two data frames on key column(s) and compares a single column\nbetween them. Returns the keys, the two suffixed columns, and a logical\n`different` flag with NA-aware rules.\n"
+        },
+        {
+          "exported_function": "compare_funcs",
+          "function_type": "regular function",
+          "function_body": "{\n    new_funcs <- new_funcs$functions\n    old_funcs <- old_funcs$functions\n    new_names <- names(new_funcs)\n    old_names <- names(old_funcs)\n    new_names <- new_names[!is.na(new_names) & nzchar(new_names)]\n    old_names <- old_names[!is.na(old_names) & nzchar(old_names)]\n    added_names <- setdiff(new_names, old_names)\n    removed_names <- setdiff(old_names, new_names)\n    common_names <- intersect(new_names, old_names)\n    modified <- list()\n    for (fn in common_names) {\n        old_formals <- old_funcs[[fn]]\n        new_formals <- new_funcs[[fn]]\n        if (!identical(old_formals, new_formals)) {\n            modified[[fn]] <- list(old = old_formals, new = new_formals)\n        }\n    }\n    list(added = new_funcs[added_names], removed = old_funcs[removed_names], \n        modified = modified)\n}",
+          "where": "whatsnew",
+          "documentation": "man/compare_funcs.Rd",
+          "code_script": "R/compare_funcs.R",
+          "description": "\nCompare Exported Functions Between Two Versions\n"
+        },
+        {
+          "exported_function": "compare_tm",
+          "function_type": "regular function",
+          "function_body": "{\n    tm_list_new <- risk.assessr::generate_traceability_matrix(package_name, \n        version_new)\n    tm_list_old <- risk.assessr::generate_traceability_matrix(package_name, \n        version_old)\n    name_new <- paste0(package_name, \"_\", version_new)\n    name_old <- paste0(package_name, \"_\", version_old)\n    func_cmp <- purrr::map_dfr(fields, function(field) {\n        compare_column(tm_list_new$tm, tm_list_old$tm, key = \"exported_function\", \n            param_col = field, name1 = name_new, name2 = name_old, \n            only_diff = TRUE) %>% dplyr::transmute(exported_function, \n            field = field, `:=`(!!paste0(\"value_\", name_new), \n                .data[[paste0(field, \"_\", name_new)]]), `:=`(!!paste0(\"value_\", \n                name_old), .data[[paste0(field, \"_\", name_old)]]))\n    }) %>% dplyr::arrange(exported_function, field)\n    func_cmp\n}",
+          "where": "whatsnew",
+          "documentation": "man/compare_tm.Rd",
+          "code_script": "R/compare_tm.R",
+          "description": "\nThis function compares the traceability matrices (TMs) generated for two\nversions of an R package. It identifies differences in selected fields\n(such as function type, body, and description) across versions.\n"
+        },
+        {
+          "exported_function": "format_formals",
+          "function_type": "regular function",
+          "function_body": "{\n    unname(sapply(names(formals), function(arg) {\n        default <- formals[[arg]]\n        if (is.null(default)) {\n            paste0(arg)\n        }\n        else {\n            paste0(arg, \" = \", default)\n        }\n    }))\n}",
+          "where": "whatsnew",
+          "documentation": "man/format_formals.Rd",
+          "code_script": "R/format_formals.R",
+          "description": "\nHelper that formats a list of function arguments and their default values.\n"
+        },
+        {
+          "exported_function": "print_function_tree",
+          "function_type": "regular function",
+          "function_body": "{\n    ch <- list(tee = \"|-- \", elbow = \"\\\\-- \", pipe = \"|   \", \n        blank = \"    \")\n    if (is.list(tree) && length(tree) == 1L && is.list(tree[[1]]) && \n        \"version\" %in% names(tree[[1]])) {\n        pkg_name <- names(tree)[1]\n        inner <- tree[[1]]\n    }\n    else if (is.list(tree) && \"version\" %in% names(tree)) {\n        pkg_name <- \"package\"\n        inner <- tree\n    }\n    else {\n        stop(\"`tree` must be the object returned by function_tree_nested(), or its inner package list.\")\n    }\n    ver <- tryCatch(as.character(inner$version), error = function(e) {\n        NA_character_\n    })\n    header <- if (show_version && !is.na(ver) && nzchar(ver)) {\n        paste0(pkg_name, \" (v\", ver, \")\")\n    }\n    else {\n        pkg_name\n    }\n    cat(ch$elbow, header, \"\\n\", sep = \"\")\n    roots <- inner[setdiff(names(inner), \"version\")]\n    print_children <- function(nodes, pref) {\n        if (length(nodes) == 0) {\n            return(invisible())\n        }\n        nms <- names(nodes)\n        for (i in seq_along(nms)) {\n            nm <- nms[i]\n            val <- nodes[[nm]]\n            last <- (i == length(nms))\n            cat(pref, if (last) \n                ch$elbow\n            else ch$tee, nm, sep = \"\")\n            is_cycle <- is.list(val) && !is.null(names(val)) && \n                \"__cycle_to\" %in% names(val)\n            if (is_cycle) {\n                cat(\" (cycle to \", val$`__cycle_to`, \")\", sep = \"\")\n            }\n            cat(\"\\n\")\n            if (!is.null(val) && !is_cycle && is.list(val)) {\n                next_pref <- paste0(pref, if (last) \n                  ch$blank\n                else ch$pipe)\n                print_children(val, next_pref)\n            }\n        }\n        invisible()\n    }\n    print_children(roots, pref = ch$blank)\n    invisible(tree)\n}",
+          "where": "whatsnew",
+          "documentation": "man/print_function_tree.Rd",
+          "code_script": "R/print_function_tree.R",
+          "description": "\nPretty-prints a hierarchical representation of a package's **function call tree**\nas produced by `function_tree_nested()`. Leaves (no further calls) are shown\nas plain names (their values are `NULL`). Cycles are annotated.\n"
+        }
+      ],
+      "medium_risk": [
+        {
+          "exported_function": "function_tree",
+          "function_type": "S7 constructor",
+          "function_body": "{\n    direction <- match.arg(direction)\n    mode <- if (direction == \"downstream\") \n        \"out\"\n    else \"in\"\n    if (!is.null(pkg_version)) {\n        if (!requireNamespace(pkg_name, quietly = TRUE)) {\n            stop(sprintf(\"Package '%s' is not installed on current .libPaths().\", \n                pkg_name), call. = FALSE)\n        }\n        found <- as.character(utils::packageVersion(pkg_name))\n        want <- as.character(package_version(pkg_version))\n        if (!identical(found, want)) {\n            stop(sprintf(\"Found %s %s, but you requested %s. Adjust lib_paths or install that version.\", \n                pkg_name, found, want), call. = FALSE)\n        }\n    }\n    fr <- pkgnet::FunctionReporter$new()\n    suppressWarnings(suppressMessages(fr$set_package(pkg_name = pkg_name)))\n    g <- fr$pkg_graph$igraph\n    strip_ns <- function(x) sub(\"^[^:]+::+\", \"\", x)\n    key_name <- function(x) strip_ns(x)\n    prune_set <- NULL\n    if (!is.null(prune)) {\n        if (is.character(prune)) {\n            prune_set <- unique(strip_ns(prune))\n        }\n        else if (is.data.frame(prune) && \"exported_function\" %in% \n            names(prune)) {\n            prune_set <- unique(strip_ns(as.character(prune$exported_function)))\n        }\n        else {\n            stop(\"`prune` must be NULL, a character vector, or a data.frame with column 'exported_function'.\", \n                call. = FALSE)\n        }\n    }\n    vn <- igraph::V(g)$name\n    vn_stripped <- strip_ns(vn)\n    pick_vertex_name <- function(fun) {\n        exact <- vn[vn %in% c(fun, paste0(pkg_name, \"::\", fun))]\n        if (length(exact)) {\n            return(exact[1])\n        }\n        idx <- which(vn_stripped == strip_ns(fun))\n        if (!length(idx)) {\n            return(NA_character_)\n        }\n        in_pkg <- startsWith(vn[idx], paste0(pkg_name, \"::\"))\n        if (any(in_pkg)) \n            vn[idx[which(in_pkg)][1]]\n        else vn[idx[1]]\n    }\n    max_depth <- if (is.infinite(depth)) \n        igraph::vcount(g)\n    else as.integer(depth)\n    build_node <- function(node_name, depth_left, seen) {\n        node_key <- key_name(node_name)\n        if (is.na(node_name) || !nzchar(node_name) || !(node_name %in% \n            vn)) {\n            return(NULL)\n        }\n        if (node_name %in% seen) {\n            return(list(`__cycle_to` = node_key))\n        }\n        if (depth_left <= 0) {\n            return(NULL)\n        }\n        vsel <- which(vn == node_name)\n        if (!length(vsel)) {\n            return(NULL)\n        }\n        nbrs <- igraph::neighbors(g, v = igraph::V(g)[vsel], \n            mode = mode)\n        if (length(nbrs) == 0) {\n            return(NULL)\n        }\n        child_names <- sort(igraph::V(g)[nbrs]$name)\n        out <- vector(\"list\", length(child_names))\n        names(out) <- vapply(child_names, key_name, character(1))\n        for (i in seq_along(child_names)) {\n            child_val <- build_node(child_names[i], depth_left - \n                1, c(seen, node_name))\n            if (is.null(child_val)) \n                out[i] <- list(NULL)\n            else out[[i]] <- child_val\n        }\n        out\n    }\n    first_level_vertex_names <- character()\n    if (!is.null(prune_set)) {\n        if (!is.null(root)) {\n            if (strip_ns(root) %in% prune_set) {\n                picked <- pick_vertex_name(root)\n                if (!length(picked)) {\n                  stop(\"Specified `root` not found in the package call graph.\")\n                }\n                first_level_vertex_names <- picked\n            }\n            else {\n                stop(\"`root` is not in the supplied exported function set (`prune`).\", \n                  call. = FALSE)\n            }\n        }\n        else {\n            mapped <- vapply(prune_set, pick_vertex_name, character(1))\n            first_level_vertex_names <- unname(mapped[!is.na(mapped) & \n                nzchar(mapped)])\n            if (!length(first_level_vertex_names)) {\n                unknown <- setdiff(prune_set, vn_stripped)\n                stop(sprintf(\"None of the exported functions in `prune` were found in the package call graph. Missing: %s\", \n                  paste(unknown, collapse = \", \")), call. = FALSE)\n            }\n        }\n    }\n    else {\n        if (!is.null(root)) {\n            picked <- pick_vertex_name(root)\n            if (is.na(picked) || !nzchar(picked)) {\n                stop(sprintf(\"Root function '%s' not found in the package call graph for '%s'.\", \n                  root, pkg_name), call. = FALSE)\n            }\n            first_level_vertex_names <- picked\n        }\n        else {\n            if (direction == \"downstream\") {\n                indeg <- igraph::degree(g, mode = \"in\")\n                roots <- names(indeg[indeg == 0])\n                if (!length(roots)) \n                  roots <- igraph::V(g)$name\n            }\n            else {\n                outdeg <- igraph::degree(g, mode = \"out\")\n                roots <- names(outdeg[outdeg == 0])\n                if (!length(roots)) \n                  roots <- igraph::V(g)$name\n            }\n            first_level_vertex_names <- sort(roots)\n        }\n    }\n    res <- list()\n    res[[pkg_name]] <- list()\n    res[[pkg_name]]$version <- as.character(utils::packageVersion(pkg_name))\n    for (v in first_level_vertex_names) {\n        r_key <- key_name(v)\n        res[[pkg_name]][r_key] <- list(build_node(v, max_depth, \n            seen = character()))\n    }\n    return(res)\n}",
+          "where": "whatsnew",
+          "documentation": "man/function_tree.Rd",
+          "code_script": "R/function_tree.R",
+          "description": "\nBuilds a nested list representation of a package’s **function call tree** using\n[pkgnet::FunctionReporter]. This is usually consumed by\n[print_function_tree()] for pretty-printing, but you can also\nwork with the nested list directly.\n",
+          "coverage_percent": 71.73
+        }
+      ],
+      "low_risk": [
+        {
+          "exported_function": "extract_versions",
+          "function_type": "regular function",
+          "function_body": "{\n    if (is.null(dep_string)) {\n        return(data.frame(pkg = character(), version = character(), \n            stringsAsFactors = FALSE))\n    }\n    dep_string <- gsub(\"\\\\\\\\n|\\\\\\\\r|[\\r\\n]\", \" \", dep_string)\n    dep_string <- gsub(\"\\\\s+\", \" \", dep_string)\n    parts <- unlist(strsplit(dep_string, \",\"))\n    parts <- trimws(parts)\n    result <- lapply(parts, function(entry) {\n        pkg <- trimws(gsub(\"\\\\s*\\\\(.*\\\\)\", \"\", entry))\n        m <- regmatches(entry, regexec(\"\\\\(([^\\\\)]+)\\\\)\", entry))[[1]]\n        version <- if (length(m) >= 2) \n            m[2]\n        else NA\n        c(pkg = pkg, version = version)\n    })\n    df <- do.call(rbind, result)\n    colnames(df) <- c(\"pkg\", \"version\")\n    rownames(df) <- df[, \"pkg\"]\n    as.data.frame(df, stringsAsFactors = FALSE)\n}",
+          "where": "whatsnew",
+          "documentation": "man/extract_versions.Rd",
+          "code_script": "R/extract_versions.R",
+          "description": "\nParses a string of dependencies (e.g. from 'Imports' or 'Depends') into a data frame with package names and versions.\n",
+          "coverage_percent": 100
+        },
+        {
+          "exported_function": "get_info",
+          "function_type": "regular function",
+          "function_body": "{\n    if (use_isolated_lib) {\n        message(paste0(\"Creating isolated library path for \", \n            package_name, \" \", version))\n        lib_path <- file.path(tempdir(), paste0(package_name, \n            \"_\", version))\n        dir.create(lib_path, showWarnings = FALSE)\n        old_lib <- .libPaths()\n        on.exit(.libPaths(old_lib))\n        .libPaths(c(lib_path, old_lib))\n        old_options <- options()\n        on.exit(options(old_options), add = TRUE)\n        all_old_env <- Sys.getenv()\n        on.exit({\n            current_env <- Sys.getenv()\n            added_vars <- setdiff(names(current_env), names(all_old_env))\n            if (length(added_vars) > 0) {\n                try(Sys.unsetenv(added_vars), silent = TRUE)\n            }\n            do.call(Sys.setenv, as.list(all_old_env))\n        }, add = TRUE)\n        if (package_name %in% loadedNamespaces()) {\n            message(paste0(\"Unloading cached \", package_name, \n                \" from namespace\"))\n            try(unloadNamespace(package_name), silent = TRUE)\n        }\n    }\n    temp_file <- tryCatch({\n        remotes::download_version(package = package_name, version = version)\n    }, error = function(e) {\n        message(paste(\"Failed to download version\", version, \n            \":\", e$message))\n        return(NULL)\n    })\n    if (is.null(temp_file)) {\n        return(NULL)\n    }\n    temp_dir <- tempfile()\n    dir.create(temp_dir)\n    untar(temp_file, exdir = temp_dir)\n    pkg_source_path <- list.dirs(temp_dir, full.names = TRUE, \n        recursive = FALSE)[1]\n    pkg_desc <- get_pkg_desc(pkg_source_path)\n    func_names <- tryCatch({\n        get_package_functions(pkg_source_path)\n    }, error = function(e) {\n        message(paste(\"Failed to parse functions:\", e$message))\n        return(NULL)\n    })\n    list(desc = pkg_desc, functions = func_names)\n}",
+          "where": "whatsnew",
+          "documentation": "man/get_info.Rd",
+          "code_script": "R/get_info.R",
+          "description": "\nDownloads a specified version of a CRAN package and extracts DESCRIPTION info and function names.\n",
+          "coverage_percent": 98.25
+        },
+        {
+          "exported_function": "print_func_diff",
+          "function_type": "regular function",
+          "function_body": "{\n    cat(\"\\n-- Functions --\\n\")\n    if (length(func_cmp$added)) {\n        cat(\"  Added:\\n\")\n        for (fn in names(func_cmp$added)) {\n            args <- format_formals(func_cmp$added[[fn]])\n            cat(sprintf(\"    + %s(%s)\\n\", fn, paste(args, collapse = \", \")))\n        }\n    }\n    if (length(func_cmp$removed)) {\n        cat(\"  Removed:\\n\")\n        for (fn in names(func_cmp$removed)) {\n            args <- format_formals(func_cmp$removed[[fn]])\n            cat(sprintf(\"    - %s(%s)\\n\", fn, paste(args, collapse = \", \")))\n        }\n    }\n    if (length(func_cmp$modified)) {\n        cat(\"  Modified:\\n\")\n        for (fn in names(func_cmp$modified)) {\n            old_args <- format_formals(func_cmp$modified[[fn]]$old)\n            new_args <- format_formals(func_cmp$modified[[fn]]$new)\n            cat(sprintf(\"    * %s\\n\", fn))\n            cat(sprintf(\"      - %s: (%s)\\n\", old_version, paste(old_args, \n                collapse = \", \")))\n            cat(sprintf(\"      + %s: (%s)\\n\", new_version, paste(new_args, \n                collapse = \", \")))\n        }\n    }\n    invisible(NULL)\n}",
+          "where": "whatsnew",
+          "documentation": "man/print_func_diff.Rd",
+          "code_script": "R/print_func_diff.R",
+          "description": "\nThis helper function prints the differences between functions in two versions\nof a package. It shows which functions were added, removed, or modified,\nincluding their arguments.\n",
+          "coverage_percent": 100
+        }
+      ]
+    },
+    "function_type": {
+      "defunct": {
+        "pkg_name": "whatsnew",
+        "coverage": {
+          "filecoverage": 0,
+          "totalcoverage": 0
+        },
+        "errors": null,
+        "notes": null
+      },
+      "imported": {
+        "pkg_name": "whatsnew",
+        "coverage": {
+          "filecoverage": 0,
+          "totalcoverage": 0
+        },
+        "errors": null,
+        "notes": null
+      },
+      "rexported": {
+        "pkg_name": "whatsnew",
+        "coverage": {
+          "filecoverage": 0,
+          "totalcoverage": 0
+        },
+        "errors": null,
+        "notes": null
+      },
+      "experimental": {
+        "pkg_name": "whatsnew",
+        "coverage": {
+          "filecoverage": 0,
+          "totalcoverage": 0
+        },
+        "errors": null,
+        "notes": null
+      }
+    }
+  },
+  "check_list": {
+    "res_check": {
+      "stdout": "* using log directory ‘/tmp/RtmpecluCC/file1effbe37cf7/whatsnew.Rcheck’\n* using R version 4.3.3 (2024-02-29)\n* using platform: x86_64-pc-linux-gnu (64-bit)\n* R was compiled by\n    gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\n    GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\n* running under: Ubuntu 24.04.4 LTS\n* using session charset: UTF-8\n* using options ‘--no-examples --no-manual --ignore-vignettes’\n* checking for file ‘whatsnew/DESCRIPTION’ ... OK\n* checking extension type ... Package\n* this is package ‘whatsnew’ version ‘1.0.0’\n* package encoding: UTF-8\n* checking package namespace information ... OK\n* checking package dependencies ...Warning: unable to access index for repository https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/latest/src/contrib:\n  cannot open URL 'https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/prod-cran/latest/src/contrib/PACKAGES'\nWarning: unable to access index for repository https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/art-git/latest/src/contrib:\n  cannot open URL 'https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/art-git/latest/src/contrib/PACKAGES'\nWarning: unable to access index for repository https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/src/contrib:\n  cannot open URL 'https://rstudio-pm.prod.p488440267176.aws-emea.sanofi.com/src/contrib/PACKAGES'\nWarning: unable to access index for repository https://cran.us.r-project.org/src/contrib:\n  cannot open URL 'https://cran.us.r-project.org/src/contrib/PACKAGES'\n OK\n* checking if this is a source package ... OK\n* checking if there is a namespace ... OK\n* checking for executable files ... OK\n* checking for hidden files and directories ... OK\n* checking for portable file names ... OK\n* checking for sufficient/correct file permissions ... OK\n* checking whether package ‘whatsnew’ can be installed ... OK\n* checking installed package size ... OK\n* checking package directory ... OK\n* checking DESCRIPTION meta-information ... OK\n* checking top-level files ... OK\n* checking for left-over files ... OK\n* checking index information ... OK\n* checking package subdirectories ... OK\n* checking R files for non-ASCII characters ... OK\n* checking R files for syntax errors ... OK\n* checking whether the package can be loaded ... OK\n* checking whether the package can be loaded with stated dependencies ... OK\n* checking whether the package can be unloaded cleanly ... OK\n* checking whether the namespace can be loaded with stated dependencies ... OK\n* checking whether the namespace can be unloaded cleanly ... OK\n* checking loading without being on the library search path ... OK\n* checking dependencies in R code ... OK\n* checking S3 generic/method consistency ... OK\n* checking replacement functions ... OK\n* checking foreign function calls ... OK\n* checking R code for possible problems ... OK\n* checking Rd files ... OK\n* checking Rd metadata ... OK\n* checking Rd cross-references ... OK\n* checking for missing documentation entries ... OK\n* checking for code/documentation mismatches ... OK\n* checking Rd \\usage sections ... OK\n* checking Rd contents ... OK\n* checking for unstated dependencies in examples ... OK\n* checking line endings in Makefiles ... OK\n* checking for GNU extensions in Makefiles ... OK\n* checking include directives in Makefiles ... OK\n* checking installed files from ‘inst/doc’ ... OK\n* checking files in ‘vignettes’ ... SKIPPED\n* checking examples ... SKIPPED\n* checking for unstated dependencies in ‘tests’ ... OK\n* checking tests ...\n  Running ‘testthat.R’\n OK\n* DONE\n\nStatus: OK\n\n",
+      "stderr": [],
+      "status": 0,
+      "duration": 207.1296,
+      "timeout": false,
+      "rversion": "4.3.3",
+      "platform": "x86_64-pc-linux-gnu",
+      "errors": [],
+      "warnings": [],
+      "notes": [],
+      "description": "Package: whatsnew\nType: Package\nTitle: R package version Comparison\nVersion: 1.0.0\nAuthors@R: c(\n    person(\"Hugo\", \"Bottois\", , \"hugo.bottois@sanofi.com\", role = c(\"cre\", \"aut\"), comment = c(ORCID = \"0000-0003-4674-0875\")),\n    person(\"Edward\", \"Gillian\", , \"edward.gillian-ext@sanofi.com\", role = \"aut\", comment = c(ORCID = \"0000-0003-2732-5107\")),\n    person(\"Paulin\", \"Charliquart\", , \"paulin.charliquart@sanofi.com\", role = \"aut\"),\n    person(\"Andre\", \"Couturier\", , \"andre.couturier@sanofi.com\", role = \"aut\"),\n    person(\"Sanofi\", role = c(\"cph\", \"fnd\")))\nDescription: Comparison between different versions of R packages.\nLicense: GPL (>= 3)\nBugReports: https://github.com/Sanofi-GitHub/whatsnew/issues\nEncoding: UTF-8\nRoxygenNote: 7.3.3\nDepends: R (>= 4.1.0)\nImports: remotes, dplyr, purrr, magrittr, rlang, utils, risk.assessr\n        (>= 3.0.0), igraph, pkgnet\nSuggests: knitr, rmarkdown, mockery, withr, testthat (>= 3.0.0),\n        stringr, here, jsonlite\nVignetteBuilder: knitr\nConfig/testthat/edition: 3\nNeedsCompilation: no\nPackaged: 2026-07-21 12:59:51 UTC; runner\nAuthor: Hugo Bottois [cre, aut] (<https://orcid.org/0000-0003-4674-0875>),\n  Edward Gillian [aut] (<https://orcid.org/0000-0003-2732-5107>),\n  Paulin Charliquart [aut],\n  Andre Couturier [aut],\n  Sanofi [cph, fnd]\nMaintainer: Hugo Bottois <hugo.bottois@sanofi.com>\nConfig/build/clean-inst-doc: false",
+      "package": "whatsnew",
+      "version": "1.0.0",
+      "cran": false,
+      "bioc": false,
+      "checkdir": "/tmp/RtmpecluCC/file1effbe37cf7/whatsnew.Rcheck",
+      "test_fail": {},
+      "test_output": {
+        "testthat": "> # This file is part of the standard setup for testthat.\n> # It is recommended that you do not modify it.\n> #\n> # Where should you do additional test configuration?\n> # Learn more about the roles of various files in:\n> # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview\n> # * https://testthat.r-lib.org/articles/special-files.html\n> \n> library(testthat)\n> library(whatsnew)\n\nAttaching package: 'whatsnew'\n\nThe following object is masked from 'package:testthat':\n\n    compare\n\n> library(mockery)\n> \n> test_check(\"whatsnew\")\n\nAttaching package: 'dplyr'\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nComparison failed due to download or parsing issues.\nComparison failed due to download or parsing issues.\n\n-- Depends --\n  No changes.\n\n-- Imports --\n  Added:     tidyr \n  Removed:   tibble \n  Modified:\n     dplyr: >= 1.0.0 -> >= 1.1.0 \n\n-- Suggests --\n  Added:     covr \n\n-- Depends --\n  No changes.\n\n-- Imports --\n  No changes.\n\n-- Suggests --\n  No changes.\n\n-- Depends --\n  No changes.\n\n-- Imports --\n  Removed:   dplyr \n\n-- Suggests --\n  No changes.\n\n-- Depends --\n  Modified:\n     R: >= 3.6.0 -> >= 4.0.0 \n\n-- Imports --\n  No changes.\n\n-- Suggests --\n  Added:     covr \n\n-- Depends --\n  No changes.\n\n-- Imports --\n  Removed:   dplyr \n\n-- Suggests --\n  Added:     testthat \nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nCreating isolated library path for digest 0.0.0\nUnloading cached digest from namespace\nFailed to download version 0.0.0 : no such version\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nFailed to parse functions: parse error\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\nCreating isolated library path for digest 0.6.25\nUnloading cached digest from namespace\n[ FAIL 0 | WARN 0 | SKIP 0 | PASS 337 ]\n> \n> proc.time()\n   user  system elapsed \n  5.327   0.847   5.615 \n"
+      },
+      "install_out": "* installing *source* package ‘whatsnew’ ...\n** using staged installation\n** R\n** inst\n** byte-compile and prepare package for lazy loading\n** help\n*** installing help indices\n** building package indices\n** installing vignettes\n** testing if installed package can be loaded from temporary location\n** testing if installed package can be loaded from final location\n** testing if installed package keeps a record of temporary installation path\n* DONE (whatsnew)\n",
+      "session_info": {
+        "platform": {
+          "version": "R version 4.3.3 (2024-02-29)",
+          "os": "Ubuntu 24.04.4 LTS",
+          "system": "x86_64, linux-gnu",
+          "ui": "X11",
+          "language": "(EN)",
+          "collate": "C",
+          "ctype": "C.UTF-8",
+          "tz": "UTC",
+          "date": "2026-07-21",
+          "pandoc": "3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/pandoc",
+          "quarto": "1.9.38 @ /usr/local/bin/quarto"
+        },
+        "packages": [
+          {
+            "package": "askpass",
+            "ondiskversion": "1.2.1",
+            "path": "/home/runner/work/_temp/Library/askpass",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-10-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "askpass"
+          },
+          {
+            "package": "assertthat",
+            "ondiskversion": "0.2.1",
+            "path": "/home/runner/work/_temp/Library/assertthat",
+            "attached": false,
+            "is_base": false,
+            "date": "2019-03-21",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "assertthat"
+          },
+          {
+            "package": "backports",
+            "ondiskversion": "1.5.1",
+            "path": "/home/runner/work/_temp/Library/backports",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-03",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "backports"
+          },
+          {
+            "package": "base64enc",
+            "ondiskversion": "0.1-6",
+            "path": "/home/runner/work/_temp/Library/base64enc",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-02-02",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "base64enc"
+          },
+          {
+            "package": "BiocManager",
+            "ondiskversion": "1.30.27",
+            "path": "/home/runner/work/_temp/Library/BiocManager",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-11-14",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "BiocManager"
+          },
+          {
+            "package": "brio",
+            "ondiskversion": "1.1.5",
+            "path": "/home/runner/work/_temp/Library/brio",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-04-24",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "brio"
+          },
+          {
+            "package": "bslib",
+            "ondiskversion": "0.11.0",
+            "path": "/home/runner/work/_temp/Library/bslib",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-05-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "bslib"
+          },
+          {
+            "package": "cachem",
+            "ondiskversion": "1.1.0",
+            "path": "/home/runner/work/_temp/Library/cachem",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-05-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "cachem"
+          },
+          {
+            "package": "callr",
+            "ondiskversion": "3.8.0",
+            "path": "/home/runner/work/_temp/Library/callr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-05",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "callr"
+          },
+          {
+            "package": "checkmate",
+            "ondiskversion": "2.3.4",
+            "path": "/home/runner/work/_temp/Library/checkmate",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-02-03",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "checkmate"
+          },
+          {
+            "package": "cli",
+            "ondiskversion": "3.6.6",
+            "loadedversion": "3.6.6",
+            "path": "/home/runner/work/_temp/Library/cli",
+            "loadedpath": "/home/runner/work/_temp/Library/cli",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-09",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "cli"
+          },
+          {
+            "package": "covr",
+            "ondiskversion": "3.6.5",
+            "path": "/home/runner/work/_temp/Library/covr",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-11-09",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "covr"
+          },
+          {
+            "package": "cpp11",
+            "attached": false,
+            "is_base": false,
+            "_row": "cpp11"
+          },
+          {
+            "package": "crayon",
+            "ondiskversion": "1.5.3",
+            "path": "/home/runner/work/_temp/Library/crayon",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-06-20",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "crayon"
+          },
+          {
+            "package": "crosstalk",
+            "ondiskversion": "1.2.2",
+            "path": "/home/runner/work/_temp/Library/crosstalk",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-08-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "crosstalk"
+          },
+          {
+            "package": "curl",
+            "ondiskversion": "7.1.0",
+            "path": "/home/runner/work/_temp/Library/curl",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-22",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "curl"
+          },
+          {
+            "package": "data.table",
+            "ondiskversion": "1.18.4",
+            "path": "/home/runner/work/_temp/Library/data.table",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-05-06",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "data.table"
+          },
+          {
+            "package": "desc",
+            "ondiskversion": "1.4.3",
+            "path": "/home/runner/work/_temp/Library/desc",
+            "attached": false,
+            "is_base": false,
+            "date": "2023-12-10",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "desc"
+          },
+          {
+            "package": "diffobj",
+            "ondiskversion": "0.3.8",
+            "path": "/home/runner/work/_temp/Library/diffobj",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "diffobj"
+          },
+          {
+            "package": "digest",
+            "ondiskversion": "0.6.39",
+            "path": "/home/runner/work/_temp/Library/digest",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-11-19",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "digest"
+          },
+          {
+            "package": "dplyr",
+            "ondiskversion": "1.2.1",
+            "path": "/home/runner/work/_temp/Library/dplyr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-03",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "dplyr"
+          },
+          {
+            "package": "DT",
+            "ondiskversion": "0.34.0",
+            "path": "/home/runner/work/_temp/Library/DT",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-09-02",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "DT"
+          },
+          {
+            "package": "evaluate",
+            "ondiskversion": "1.0.5",
+            "loadedversion": "1.0.5",
+            "path": "/home/runner/work/_temp/Library/evaluate",
+            "loadedpath": "/home/runner/work/_temp/Library/evaluate",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-08-27",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "evaluate"
+          },
+          {
+            "package": "fastmap",
+            "ondiskversion": "1.2.0",
+            "path": "/home/runner/work/_temp/Library/fastmap",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-05-15",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "fastmap"
+          },
+          {
+            "package": "fontawesome",
+            "ondiskversion": "0.5.3",
+            "path": "/home/runner/work/_temp/Library/fontawesome",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-11-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "fontawesome"
+          },
+          {
+            "package": "fs",
+            "ondiskversion": "2.1.0",
+            "path": "/home/runner/work/_temp/Library/fs",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-18",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "fs"
+          },
+          {
+            "package": "generics",
+            "ondiskversion": "0.1.4",
+            "path": "/home/runner/work/_temp/Library/generics",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-05-09",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "generics"
+          },
+          {
+            "package": "glue",
+            "ondiskversion": "1.8.1",
+            "path": "/home/runner/work/_temp/Library/glue",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "glue"
+          },
+          {
+            "package": "highr",
+            "ondiskversion": "0.12",
+            "path": "/home/runner/work/_temp/Library/highr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-03-06",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "highr"
+          },
+          {
+            "package": "htmltools",
+            "ondiskversion": "0.5.9",
+            "path": "/home/runner/work/_temp/Library/htmltools",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-12-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "htmltools"
+          },
+          {
+            "package": "htmlwidgets",
+            "ondiskversion": "1.6.4",
+            "path": "/home/runner/work/_temp/Library/htmlwidgets",
+            "attached": false,
+            "is_base": false,
+            "date": "2023-12-06",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "htmlwidgets"
+          },
+          {
+            "package": "httr",
+            "ondiskversion": "1.4.8",
+            "path": "/home/runner/work/_temp/Library/httr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-02-13",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "httr"
+          },
+          {
+            "package": "igraph",
+            "ondiskversion": "2.3.3",
+            "path": "/home/runner/work/_temp/Library/igraph",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "igraph"
+          },
+          {
+            "package": "jquerylib",
+            "ondiskversion": "0.1.4",
+            "path": "/home/runner/work/_temp/Library/jquerylib",
+            "attached": false,
+            "is_base": false,
+            "date": "2021-04-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "jquerylib"
+          },
+          {
+            "package": "jsonlite",
+            "ondiskversion": "2.0.0",
+            "path": "/home/runner/work/_temp/Library/jsonlite",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-03-27",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "jsonlite"
+          },
+          {
+            "package": "knitr",
+            "ondiskversion": "1.51",
+            "loadedversion": "1.51",
+            "path": "/home/runner/work/_temp/Library/knitr",
+            "loadedpath": "/home/runner/work/_temp/Library/knitr",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-12-20",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "knitr"
+          },
+          {
+            "package": "later",
+            "ondiskversion": "1.4.8",
+            "path": "/home/runner/work/_temp/Library/later",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-03-05",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "later"
+          },
+          {
+            "package": "lattice",
+            "ondiskversion": "0.22-5",
+            "path": "/opt/R/4.3.3/lib/R/library/lattice",
+            "attached": false,
+            "is_base": false,
+            "date": "2023-10-24",
+            "source": "CRAN (R 4.3.3)",
+            "library": "/opt/R/4.3.3/lib/R/library",
+            "_row": "lattice"
+          },
+          {
+            "package": "lazyeval",
+            "ondiskversion": "0.2.3",
+            "path": "/home/runner/work/_temp/Library/lazyeval",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "lazyeval"
+          },
+          {
+            "package": "lifecycle",
+            "ondiskversion": "1.0.5",
+            "path": "/home/runner/work/_temp/Library/lifecycle",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-01-08",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "lifecycle"
+          },
+          {
+            "package": "magrittr",
+            "ondiskversion": "2.0.5",
+            "path": "/home/runner/work/_temp/Library/magrittr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "magrittr"
+          },
+          {
+            "package": "Matrix",
+            "ondiskversion": "1.6-5",
+            "path": "/opt/R/4.3.3/lib/R/library/Matrix",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-01-11",
+            "source": "CRAN (R 4.3.3)",
+            "library": "/opt/R/4.3.3/lib/R/library",
+            "_row": "Matrix"
+          },
+          {
+            "package": "memoise",
+            "ondiskversion": "2.0.1",
+            "path": "/home/runner/work/_temp/Library/memoise",
+            "attached": false,
+            "is_base": false,
+            "date": "2021-11-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "memoise"
+          },
+          {
+            "package": "mime",
+            "ondiskversion": "0.13",
+            "path": "/home/runner/work/_temp/Library/mime",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-03-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "mime"
+          },
+          {
+            "package": "openssl",
+            "ondiskversion": "2.4.2",
+            "path": "/home/runner/work/_temp/Library/openssl",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-09",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "openssl"
+          },
+          {
+            "package": "otel",
+            "ondiskversion": "0.2.0",
+            "loadedversion": "0.2.0",
+            "path": "/home/runner/work/_temp/Library/otel",
+            "loadedpath": "/home/runner/work/_temp/Library/otel",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-08-29",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "otel"
+          },
+          {
+            "package": "pillar",
+            "ondiskversion": "1.11.1",
+            "path": "/home/runner/work/_temp/Library/pillar",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-09-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "pillar"
+          },
+          {
+            "package": "pkgbuild",
+            "ondiskversion": "1.4.8",
+            "path": "/home/runner/work/_temp/Library/pkgbuild",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-05-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "pkgbuild"
+          },
+          {
+            "package": "pkgconfig",
+            "ondiskversion": "2.0.3",
+            "path": "/home/runner/work/_temp/Library/pkgconfig",
+            "attached": false,
+            "is_base": false,
+            "date": "2019-09-22",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "pkgconfig"
+          },
+          {
+            "package": "pkgload",
+            "ondiskversion": "1.5.3",
+            "path": "/home/runner/work/_temp/Library/pkgload",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-15",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "pkgload"
+          },
+          {
+            "package": "pkgnet",
+            "ondiskversion": "0.6.0",
+            "path": "/home/runner/work/_temp/Library/pkgnet",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-01-27",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "pkgnet"
+          },
+          {
+            "package": "praise",
+            "ondiskversion": "1.0.0",
+            "path": "/home/runner/work/_temp/Library/praise",
+            "attached": false,
+            "is_base": false,
+            "date": "2015-08-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "praise"
+          },
+          {
+            "package": "prettyunits",
+            "ondiskversion": "1.2.0",
+            "path": "/home/runner/work/_temp/Library/prettyunits",
+            "attached": false,
+            "is_base": false,
+            "date": "2023-09-24",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "prettyunits"
+          },
+          {
+            "package": "processx",
+            "ondiskversion": "3.9.0",
+            "path": "/home/runner/work/_temp/Library/processx",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-22",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "processx"
+          },
+          {
+            "package": "promises",
+            "ondiskversion": "1.5.0",
+            "path": "/home/runner/work/_temp/Library/promises",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-11-01",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "promises"
+          },
+          {
+            "package": "ps",
+            "ondiskversion": "1.9.3",
+            "path": "/home/runner/work/_temp/Library/ps",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-20",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "ps"
+          },
+          {
+            "package": "purrr",
+            "ondiskversion": "1.2.2",
+            "path": "/home/runner/work/_temp/Library/purrr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-10",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "purrr"
+          },
+          {
+            "package": "R6",
+            "ondiskversion": "2.6.1",
+            "path": "/home/runner/work/_temp/Library/R6",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-02-15",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "R6"
+          },
+          {
+            "package": "rappdirs",
+            "ondiskversion": "0.3.4",
+            "path": "/home/runner/work/_temp/Library/rappdirs",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-01-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rappdirs"
+          },
+          {
+            "package": "rcmdcheck",
+            "ondiskversion": "1.4.0",
+            "path": "/home/runner/work/_temp/Library/rcmdcheck",
+            "attached": false,
+            "is_base": false,
+            "date": "2021-09-27",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rcmdcheck"
+          },
+          {
+            "package": "Rcpp",
+            "ondiskversion": "1.1.2",
+            "path": "/home/runner/work/_temp/Library/Rcpp",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-05",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "Rcpp"
+          },
+          {
+            "package": "remotes",
+            "ondiskversion": "2.5.0",
+            "path": "/home/runner/work/_temp/Library/remotes",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-03-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "remotes"
+          },
+          {
+            "package": "rex",
+            "ondiskversion": "1.2.2",
+            "path": "/home/runner/work/_temp/Library/rex",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-03-28",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rex"
+          },
+          {
+            "package": "risk.assessr",
+            "ondiskversion": "4.1.2",
+            "path": "/home/runner/work/_temp/Library/risk.assessr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "risk.assessr"
+          },
+          {
+            "package": "rlang",
+            "ondiskversion": "1.3.0",
+            "loadedversion": "1.3.0",
+            "path": "/home/runner/work/_temp/Library/rlang",
+            "loadedpath": "/home/runner/work/_temp/Library/rlang",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-05",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rlang"
+          },
+          {
+            "package": "rmarkdown",
+            "ondiskversion": "2.31",
+            "path": "/home/runner/work/_temp/Library/rmarkdown",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-03-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rmarkdown"
+          },
+          {
+            "package": "rprojroot",
+            "ondiskversion": "2.1.1",
+            "path": "/home/runner/work/_temp/Library/rprojroot",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-08-26",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "rprojroot"
+          },
+          {
+            "package": "RUnit",
+            "ondiskversion": "0.4.33.1",
+            "path": "/home/runner/work/_temp/Library/RUnit",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-06-17",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "RUnit"
+          },
+          {
+            "package": "sass",
+            "ondiskversion": "0.4.10",
+            "path": "/home/runner/work/_temp/Library/sass",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-04-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "sass"
+          },
+          {
+            "package": "sessioninfo",
+            "ondiskversion": "1.2.4",
+            "loadedversion": "1.2.4",
+            "path": "/home/runner/work/_temp/Library/sessioninfo",
+            "loadedpath": "/home/runner/work/_temp/Library/sessioninfo",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "sessioninfo"
+          },
+          {
+            "package": "stringi",
+            "ondiskversion": "1.8.7",
+            "path": "/home/runner/work/_temp/Library/stringi",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-03-27",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "stringi"
+          },
+          {
+            "package": "stringr",
+            "ondiskversion": "1.6.0",
+            "path": "/home/runner/work/_temp/Library/stringr",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-11-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "stringr"
+          },
+          {
+            "package": "sys",
+            "ondiskversion": "3.4.3",
+            "path": "/home/runner/work/_temp/Library/sys",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-10-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "sys"
+          },
+          {
+            "package": "test.assessr",
+            "ondiskversion": "2.1.3",
+            "path": "/home/runner/work/_temp/Library/test.assessr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "test.assessr"
+          },
+          {
+            "package": "testthat",
+            "ondiskversion": "3.3.2",
+            "path": "/home/runner/work/_temp/Library/testthat",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-01-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "testthat"
+          },
+          {
+            "package": "tibble",
+            "ondiskversion": "3.3.1",
+            "path": "/home/runner/work/_temp/Library/tibble",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-01-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "tibble"
+          },
+          {
+            "package": "tidyr",
+            "ondiskversion": "1.3.2",
+            "path": "/home/runner/work/_temp/Library/tidyr",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-12-19",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "tidyr"
+          },
+          {
+            "package": "tidyselect",
+            "ondiskversion": "1.2.1",
+            "path": "/home/runner/work/_temp/Library/tidyselect",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-03-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "tidyselect"
+          },
+          {
+            "package": "tinytest",
+            "ondiskversion": "1.4.3",
+            "path": "/home/runner/work/_temp/Library/tinytest",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-03-24",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "tinytest"
+          },
+          {
+            "package": "tinytex",
+            "ondiskversion": "0.60",
+            "path": "/home/runner/work/_temp/Library/tinytex",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-16",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "tinytex"
+          },
+          {
+            "package": "utf8",
+            "ondiskversion": "1.2.6",
+            "path": "/home/runner/work/_temp/Library/utf8",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-06-08",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "utf8"
+          },
+          {
+            "package": "vctrs",
+            "ondiskversion": "0.7.3",
+            "path": "/home/runner/work/_temp/Library/vctrs",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-04-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "vctrs"
+          },
+          {
+            "package": "visNetwork",
+            "ondiskversion": "2.1.4",
+            "path": "/home/runner/work/_temp/Library/visNetwork",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-09-04",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "visNetwork"
+          },
+          {
+            "package": "waldo",
+            "ondiskversion": "0.6.2",
+            "path": "/home/runner/work/_temp/Library/waldo",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-07-11",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "waldo"
+          },
+          {
+            "package": "whatsnew",
+            "ondiskversion": "1.0.0",
+            "path": "/tmp/RtmpecluCC/file1effbe37cf7/whatsnew.Rcheck/whatsnew",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-21",
+            "source": "local",
+            "library": "/tmp/RtmpecluCC/file1effbe37cf7/whatsnew.Rcheck",
+            "_row": "whatsnew"
+          },
+          {
+            "package": "withr",
+            "ondiskversion": "3.0.3",
+            "path": "/home/runner/work/_temp/Library/withr",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-19",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "withr"
+          },
+          {
+            "package": "xfun",
+            "ondiskversion": "0.60",
+            "loadedversion": "0.60",
+            "path": "/home/runner/work/_temp/Library/xfun",
+            "loadedpath": "/home/runner/work/_temp/Library/xfun",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-07-09",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "xfun"
+          },
+          {
+            "package": "xml2",
+            "ondiskversion": "1.6.0",
+            "path": "/home/runner/work/_temp/Library/xml2",
+            "attached": false,
+            "is_base": false,
+            "date": "2026-06-22",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "xml2"
+          },
+          {
+            "package": "xopen",
+            "ondiskversion": "1.0.1",
+            "path": "/home/runner/work/_temp/Library/xopen",
+            "attached": false,
+            "is_base": false,
+            "date": "2024-04-25",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "xopen"
+          },
+          {
+            "package": "yaml",
+            "ondiskversion": "2.3.12",
+            "path": "/home/runner/work/_temp/Library/yaml",
+            "attached": false,
+            "is_base": false,
+            "date": "2025-12-10",
+            "source": "RSPM",
+            "library": "/home/runner/work/_temp/Library",
+            "_row": "yaml"
+          }
+        ]
+      },
+      "cleaner": {}
+    },
+    "check_score": 1
+  },
+  "risk_analysis": {
+    "dependencies_count": "low",
+    "later_version": "unknown",
+    "code_coverage": "low",
+    "total_download": "high",
+    "license": "medium",
+    "reverse_dependencies_count": "high",
+    "documentation_score": "medium",
+    "has_ex_docs_score": "medium",
+    "cmd_check": "low",
+    "has_bug_reports_url_risk": "low",
+    "has_source_control_risk": "low"
+  }
+}
