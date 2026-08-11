@@ -1,7 +1,6 @@
 <!-- badges: start -->
 ![R-CMD-check](https://img.shields.io/badge/R%20CMD%20check-Passing-brightgreen.svg)
 ![Test Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen.svg)
-![Pharmaverse](http://pharmaverse.org/shields/risk.assessr.svg)
 <!-- badges: end -->
 
 # whatsnew
