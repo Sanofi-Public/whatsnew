@@ -1,0 +1,72 @@
+---
+title: "Compare Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compare Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+knitr::opts_chunk$set(fig.width = 12, fig.height = 5, out.width = "100%" ) 
+```
+
+```{r setup}
+library(whatsnew)
+library(risk.assessr)
+```
+
+```{r}
+# set up
+options(
+  repos = c(CRAN = "http://cran.us.r-project.org")
+)
+```
+
+## compare
+
+The `compare()` function orchestrates `compare_dependencies()` and other helpers to summarise changes between package versions.
+```{r}
+pkg_diff <- compare("dplyr", "1.1.4", "1.0.9")
+```
+
+## Functions
+
+```{r}
+pkg_diff$functions_diff$added
+```
+```{r}
+pkg_diff$functions_diff$removed
+```
+
+```{r}
+pkg_diff
+```
+
+
+## dependencies
+
+```{r}
+pkg_diff$dependencies_diff$dependencies
+```
+
+## Tm
+
+
+```{r}
+pkg_diff$test_m
+```
+
+
+
+
+
+
+
+
+

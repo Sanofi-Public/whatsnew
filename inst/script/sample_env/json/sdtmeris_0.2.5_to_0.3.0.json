@@ -1,0 +1,187 @@
+{
+  "package": ["sdtmeris"],
+  "version_old": ["0.2.5"],
+  "version_new": ["0.3.0"],
+  "dependencies_diff": {
+    "dependencies": {
+      "Depends": {"added": [], "removed": [], "modified": null},
+      "Imports": {"added": [], "removed": [], "modified": null},
+      "Suggests": {"added": [], "removed": [], "modified": null}
+    }
+  },
+  "functions_diff": {
+    "added": {
+      "compare_dtc_parse": {"x": null},
+      "compare_dtc_secs": {"side1": null, "side2": null, "op": "c(\">\", \">=\", \"==\", \"<\", \"<=\")", "nb_days": null},
+      "compare_dtc_floor_to_target": {"secs": null, "target_len": null},
+      "compare_dtc_shift_x2": {"secs": null, "target_len": null, "nb_days": null},
+      "compare_dtc": {"x1": null, "x2": null, "op": "c(\">\", \">=\", \"==\", \"<\", \"<=\")", "nb_days": null},
+      "dso_merge_sdtm_supp": {"parent": null, "supp": null, "domain": null, "variable_metadata": null, "id_vars": "c(STUDYID, USUBJID)"},
+      "dso_type_map": {"type": null, "n": null},
+      "dso_create_dataset": {"var": null, "type": null, "label": null, "n": null},
+      "detect_sas_encoding": {"file": null}
+    },
+    "removed": {},
+    "modified": {
+      "dso_create_r2f": {
+        "old": {
+          "domains": null,
+          "metadata": ["list(DATASET = get0(\"SDTMMeta\", envir = parent.frame())$DatasetMetadata, ", "    VARIABLE = get0(\"SDTMMeta\", envir = parent.frame())$VariableMetadata)"],
+          "sds_file": null,
+          "package": "sdtmeris",
+          "template_name": "r2f_templates",
+          "template_path": null,
+          "out_path": "get0(\"MISC\", envir = parent.frame()) %||% \".\"",
+          "out_name": null,
+          "interp": ["list(W_COMPOUND = get0(\"W_COMPOUND\", envir = parent.frame()), ", "    W_STUDY = get0(\"W_STUDY\", envir = parent.frame()), W_ANALYSIS = get0(\"W_ANALYSIS\", ", "        envir = parent.frame()))"],
+          "overwrite": false,
+          "copy_into": null,
+          "open": false
+        },
+        "new": {
+          "domains": null,
+          "metadata": ["list(DATASET = get0(\"SDTMMeta\", envir = parent.frame())$DatasetMetadata, ", "    VARIABLE = get0(\"SDTMMeta\", envir = parent.frame())$VariableMetadata)"],
+          "sds_file": null,
+          "package": "sdtmeris",
+          "template_name": "c(\"r2f_templates\", \"vax_templates\")",
+          "template_path": null,
+          "template_start_text": "STUDY HEADER",
+          "out_path": "get0(\"MISC\", envir = parent.frame()) %||% \".\"",
+          "out_name": null,
+          "interp": ["list(W_COMPOUND = get0(\"W_COMPOUND\", envir = parent.frame()), ", "    W_STUDY = get0(\"W_STUDY\", envir = parent.frame()), W_ANALYSIS = get0(\"W_ANALYSIS\", ", "        envir = parent.frame()))"],
+          "overwrite": false,
+          "copy_into": null,
+          "open": false
+        }
+      },
+      "dso_use_template_1": {
+        "old": {
+          "domain": null,
+          "package": "sdtmeris",
+          "template_name": "r2f_templates",
+          "template_path": null,
+          "out_path": ".",
+          "out_name": null,
+          "data": "list()",
+          "remove_check": true,
+          "overwrite": false,
+          "copy_into": null,
+          "open": false
+        },
+        "new": {
+          "domain": null,
+          "package": "sdtmeris",
+          "template_name": "r2f_templates",
+          "template_path": null,
+          "template_start_text": "STUDY HEADER",
+          "out_path": ".",
+          "out_name": null,
+          "data": "list()",
+          "remove_check": true,
+          "overwrite": false,
+          "copy_into": null,
+          "open": false
+        }
+      },
+      "dso_derive_trtem": {
+        "old": {
+          "data_in": null,
+          "stdtc_name": null,
+          "endtc_name": null,
+          "trxxsdtc_name": null,
+          "trxxrdtc_name": null,
+          "trtem_name": null,
+          "single_period": true,
+          "nb_days": null,
+          "exposed_name": null,
+          "domain": null,
+          "protocol": false,
+          "trtemfl_trt_endtc_fill": true,
+          "ignore_time_for_trt_end": false,
+          "initial_intensity": null,
+          "intensity": null,
+          "group_var": null,
+          "subject_keys": "c(STUDYID, USUBJID)"
+        },
+        "new": {
+          "data_in": null,
+          "stdtc_name": null,
+          "endtc_name": null,
+          "trxxsdtc_name": null,
+          "trxxrdtc_name": null,
+          "trtem_name": null,
+          "exposed_name": null,
+          "single_period": true,
+          "nb_days": null,
+          "domain": null,
+          "protocol": null
+        }
+      },
+      "dso_read_sas": {
+        "old": {
+          "inds_name": null,
+          "inds_ext": "c(\"sas7bdat\", \"xpt\", \"rds\")",
+          "inds_prefix": "get0(\"db_prefix\", envir = parent.frame())",
+          "lib": "get0(\"RDBS\", envir = parent.frame())",
+          "is_rdbs": true,
+          "lower_inds_name": true,
+          "upper_variable": true,
+          "add_prefix": ".",
+          "blanks_to_na": true
+        },
+        "new": {
+          "inds_name": null,
+          "inds_ext": "c(\"sas7bdat\", \"xpt\", \"rds\")",
+          "inds_prefix": "get0(\"db_prefix\", envir = parent.frame())",
+          "lib": "get0(\"RDBS\", envir = parent.frame())",
+          "is_rdbs": true,
+          "lower_inds_name": true,
+          "upper_variable": true,
+          "add_prefix": ".",
+          "blanks_to_na": true,
+          "encoding": null
+        }
+      },
+      "dso_set_workspace": {
+        "old": {
+          "metadata_file_name": null,
+          "metadata_filter_col_name": null,
+          "metadata": ["list(DATASET = get0(\"SDTMMeta\", envir = parent.frame())$DatasetMetadata, ", "    VARIABLE = get0(\"SDTMMeta\", envir = parent.frame())$VariableMetadata)"],
+          "create_alloc_cust": true,
+          "copy_alloc_cust_into": "get0(\"METWI\")",
+          "create_template": true,
+          "copy_template_into": null,
+          "create_extractSDTM": true,
+          "copy_extractSDTM_into": null,
+          "interp": ["list(W_COMPOUND = get0(\"W_COMPOUND\"), W_STUDY = get0(\"W_STUDY\"), ", "    W_ANALYSIS = get0(\"W_ANALYSIS\"), AUTHOR = \"CoE-SDR TEAM\")"],
+          "sds_file": null,
+          "overwrite": false,
+          "out_path": "get0(\"MISC\")"
+        },
+        "new": {
+          "metadata_file_name": null,
+          "metadata_filter_col_name": null,
+          "metadata": ["list(DATASET = get0(\"SDTMMeta\", envir = parent.frame())$DatasetMetadata, ", "    VARIABLE = get0(\"SDTMMeta\", envir = parent.frame())$VariableMetadata)"],
+          "template_name": "c(\"r2f_templates\", \"vax_templates\")",
+          "create_alloc_cust": true,
+          "copy_alloc_cust_into": "get0(\"METWI\")",
+          "create_template": true,
+          "copy_template_into": null,
+          "create_extractSDTM": true,
+          "copy_extractSDTM_into": null,
+          "interp": ["list(W_COMPOUND = get0(\"W_COMPOUND\"), W_STUDY = get0(\"W_STUDY\"), ", "    W_ANALYSIS = get0(\"W_ANALYSIS\"), AUTHOR = \"CoE-SDR TEAM\")"],
+          "sds_file": null,
+          "overwrite": false,
+          "out_path": "get0(\"MISC\")"
+        }
+      },
+      "dso_update_usubjid": {
+        "old": {"data_in_dm": null, "data_in_xd": null, "data_in": null},
+        "new": {"data_in": null, "data_in_dm": null, "data_in_xd": null}
+      }
+    }
+  },
+  "test_m": [],
+  "security_vulnerabilities": [],
+  "html_reports": []
+}

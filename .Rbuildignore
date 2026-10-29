@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^.github
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs
+Makefile

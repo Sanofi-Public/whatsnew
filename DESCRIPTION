@@ -1,0 +1,44 @@
+Package: whatsnew
+Type: Package
+Title: Package Version Comparison
+Version: 1.0.0
+Authors@R: c(
+    person("Hugo", "Bottois", , "hugo.bottois@sanofi.com", role = c("cre", "aut"), comment = c(ORCID = "0000-0003-4674-0875")),
+    person("Edward", "Gillian", , "edward.gillian-ext@sanofi.com", role = "aut", comment = c(ORCID = "0000-0003-2732-5107")),
+    person("Paulin", "Charliquart", , "paulin.charliquart@sanofi.com", role = "aut"),
+    person("Andre", "Couturier", , "andre.couturier@sanofi.com", role = "aut"),
+    person("Sanofi", role = c("cph", "fnd")))
+Description: Compares two versions of a package release and reports what
+    changed between them including 'DESCRIPTION' metadata and exported functions
+    in dependencies. This is useful for preparing release notes
+    and migration guides, and for assessing the risk of upgrading a
+    dependency.
+License: GPL (>= 3)
+BugReports: https://github.com/Sanofi-Public/whatsnew/issues
+Encoding: UTF-8
+LazyData: true
+Depends: 
+  R (>= 4.1.0)
+Imports: 
+    remotes,
+    dplyr,
+    purrr,
+    magrittr,
+    rlang,
+    utils,
+    risk.assessr (>= 3.0.0),
+    igraph, 
+    pkgnet
+Suggests:
+    knitr,
+    rmarkdown,
+    mockery,
+    withr,
+    testthat (>= 3.0.0),
+    stringr,
+    here,
+    jsonlite
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
+RoxygenNote: 7.3.2

@@ -1,0 +1,52 @@
+{
+  "dependency": {
+    "added": {
+      "risk": "medium",
+      "note": "Verify new transitive deps."
+    },
+    "removed": {
+      "risk": "high",
+      "note": "Check re-exports; may break."
+    },
+    "modified": {
+      "risk": "low-medium",
+      "note": "Cascading update; run compare on those packages."
+    },
+    "depends_changed_action": "Depends changed: may require environment updates."
+  },
+  "function_changes": {
+    "removed": {
+      "risk": "high",
+      "note": "Search codebase for usages.",
+      "action": "Functions removed: search codebase and update call sites."
+    },
+    "modified": {
+      "risk": "high",
+      "note": "Check param changes at each call site.",
+      "action": "Params modified: inspect each call site."
+    },
+    "added": {
+      "risk": "low",
+      "note": "New API only."
+    }
+  },
+  "param_changes": {
+    "params_modified": {
+      "risk": "high",
+      "note": "Possible breaking change. Check removed params, changed order, new required params."
+    },
+    "params_added_optional": {
+      "risk": "low",
+      "note": "Backward compatible if defaults are sensible."
+    },
+    "params_removed": {
+      "risk": "high",
+      "note": "Breaking: update all call sites."
+    }
+  },
+  "recommendation": {
+    "high": "Manual review and regression tests before upgrade.",
+    "medium": "Review diffs; run smoke tests before upgrade.",
+    "low": "Usually safe; quick review recommended."
+  }
+}

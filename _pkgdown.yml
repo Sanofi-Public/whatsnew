@@ -1,0 +1,18 @@
+package: whatsnew
+title: "whatsnew"
+template:
+  bootstrap: 5
+navbar:
+  structure:
+    left: [reference, version-reports]
+  components:
+    reference:
+      text: "Reference"
+      href: reference/index.html
+    version-reports:
+      text: "Version Reports"
+      href: articles/index.html
+articles:
+  - title: "Version Comparison Reports"
+    contents:
+      - starts_with("")

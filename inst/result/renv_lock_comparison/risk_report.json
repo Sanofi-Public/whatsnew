@@ -1,0 +1,93 @@
+{
+  "generated": "2026-03-23 15:11:14",
+  "lock_old": "inst/env/renv_Rforsub_old.lock",
+  "lock_new": "inst/env/renv_Rforsub.lock",
+  "summary": {
+    "version_changed": 4,
+    "added": 0,
+    "removed": 0
+  },
+  "risk_assessments": {
+    "cli": {
+      "package": "cli",
+      "version_old": "3.6.2",
+      "version_new": "3.6.3",
+      "risk_level": "low",
+      "recommendation": "Usually safe; quick review recommended.",
+      "dependency_risks": [],
+      "function_risks": [],
+      "actions": []
+    },
+    "dplyr": {
+      "package": "dplyr",
+      "version_old": "1.1.3",
+      "version_new": "1.1.4",
+      "risk_level": "medium",
+      "recommendation": "Review diffs; run smoke tests before upgrade.",
+      "dependency_risks": {
+        "Imports_modified": {
+          "risk": "low-medium",
+          "items": "vctrs: >= 0.6.0 -> >= 0.6.4",
+          "note": "Cascading update; run compare on those packages."
+        }
+      },
+      "function_risks": {
+        "modified_optional_only": {
+          "risk": "low",
+          "functions": ["import_vctrs", "import_from"],
+          "note": "Backward compatible if defaults are sensible."
+        }
+      },
+      "actions": []
+    },
+    "purrr": {
+      "package": "purrr",
+      "version_old": "1.0.1",
+      "version_new": "1.0.2",
+      "risk_level": "high",
+      "recommendation": "Manual review and regression tests before upgrade.",
+      "dependency_risks": {
+        "Depends_modified": {
+          "risk": "low-medium",
+          "items": "R: >= 3.4.0 -> >= 3.5.0",
+          "note": "Cascading update; run compare on those packages."
+        },
+        "Imports_modified": {
+          "risk": "low-medium",
+          "items": ["cli: >= 3.4.0 -> >= 3.6.1", "rlang: >= 0.4.10 -> >= 1.1.1", "vctrs: >= 0.5.0 -> >= 0.6.3"],
+          "note": "Cascading update; run compare on those packages."
+        }
+      },
+      "function_risks": {
+        "added": {
+          "risk": "low",
+          "functions": "defer",
+          "note": "New API only."
+        }
+      },
+      "actions": "Depends changed: may require environment updates."
+    },
+    "rlang": {
+      "package": "rlang",
+      "version_old": "1.1.3",
+      "version_new": "1.1.4",
+      "risk_level": "low",
+      "recommendation": "Usually safe; quick review recommended.",
+      "dependency_risks": [],
+      "function_risks": {
+        "added": {
+          "risk": "low",
+          "functions": ["dyn_lgl_push_back", "dyn_int_push_back", "dyn_dbl_push_back", "dyn_cpl_push_back", "dyn_raw_push_back", "dyn_chr_push_back", "dyn_list_push_back"],
+          "note": "New API only."
+        }
+      },
+      "actions": []
+    }
+  },
+  "compare_status": {
+    "cli": "OK",
+    "dplyr": "OK",
+    "purrr": "OK",
+    "rlang": "OK"
+  }
+}
